@@ -1,5 +1,5 @@
 <!-- Agrega este bloque ANTES de la etiqueta <nav> -->
-<div class="h-auto w-full bg-white flex justify-center py-4 border-b border-gray-100">
+<div class="h-2 w-full bg-white flex justify-center py-4 border-b border-gray-100">
     <div class="w-full h-4 bg-repeat-x" style="background-image: url('https://www.oaxaca.gob.mx/cortv/wp-content/themes/temadeps2023/assets/images/greca.png'); background-size: auto 100%;"></div>
 </div>
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
@@ -8,11 +8,11 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo  />
-                    </a>
-                </div>
+                    <div class="shrink-0 flex items-center">
+                        <a href="{{ route('dashboard') }}">
+                            <x-application-logo  />
+                        </a>
+                    </div>
                 <!-- Navigation Links -->
                     <!--Dashboard-->
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
