@@ -1,0 +1,117 @@
+
+body{
+	position: relative;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+	/* Use a path relative to this CSS file so Vite resolves the asset: resources/css -> ../images */
+	background-image    : url('../images/cortv.png') !important;
+	background-repeat   : no-repeat;
+	background-position : center;
+	background-attachment: fixed !important;
+	background-size: cover !important;
+	background-color: #ae2b2f;
+}
+
+/* Fallback pseudo-element to ensure background shows even if other rules interfere */
+body::before{
+	content: '';
+	position: fixed;
+	inset: 0;
+	background-image: url('../images/cortv.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+	z-index: -1;
+	pointer-events: none;
+}
+
+
+.login-container {
+	width: 100vw;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.login-form {
+	background: rgba(255,255,255,0.85);
+	border: 1px solid #d9d9d9;
+	border-radius: 8px;
+	box-shadow: 0 4px 4.8px 0 rgba(0,0,0,0.25);
+	padding: 2rem;
+	max-width: 400px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.login-title {
+	color: #ae2b2f;
+	font-size: 2.5rem;
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.login-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.login-field label {
+	font-size: 1.25rem;
+	color: #1e1e1e;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+.login-field input {
+	padding: 0.75rem 1rem;
+	border: 1px solid #d9d9d9;
+	border-radius: 8px;
+	font-size: 1rem;
+	color: #1e1e1e;
+	background: #fff;
+	outline: none;
+	transition: border 0.2s;
+}
+.login-field input:focus {
+	border-color: #ae2b2f;
+}
+
+.login-error {
+	color: #d32f2f;
+	font-size: 0.95rem;
+}
+
+.login-btn {
+	background: #8b2427;
+	color: #f5f5f5;
+	border: none;
+	border-radius: 8px;
+	padding: 0.75rem;
+	font-size: 1rem;
+	font-family: 'Times New Roman', Times, serif;
+	cursor: pointer;
+	font-weight: normal;
+	margin-top: 0.5rem;
+	transition: background 0.2s;
+}
+.login-btn:hover {
+	background: #ae2b2f;
+}
+
+.login-link {
+	text-align: left;
+	margin-top: 0.5rem;
+}
+.login-link a {
+	color: #1e1e1e;
+	text-decoration: underline;
+	font-size: 1rem;
+}
