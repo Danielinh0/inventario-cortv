@@ -1,0 +1,144 @@
+.header2{
+    box-sizing: border-box;
+    margin-top: 40px;
+    width: 100%;
+    height: 110px;
+    border-radius: 0 0 30px 30px;
+    background: var(--Botn, #8B2427);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 89px;
+}
+
+.informacion{
+    display: flex;
+    width: 445px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+}
+
+.saludo{
+    color: #FFF;
+    font-family: "Times New Roman";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    
+}
+
+.mensaje{
+    color: var(--Blanco, #FFF);
+    font-family: "Times New Roman";
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.principal{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+.btn{
+    box-sizing: border-box;
+    width: 272px;
+    height: 40px;
+    background-color: #6C81BB;
+    box-shadow: 4px 4px 6.2px 0 rgba(0, 0, 0, 0.25);   
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+        span{
+            color: #F5F5F5;
+            font-family: "Times New Roman";
+            font-size: 20px;
+            font-style: normal;
+            font-weight: var(--sds-typography-body-font-weight-strong);
+            line-height: 140%; /* 28px */
+        }
+}
+
+.periodo{
+    color: var(--Blanco, #FFF);
+    font-family: "Times New Roman";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .header2 {
+        padding: 0 20px;
+        height: auto;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .informacion {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .saludo {
+        font-size: 24px;
+    }
+
+    .mensaje {
+        font-size: 18px;
+    }
+
+    .btn {
+        width: 200px;
+    }
+
+    .periodo {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header2 {
+        padding: 10px 10px;
+        margin-top: 20px;
+        height: auto;
+        gap: 15px;
+    }
+
+    .informacion {
+        gap: 5px;
+    }
+
+    .saludo {
+        font-size: 20px;
+    }
+
+    .mensaje {
+        font-size: 16px;
+    }
+
+    .btn {
+        width: 180px;
+        height: 35px;
+    }
+
+    .btn span {
+        font-size: 18px;
+    }
+
+    .periodo {
+        font-size: 12px;
+    }
+}
