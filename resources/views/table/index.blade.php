@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <!--Botonera-->
-                <div class="flex gap-2 mb-6">
+                <div class="p-4 flex gap-2 mb-6">
                     <a href="{{ route('tabla.existencias') }}" class="px-4 py-2 {{ request()->routeIs('tabla.existencias') ? 'bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg' }}">Existencias</a>
                     <a href="{{ route('tabla.productos') }}" class="px-4 py-2 {{ request()->routeIs('tabla.productos') ? 'bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg' }}">Productos</a>
                     <a href="{{ route('tabla.areas') }}" class="px-4 py-2 {{ request()->routeIs('tabla.areas') ? 'bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg' }}">Areas</a>
