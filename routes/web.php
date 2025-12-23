@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('/consultar-tablas')->group(function () {
-    Route::get('/', [AreaController::class, 'index'])->name('tabla.index');
+    Route::get('/', [ProductController::class, 'index'])->name('tabla.index');
     Route::get('/areas', [AreaController::class, 'index'])->name('tabla.areas');
     Route::get('/productos', [ProductController::class, 'index'])->name('tabla.productos');
     Route::get('/existencias', [ProductController::class, 'index'])->name('tabla.existencias');
