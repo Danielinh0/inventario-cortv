@@ -3,7 +3,10 @@
 use App\Http\Controllers\{
     ProfileController,
     ProductController,
-    AreaController
+    AreaController,
+    RegistroController,
+    EntradaController,
+    SalidaController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -20,13 +23,21 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::prefix('/consultar-tablas')->group(function () {
+    Route::get('/', [AreaController::class, 'index'])->name('tabla.index');
+    Route::get('/areas', [AreaController::class, 'index'])->name('tabla.areas');
+    Route::get('/productos', [ProductController::class, 'index'])->name('tabla.productos');
+    Route::get('/existencias', [ProductController::class, 'index'])->name('tabla.existencias');
+    Route::get('/entradas', [EntradaController::class, 'index'])->name('tabla.entradas');
+    Route::get('/salidas', [SalidaController::class, 'index'])->name('tabla.salidas');
+    
+});
+
+
 Route::get('/reportes', function () {
     return view('reportes');
 })->name('reportes');
-
-
-Route::get('/consultar-tablas', [ProductController::class, 'index'])->name('consultar_tablas');
-// Route::get('/consultar-tablas', [AreaController::class, 'index'])->name('consultar_tablas');
 
 Route::get('/nuevo-producto', function () {
     return view('nuevo_producto');

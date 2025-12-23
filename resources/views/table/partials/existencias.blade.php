@@ -8,7 +8,7 @@
                     <th class="border border-gray-300 px-4 py-2">Producto</th>
                     <th class="border border-gray-300 px-4 py-2">Cantidad</th>
                     <th class="border border-gray-300 px-4 py-2">Tipo Unidad</th>
-                    <th class="border border-gray-300 px-4 py-2">Opciones</th>
+                    <th class="border border-gray-300 px-4 py-2">Acciones</th>
                 </tr>
             </thead>
             <tbody>

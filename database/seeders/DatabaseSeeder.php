@@ -24,7 +24,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             productoSeeder::class,
             areaSeeder::class,
+            PersonaSeeder::class,
             claveSeeder::class,
+            RegistroSeeder::class,
+            EntradaSeeder::class,
+            SalidaSeeder::class,
         ]);
     }
 }

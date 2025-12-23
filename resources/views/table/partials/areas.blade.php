@@ -6,7 +6,7 @@
                 <tr>
                     <th class="border border-gray-300 px-4 py-2">ID</th>
                     <th class="border border-gray-300 px-4 py-2">Nombre</th>
-                    <th class="border border-gray-300 px-4 py-2">Opciones</th>
+                    <th class="border border-gray-300 px-4 py-2">Acciones</th>
                 </tr>
             </thead>
             <tbody>

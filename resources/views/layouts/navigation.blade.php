@@ -29,7 +29,7 @@
                         </div>
                     <!--Tablas-->
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link class="text-gray-600" :href="route('consultar_tablas')" :active="request()->routeIs('consultar_tablas')">
+                            <x-nav-link class="text-gray-600" :href="route('tabla.index')" :active="request()->routeIs('tabla.index','tabla.areas','tabla.productos','tabla.existencias')">
                                 {{ __('Consultar tablas') }}
                             </x-nav-link>
                         </div>
@@ -121,7 +121,7 @@
                         {{ __('Reportes') }}
                     </x-responsive-nav-link>
                 <!--Tablas-->
-                    <x-responsive-nav-link :href="route('consultar_tablas')" :active="request()->routeIs('consultar_tablas')">
+                    <x-responsive-nav-link :href="route('tabla.index')" :active="request()->routeIs('tabla.areas','tabla.productos','tabla.existencias')">
                         {{ __('Consultar tablas') }}
                     </x-responsive-nav-link>
                 <!--Nuevo Producto-->
