@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class AreaController extends Controller
 {
+    public $areas = [];
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $areas = Area::paginate(20);
+        $areas = Area::orderBy('id_area')->get();
         return view('table.index', compact('areas'));
     }
 
@@ -32,7 +34,10 @@ class AreaController extends Controller
     {
         //
     }
-
+    public function mount()
+    {
+        $this->areas = Area::orderBy('nombre_area')->get();
+    }
     /**
      * Display the specified resource.
      */

@@ -26,8 +26,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="mt-4">
-            {{ $areas->links() }}  
-        </div>
+        
     </div>
 </section>
