@@ -17,22 +17,25 @@
                 
                 </div>
             <!--Tablas-->
-                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                        
-                        {{-- @include('table.partials.searchbar') --}}
-                        
-                        @if(request()->routeIs('tabla.existencias') or request()->routeIs('tabla.index'))
-                            @include('table.partials.existencias')
-                        @elseif(request()->routeIs('tabla.areas'))
-                            @include('table.partials.areas')
-                        @elseif(request()->routeIs('tabla.productos'))
-                            @include('table.partials.productos')
-                        @elseif(request()->routeIs('tabla.entradas'))
-                            @include('table.partials.entradas')
-                        @elseif(request()->routeIs('tabla.salidas'))
-                            @include('table.partials.salidas')
-                        @endif
-                    </div>
+            @switch(request()->route()->getName())
+                @case('tabla.existencias')
+                @case('tabla.index')
+                    @livewire('existencias-tabla')    
+                    @break
+                @case('tabla.areas')
+                    @livewire('area-tabla')
+                    @break
+                @case('tabla.productos')
+                    @livewire('productos-tabla')
+                    @break
+                @case('tabla.entradas')
+                    @include('table.partials.entradas')
+                    @break
+                @case('tabla.salidas')
+                    @include('table.partials.salidas')
+                    @break
+            @endswitch
+            {{-- <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"></div> --}}
 
         </div>
     </div>

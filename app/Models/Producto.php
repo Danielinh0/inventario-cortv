@@ -24,4 +24,12 @@ class Producto extends Model
     {
         return $this->belongsToMany(Registro::class);
     }
+
+    public function scopeSearch($query, $value)
+    {
+        $query->where('id_producto', 'like', '%' . $value . '%')
+            ->orWhere('nombre_producto', 'like', '%' . $value . '%')
+            ->orWhere('cantidad_producto', 'like', '%' . $value . '%')
+            ;
+    }
 }
