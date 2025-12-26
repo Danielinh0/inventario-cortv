@@ -15,4 +15,11 @@ class Salida extends Model
     {
         return $this->belongsTo(Registro::class, 'id_salida', 'id_registro');
     }
+        public function scopeSearch($query, $value)
+    {
+        $query->where('id_salida', 'like', '%' . $value . '%')
+            ->orWhere('created_at', 'like', '%' . $value . '%')
+            ->orWhere('cantidad_salida', 'like', '%' . $value . '%')
+            ;
+    }
 }

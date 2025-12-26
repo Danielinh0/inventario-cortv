@@ -36,9 +36,7 @@ class ProductosTabla extends Component
 
     }
     public function setSortBy($sortBy){
-        if($sortBy === 'NoFiltro') {
-            return;
-        }
+
         if($this->sortBy === $sortBy){
             $this->sortDir = $this->sortDir ==='ASC' ? 'DESC' : 'ASC';
             return;

@@ -46,38 +46,27 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
-                            @include('livewire.includes.table-sort-th', ['name' => 'id_producto', 'displayName' => 'ID', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'nombre_producto', 'displayName' => 'Producto', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'cantidad_producto', 'displayName' => 'Cantidad', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'unidad_producto', 'displayName' => 'Tipo Unidad', 'sortDir' => $sortDir])
-                                <th scope="col" class="px-4 py-3">
-                                    <span class="sr-only">
-                                        Acciones
-                                    </span>
-                                </th>
+                                @include('livewire.includes.table-sort-th', ['name' => 'id_entrada', 'displayName' => 'ID', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Nombre Producto', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'created_at', 'displayName' => 'Fecha', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Encargado', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'cantidad_entrada', 'displayName' => 'Cantidad', 'sortDir' => $sortDir])
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($existencias as $existencia)
-                                <tr wire:key={{ $existencia->id_producto }} class="border-b dark:border-gray-700">
+                            @foreach ($entradas as $entrada)
+                                <tr class="border-b dark:border-gray-700" wire:key={{ $entrada->id_entrada }}>
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $existencia->id_producto }}</th>
-                                    <td class="px-4 py-3">{{ $existencia->nombre_producto }}</td>
-                                    <td class="px-4 py-3 {{ $existencia->cantidad_producto > 0 ? 'text-green-500' : 'text-red-500' }}">
-                                        {{ $existencia->cantidad_producto }}</td>
-                                    <td class="px-4 py-3">{{ $existencia->unidad_producto }} </td>
-                                    <td class="px-4 py-3 flex items-center justify-end">
-                                        <button class="ml-2 px-3 py-1 bg-blue-500 text-white rounded m-2">
-                                            Editar
-                                        </button>  
-                                        <button onclick="confirm('¿Estas seguro de que quieres eliminar {{$existencia->nombre_producto}}?') || event.stopImmediatePropagation()" wire:click="eliminar({{ $existencia->id_producto }})" 
-                                            class="px-3 py-1 bg-red-500 text-white rounded m-2">
-                                            Eliminar
-                                        </button>
-                                    </td>
+                                        {{ $entrada->id_entrada }}</th>
+                                        <td class="px-4 py-3">{{ $entrada->registro->producto->nombre_producto }}</td>
+                                        <td class="px-4 py-3">{{ $entrada->registro->fecha_registro}} </td>
+                                        <td class="px-4 py-3">{{ $entrada->registro->persona->nombre_persona }}</td>
+                                        <td class="px-4 py-3">{{ $entrada->cantidad_entrada }}</td>
+
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
     
                         </tbody>
                     </table>
@@ -98,7 +87,7 @@
                             </select>
                         </div>
                     </div>
-                    {{ $existencias->links() }}
+                    {{ $entradas->links() }}
                 </div>
             </div>
         </div>
