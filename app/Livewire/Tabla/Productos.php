@@ -11,20 +11,21 @@ class Productos extends Component
 {
     use WithPagination;
 
-    #[Url(history: true)]
-    public $search = '';
+    #historial de URL
+        #[Url(history: true)]
+        public $search = '';
 
-    #[Url(history: true)]
-    public $areaFilter = '';
+        #[Url(history: true)]
+        public $areaFilter = '';
 
-    #[Url(history: true)]
-    public $sortBy = 'id_producto';
+        #[Url(history: true)]
+        public $sortBy = 'id_producto';
 
-    #[Url(history: true)]
-    public $sortDir = 'ASC';
+        #[Url(history: true)]
+        public $sortDir = 'ASC';
 
-    #[Url(history: true)]
-    public $perPage = 10;
+        #[Url(history: true)]
+        public $perPage = 10;
 
     public function updatingSearch()
     {

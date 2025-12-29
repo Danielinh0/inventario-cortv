@@ -20,6 +20,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/pdfs', function () {
+    return view('pdfs.index');
+})->middleware(['auth', 'verified'])->name('pdfs');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,7 +42,7 @@ Route::prefix('/consultar-tablas')->group(function () {
 
 
 Route::get('/reportes', function () {
-    return view('reportes');
+    return view('reportes.index');
 })->name('reportes');
 
 Route::get('/nuevo-producto', function () {
