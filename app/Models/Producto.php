@@ -25,6 +25,9 @@ class Producto extends Model
         return $this->belongsToMany(Registro::class);
     }
 
+    
+
+
     public function scopeSearch($query, $value)
     {
         $query->where('id_producto', 'like', '%' . $value . '%')

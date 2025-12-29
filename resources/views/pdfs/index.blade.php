@@ -25,7 +25,6 @@
             <div>
                 <h1 class="text-3xl font-bold text-gray-900 mb-2">REPORTE MENSUAL DE INVENTARIO ALMACEN</h1>
                 <h2 class="text-xl font-semibold text-gray-700 mb-6">DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES</h2>
-                <h2 class="text-lg font-medium text-gray-600">Periodo: {{}}</h2>
             </div>
         </div>
         <!-- La tabla contiene Numeracion, Codigo de producto, nombre del producto (llamado descripcion),
