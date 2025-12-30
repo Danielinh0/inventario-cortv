@@ -15,13 +15,24 @@ class Producto extends Model
     protected $table = 'productos';
     protected $primaryKey = 'id_producto';
 
-    public function claves()
+    public function clave()
     {
-        return $this->belongsToMany(Clave::class);
+        return $this->hasOne(Clave::class, 'id_producto', 'id_producto');
     }
 
     public function registro()
     {
         return $this->belongsToMany(Registro::class);
+    }
+
+    
+
+
+    public function scopeSearch($query, $value)
+    {
+        $query->where('id_producto', 'like', '%' . $value . '%')
+            ->orWhere('nombre_producto', 'like', '%' . $value . '%')
+            ->orWhere('cantidad_producto', 'like', '%' . $value . '%')
+            ;
     }
 }

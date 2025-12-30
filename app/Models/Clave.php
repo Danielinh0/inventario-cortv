@@ -17,12 +17,12 @@ class Clave extends Model
 
     public function area()
     {
-        return $this->hasMany(Area::class);
+        return $this->belongsTo(Area::class, 'id_area', 'id_area');
     }
 
     public function producto()
     {
-        return $this->hasMany(Producto::class);
+        return $this->belongsTo(Producto::class, 'id_producto', 'id_producto');
     }
     
 }

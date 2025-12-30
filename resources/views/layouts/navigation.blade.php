@@ -1,11 +1,11 @@
 <!-- Agrega este bloque ANTES de la etiqueta <nav> -->
-<div class="h-2 w-full bg-white flex justify-center py-4 border-b border-gray-100">
+<div class="h-2 py-2 w-full flex justify-center  border-b border-gray-100">
     <div class="w-full h-4 bg-repeat-x" style="background-image: url('https://www.oaxaca.gob.mx/cortv/wp-content/themes/temadeps2023/assets/images/greca.png'); background-size: auto 100%;"></div>
 </div>
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-30">
             <div class="flex">
                 <!-- Logo -->
                     <div class="shrink-0 flex items-center">
@@ -29,7 +29,7 @@
                         </div>
                     <!--Tablas-->
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link class="text-gray-600" :href="route('consultar_tablas')" :active="request()->routeIs('consultar_tablas')">
+                            <x-nav-link class="text-gray-600" :href="route('tabla.index')" :active="request()->routeIs('tabla.index','tabla.areas','tabla.productos','tabla.existencias')">
                                 {{ __('Consultar tablas') }}
                             </x-nav-link>
                         </div>
@@ -121,7 +121,7 @@
                         {{ __('Reportes') }}
                     </x-responsive-nav-link>
                 <!--Tablas-->
-                    <x-responsive-nav-link :href="route('consultar_tablas')" :active="request()->routeIs('consultar_tablas')">
+                    <x-responsive-nav-link :href="route('tabla.index')" :active="request()->routeIs('tabla.areas','tabla.productos','tabla.existencias')">
                         {{ __('Consultar tablas') }}
                     </x-responsive-nav-link>
                 <!--Nuevo Producto-->
@@ -165,3 +165,6 @@
         </div>
     @endauth
 </nav>
+{{-- <div class="h-2 w-full flex justify-center  border-b border-gray-100">
+    <div class="w-full h-4 bg-repeat-x" style="background-image: url('https://www.oaxaca.gob.mx/cortv/wp-content/themes/temadeps2023/assets/images/greca.png'); background-size: auto 100%;"></div>
+</div> --}}

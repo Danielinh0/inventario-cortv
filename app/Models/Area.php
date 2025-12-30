@@ -17,6 +17,12 @@ class Area extends Model
 
     public function claves()
     {
-        return $this->belongsToMany(Clave::class);
+        return $this->hasMany(Clave::class, 'id_area', 'id_area');
+    }
+    public function scopeSearch($query, $value)
+    {
+        $query->where('id_area', 'like', '%' . $value . '%')
+            ->orWhere('nombre_area', 'like', '%' . $value . '%')
+            ;
     }
 }
