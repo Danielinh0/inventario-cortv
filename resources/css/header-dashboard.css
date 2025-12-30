@@ -1,6 +1,4 @@
-.probando{
-    margin-top: -23px;
-}
+
 
 .header2{
     box-sizing: border-box;
@@ -28,7 +26,7 @@
     font-family: "Times New Roman";
     font-size: 30px;
     font-style: normal;
-    font-weight: 550;
+    font-weight: 600;
 }
 
 .mensaje{
@@ -36,7 +34,7 @@
     font-family: "Times New Roman";
     font-size: 23px;
     font-style: bold;
-    font-weight: 550;
+    font-weight: 575;
 
     line-height: normal;
 }
