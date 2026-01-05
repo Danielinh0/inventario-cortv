@@ -19,12 +19,9 @@
 
 
     <div class="principal">
+                          
         <div class="btn">
             <span>Genera tu reporte aqui</span>
-        </div>
-              
-        <div class="periodo"> 
-            <span> Periodo Marzo-Abril </span>
         </div>
     </div>
 </div>
