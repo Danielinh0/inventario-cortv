@@ -1,12 +1,4 @@
-<<<<<<< Updated upstream
-<x-app-layout>
-    @include('partials.header-dashboard')
-    <div class="header">
-    </div>
 
-
-
-=======
 <x-app-layout>       
     <div class="h-2 w-full flex justify-center border-b border-gray-100">
         <div class="w-full h-4 bg-repeat-x" style="background-image: url('https://www.oaxaca.gob.mx/cortv/wp-content/themes/temadeps2023/assets/images/greca.png'); background-size: auto 100%;"></div>
@@ -558,7 +550,7 @@
 
     </div>
     
->>>>>>> Stashed changes
+
 </x-app-layout>
 
 
