@@ -4,7 +4,7 @@ import Swiper from 'swiper/bundle';
 // import styles bundle
 import 'swiper/css/bundle';
 
-const swiper = new Swiper('.slider-wrapper', { // Asegúrate que este selector coincida con tu HTML
+const swiper = new Swiper('.slider-wrapper', { // Selector cambiado para coincidir con el HTML
   direction: 'horizontal',
   loop: true,
   grabCursor: true,
