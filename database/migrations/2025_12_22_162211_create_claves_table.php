@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('claves', function (Blueprint $table) {
             $table->id('id_clave');
             $table->unsignedBigInteger('id_area');
+            $table->unsignedBigInteger('id_producto')->nullable();
             $table->integer('contador_clave'); 
             $table->string('valor_clave');
             
             $table->foreign('id_area')->references('id_area')->on('areas')->onDelete('cascade');
-            $table->foreign('id_clave')->references('id_producto')->on('productos')->onDelete('cascade');
+            $table->foreign('id_producto')->references('id_producto')->on('productos')->onDelete('set null');
             $table->timestamps();
             
         });

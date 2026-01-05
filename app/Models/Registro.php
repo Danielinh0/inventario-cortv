@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Registro extends Model
 {
+    use HasFactory;
     //
     /**
      * The table associated with the model.
@@ -17,11 +19,19 @@ class Registro extends Model
 
     public function persona()
     {
-        return $this->belongsToMany(Persona::class);
+        return $this->belongsTo(Persona::class, 'persona_id', 'id_persona');
     }
 
     public function producto()
     {
-        return $this->belongsToMany(Producto::class);
+        return $this->belongsTo(Producto::class, 'producto_id', 'id_producto');
+    }
+    public function entrada()
+    {
+        return $this->hasOne(Entrada::class, 'id_entrada', 'id_registro');
+    }
+    public function salida()
+    {
+        return $this->hasOne(Salida::class, 'id_salida', 'id_registro');
     }
 }

@@ -19,7 +19,7 @@ class claveSeeder extends Seeder
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
             if (! $firstline) {
                 Clave::create([
-                    'id_clave' => $data[0],
+                    'id_producto' => $data[0],
                     'id_area' => $data[1],
                     'contador_clave' => $data[2],
                     'valor_clave' => $data[3],

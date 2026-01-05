@@ -17,10 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('persona_id');
             $table->date('fecha_registro')->default(now());
             
-            $table->integer('cantidad_entrada');
-            $table->integer('cantidad_salida');
-            $table->string('solicitante');
-
             $table->foreign('producto_id')->references('id_producto')->on('productos')->onDelete('cascade');
             $table->foreign('persona_id')->references('id_persona')->on('personas')->onDelete('cascade');
             $table->timestamps();
