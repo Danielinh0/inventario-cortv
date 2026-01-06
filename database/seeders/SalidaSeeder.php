@@ -12,6 +12,6 @@ class SalidaSeeder extends Seeder
      */
     public function run(): void
     {
-        Salida::factory()->count(50)->create();
+        Salida::factory()->count(2500)->create();
     }
 }

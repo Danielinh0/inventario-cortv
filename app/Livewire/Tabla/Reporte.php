@@ -19,6 +19,7 @@ class Reporte extends Component
     #[Url(history: true)]
         public $fechaFin;
     
+    public $showPdfButton = true;
     public $sortBy = 'id_producto';
     public $sortDir = 'ASC';
     public $pos = 1;
@@ -50,108 +51,78 @@ class Reporte extends Component
     
     //Calcula el total inicial del producto en la fecha inicial seleccionadas
     #[Computed()]
-    public function totalInicial($producto){
-        return ($this->totalFinal($producto) + ($this->totalEntradas($producto) - $this->totalSalidas($producto)));
+    public function exInicial(){
+        $Productos = $this->productos();
+        return $Productos ->map(function($producto){
+            $pos = ($producto->id_producto)-1;
+            return ($this->exFinal[($pos)] - ($this->Entradas[($pos)] - $this->Salidas[($pos)]));
+        });
+        return 0;
     } 
 
-    //Calcula el total final del producto en la fecha final seleccionada
+    
+    //Calcula las existencias finales del producto en la fecha final seleccionada
     #[Computed]
-    public function totalFinal($producto){
-        //Entradas desde la fecha final hasta hoy
-            $entradasSince = Entrada::join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')->whereBetween('registros.fecha_registro', [$this->fechaFin, date('Y-m-d')])->where('registros.producto_id', $producto->id_producto)->sum('entradas.cantidad_entrada');
-        //Salidas desde la fecha final hasta hoy
-            $salidasSince = Salida::join('registros', 'salidas.id_salida', '=', 'registros.id_registro')->where('registros.producto_id', $producto->id_producto)->whereBetween('salidas.created_at', [$this->fechaFin, date('Y-m-d')])->sum('salidas.cantidad_salida');
-        //Diferencia entre entradas y salidas desde la fecha final hasta hoy
-        return $producto->cantidad_producto + ($salidasSince-$entradasSince);
+    public function exFinal(){
+        $Productos = $this->productos();
+        return $Productos ->map(function($producto){
+            $pos = ($producto->id_producto)-1;
+            return ($this->totalEntradas[($pos)] - $this->totalSalidas[($pos)]);
+        });
     }
-    /*
+    #[Computed()]
+    public function totalEntradas(){
+        $Productos = $this->productos();
+        return $Productos ->map(function($producto){
+            return Entrada:: join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')
+                        ->whereBetween('registros.fecha_registro',[date('0000-01-01'),$this -> fechaFin])
+                        ->where('producto_id', $producto->id_producto)
+                       ->sum('cantidad_entrada');
+        });
+    }
+    #[Computed()]
+    public function totalSalidas(){
+        $Productos = $this->productos();
+        return $Productos ->map(function($producto){
+            return Salida:: join('registros', 'salidas.id_salida', '=', 'registros.id_registro')
+                        ->whereBetween('registros.fecha_registro',[date('0000-01-01'),$this -> fechaFin])
+                        ->where('producto_id', $producto->id_producto)
+                       ->sum('cantidad_salida');
+        });
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    Buscar la forma de que se agrupen sumas segun el producto y se pueda acceder basado en eso
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    */
 
     //Calcula el total de entradas del producto en el rango de fechas seleccionado
     #[Computed()]
-    public function totalEntradas(){  
-        $Entradas = $this ->entradas();      
-        
-        return $Entradas->get()->sum('cantidad_entrada');
-        // return $registros
-        //     ->where('producto_id', $producto->id_producto)
-        //     ->sum(function($registro) {
-        //     return $registro->entrada->cantidad_entrada ?? 0;
-        //     });
+    public function Entradas(){  
+        $Productos = $this->productos();
+        return $Productos->map(function($producto){
+            return Entrada:: join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')
+                            ->whereBetween('registros.fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
+                            ->where('producto_id', $producto->id_producto)
+                           ->sum('cantidad_entrada');
+        });
     }
 
     //Calcula el total de salidas del producto en el rango de fechas seleccionado
     #[Computed()]
-    public function totalSalidas(){
-        $Salidas = $this ->salidas();
-        return $Salidas->get()->sum('cantidad_salida');
-        // return 1;
-        // return Salida::join('registros', 'salidas.id_salida', '=', 'registros.id_registro')
-        // ->where('registros.producto_id', $producto->id_producto)
-        // ->whereBetween('salidas.created_at', [$this->fechaInicio, $this->fechaFin])
-        // ->sum('salidas.cantidad_salida');
-    }
+    public function Salidas(){
+        // $Salidas = $this ->salidas();
+        $Productos = $this->productos();
 
-    //Entradas
-    #[Computed()]
-    public function entradas(){
-        $registros = $this ->registros();
-        return $registros->whereHas('Entrada')->with('Entrada');
+        return $Productos->map(function($producto){
+            return Salida:: join('registros', 'salidas.id_salida', '=', 'registros.id_registro')
+                            ->whereBetween('registros.fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
+                            ->where('producto_id', $producto->id_producto)
+                           ->sum('cantidad_salida');
+        });
+        
+        /*
+        Esta linea se usa para calcular el total de salidas 
+        $Salidas->sum(function($registro) { return $registro->Salida->cantidad_salida; }); 
+        */
     }
-    //Salidas
-    #[Computed()]
-    public function salidas(){
-        $registros = $this ->registros();
-        return $registros->whereHas('Salida')->with('Salida');
-    }
-    //Registros
-    #[Computed()]
-    public function registros(){
-        return Registro::whereBetween('fecha_registro',[$this-> fechaInicio,$this->fechaFin]);
-    }
-
     //Productos
     #[Computed()]
     public function productos(){
@@ -164,3 +135,22 @@ class Reporte extends Component
         
     }
 }
+
+
+
+/*
+INICIALIZAR TINKER
+
+use App\Models\{
+    Producto,
+    Salida,
+    Entrada,
+    Registro
+};
+$fechaInicio = date('0000-01-01');
+$fechaFin = date('Y-m-d');
+
+$Productos = Producto::all();
+$Entradas = Entrada:: join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')->whereBetween('registros.fecha_registro',[$fechaInicio,$fechaFin]);
+$Salidas = Salida:: join('registros', 'salidas.id_salida', '=', 'registros.id_registro')->whereBetween('registros.fecha_registro',[$fechaInicio,$fechaFin]);
+*/

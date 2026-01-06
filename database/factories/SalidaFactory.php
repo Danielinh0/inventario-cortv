@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Registro;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Salida>
  */
@@ -18,8 +19,8 @@ class SalidaFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_salida' => $this->getUniqueRegistroId(),
-            'cantidad_salida' => $this->faker->numberBetween(1, 100),
+            'id_salida' => Registro::factory(),
+            'cantidad_salida' => $this->faker->numberBetween(1, 20),
             'solicitante' => $this->faker->name(),
 
         ];

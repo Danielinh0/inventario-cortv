@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\LaravelPdf\Facades\Pdf;
+use Spatie\Browsershot\Browsershot;
+
 class pdfController extends Controller
 {
     /**
@@ -13,11 +15,14 @@ class pdfController extends Controller
     {
         //
     }
-    public function generateReport()
+    public function generateReport($fechaInicio, $fechaFin)
     {
-        set_time_limit(120);
-        return Pdf::view('pdfs.report', [])
-                    ->name('invoice' . date('Y-m-d') . '.pdf')
+        set_time_limit(240);
+        return Pdf::view('pdfs.report', ['fechaInicio' => $fechaInicio, 'fechaFin' => $fechaFin])
+                    ->withBrowsershot(function (Browsershot $browsershot) {
+                        $browsershot->setOption('protocolTimeout', 120000); // 120 segundos
+                    })
+                    ->name('reporte(' . $fechaInicio .' a '.$fechaFin . ').pdf')
                     ->download();
     }
     /**
