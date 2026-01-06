@@ -1,4 +1,4 @@
-<th scope="col" class="px-4 py-3 " wire:click="setSortBy('{{ $name }}')">
+<th scope="col" class="px-4 py-3 w-auto" wire:click="setSortBy('{{ $name }}')">
     @if($name === 'NoFiltro')
             <span class="flex-1 text-center">{{ $displayName }}</span>
     @endif

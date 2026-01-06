@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             areaSeeder::class,
             PersonaSeeder::class,
             claveSeeder::class,
-            RegistroSeeder::class,
+            // RegistroSeeder::class,
             EntradaSeeder::class,
             SalidaSeeder::class,
         ]);

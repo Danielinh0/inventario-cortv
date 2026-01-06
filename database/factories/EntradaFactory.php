@@ -19,7 +19,7 @@ class EntradaFactory extends Factory
     public function definition(): array
     {
         return [
-            'id_entrada' => $this->getUniqueRegistroId(),
+            'id_entrada' => Registro::factory(),
             'cantidad_entrada' => $this->faker->numberBetween(1, 100),
         ];
     }

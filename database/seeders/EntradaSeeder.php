@@ -12,6 +12,6 @@ class EntradaSeeder extends Seeder
      */
     public function run(): void
     {
-        Entrada::factory()->count(50)->create();
+        Entrada::factory()->count(5000)->create();
     }
 }
