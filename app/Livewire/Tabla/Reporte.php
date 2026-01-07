@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Tabla;
 
+use Illuminate\Support\Facades\Cache;
 use Livewire\Component;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Computed;
@@ -48,46 +49,57 @@ class Reporte extends Component
         $this->sortDir = 'ASC';
     }
 
-    
+    //Esta funcion genera una clave unica para el cache de las salidas
+    private function generateKey($tipo){
+        return md5($this->fechaInicio . '|' . $this->fechaFin . '|' . $tipo);
+    }
+
     //Calcula el total inicial del producto en la fecha inicial seleccionadas
     #[Computed()]
     public function exInicial(){
         $Productos = $this->productos();
-        return $Productos ->map(function($producto){
-            $pos = ($producto->id_producto)-1;
-            return ($this->exFinal[($pos)] - ($this->Entradas[($pos)] - $this->Salidas[($pos)]));
+        return Cache::remember($this->generateKey('existenciasIniciales'), 3600, function() use ($Productos) {
+            return $Productos ->map(function($producto){
+                $pos = ($producto->id_producto)-1;
+                return ($this->exFinal[($pos)] - ($this->Entradas[($pos)] - $this->Salidas[($pos)]));
+            });
         });
-        return 0;
     } 
 
     
     //Calcula las existencias finales del producto en la fecha final seleccionada
-    #[Computed]
+    #[Computed()]
     public function exFinal(){
         $Productos = $this->productos();
-        return $Productos ->map(function($producto){
-            $pos = ($producto->id_producto)-1;
-            return ($this->totalEntradas[($pos)] - $this->totalSalidas[($pos)]);
+        return Cache::remember($this->generateKey('existenciasFinales'), 3600, function() use ($Productos) {
+            return $Productos ->map(function($producto){
+                $pos = ($producto->id_producto)-1;
+                return ($this->totalEntradas[($pos)] - $this->totalSalidas[($pos)]);
+            });
         });
     }
     #[Computed()]
     public function totalEntradas(){
         $Productos = $this->productos();
-        return $Productos ->map(function($producto){
-            return Entrada:: join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')
-                        ->whereBetween('registros.fecha_registro',[date('0000-01-01'),$this -> fechaFin])
-                        ->where('producto_id', $producto->id_producto)
-                       ->sum('cantidad_entrada');
+        return Cache::remember($this->generateKey('totalEntradas'), 3600, function() use ($Productos) {
+            return $Productos ->map(function($producto){
+                return Entrada:: join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')
+                            ->whereBetween('registros.fecha_registro',[date('0000-01-01'),$this -> fechaFin])
+                            ->where('producto_id', $producto->id_producto)
+                           ->sum('cantidad_entrada');
+            });
         });
     }
     #[Computed()]
     public function totalSalidas(){
         $Productos = $this->productos();
-        return $Productos ->map(function($producto){
-            return Salida:: join('registros', 'salidas.id_salida', '=', 'registros.id_registro')
-                        ->whereBetween('registros.fecha_registro',[date('0000-01-01'),$this -> fechaFin])
-                        ->where('producto_id', $producto->id_producto)
-                       ->sum('cantidad_salida');
+        return Cache::remember($this->generateKey('totalSalidas'), 3600, function() use ($Productos) {
+            return $Productos ->map(function($producto){
+                return Salida:: join('registros', 'salidas.id_salida', '=', 'registros.id_registro')
+                            ->whereBetween('registros.fecha_registro',[date('0000-01-01'),$this -> fechaFin])
+                            ->where('producto_id', $producto->id_producto)
+                           ->sum('cantidad_salida');
+            });
         });
     }
 
@@ -97,25 +109,28 @@ class Reporte extends Component
     #[Computed()]
     public function Entradas(){  
         $Productos = $this->productos();
-        return $Productos->map(function($producto){
-            return Entrada:: join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')
-                            ->whereBetween('registros.fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
-                            ->where('producto_id', $producto->id_producto)
-                           ->sum('cantidad_entrada');
+        return Cache::remember($this->generateKey('entradas'), 3600, function() use ($Productos) {
+            return $Productos->map(function($producto){
+                return Entrada:: join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')
+                                ->whereBetween('registros.fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
+                                ->where('producto_id', $producto->id_producto)
+                               ->sum('cantidad_entrada');
+            });
         });
     }
-
+    
     //Calcula el total de salidas del producto en el rango de fechas seleccionado
     #[Computed()]
     public function Salidas(){
         // $Salidas = $this ->salidas();
         $Productos = $this->productos();
-
-        return $Productos->map(function($producto){
-            return Salida:: join('registros', 'salidas.id_salida', '=', 'registros.id_registro')
-                            ->whereBetween('registros.fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
-                            ->where('producto_id', $producto->id_producto)
-                           ->sum('cantidad_salida');
+        return Cache::remember($this->generateKey('salidas'), 3600, function() use ($Productos) {
+            return $Productos->map(function($producto){
+                return Salida:: join('registros', 'salidas.id_salida', '=', 'registros.id_registro')
+                                ->whereBetween('registros.fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
+                                ->where('producto_id', $producto->id_producto)
+                            ->sum('cantidad_salida');
+            });
         });
         
         /*

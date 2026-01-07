@@ -18,12 +18,17 @@ class pdfController extends Controller
     public function generateReport($fechaInicio, $fechaFin)
     {
         set_time_limit(240);
-        return Pdf::view('pdfs.report', ['fechaInicio' => $fechaInicio, 'fechaFin' => $fechaFin])
-                    ->withBrowsershot(function (Browsershot $browsershot) {
-                        $browsershot->setOption('protocolTimeout', 120000); // 120 segundos
-                    })
-                    ->name('reporte(' . $fechaInicio .' a '.$fechaFin . ').pdf')
-                    ->download();
+        return Pdf::view('pdfs.report', compact('fechaInicio', 'fechaFin'))
+                ->withBrowsershot(function (Browsershot $browsershot) {
+                $browsershot
+                    ->noSandbox()
+                    ->setOption('args', ['--disable-gpu', '--disable-dev-shm-usage'])
+                    ->setOption('protocolTimeout', 120000)
+                    ->timeout(120)
+                    ->waitUntilNetworkIdle();
+                })
+                ->name('reporte(' . $fechaInicio .' a '.$fechaFin . ').pdf')
+                ->download();
     }
     /**
      * Show the form for creating a new resource.

@@ -5,11 +5,26 @@
         </h2>
     </x-slot>
 
+<<<<<<< Updated upstream
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
+=======
+            {{-- parte derecha del dashboard, carrsuel y cards --}}
+            {{-- div con el laayout de la seccion derecha--}}
+            <div class=
+            "w-[100%] flex flex-col
+            lg:w-[48%]">
+                
+                {{-- div del layout de los cards de demanda y menos demandado --}}
+                <div class="flex gap-5 p-3 flex-col box-border
+                xs:flex-row xs:gap-9 xs:mb-2.5 xs:p-[15px]  xs:justify-evenly
+                md:gap-9 md:p-[15px] ">
+                    @livewire('dashboard.dialog-dashboard', ['tipo' => 'demanda'])
+                    @livewire('dashboard.dialog-dashboard',['tipo'=>'menos'])
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
