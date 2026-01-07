@@ -1,7 +1,7 @@
 {{-- filas de la tablas del dashboard  --}}
 {{-- div del card, consultar el figma para mas dudas --}}
 <div class="
-    w-full mb-9 items-center box-border flex flex-row 
+    w-full mb-9 items-center box-border flex flex-row {{ $estilos }}
     xs:mb-10
     ">
 

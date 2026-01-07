@@ -1,8 +1,8 @@
 <div class="
-        w-full flex flex-col shadow-2xl rounded-2xl bg-white
+        w-full flex flex-col {{ $estilos }}
         xs:w-[87%] xs:self-center
         md:w-[81%] md:self-center
-        lg:w-[43%] lg:bg-white 
+        lg:w-[43%]
         lg:content-center lg:pt-6">
     {{-- div de la tabla del dashboard --}}   
         <!-- encabezado-tabla -->
@@ -12,7 +12,7 @@
         md:text-3xl           
         lg:text-4xl
         " style="font-family: 'Times New Roman'">
-                <span>Ultimos cambios en el inventario</span>
+                <span>{{ $titulo }}</span>
         </div>
         
         {{-- Ahora si, las filas de la tabla  --}}
@@ -23,9 +23,9 @@
         md:w-full md:px-4 md:mb-4 
         lg:w-full lg:p-5">
             {{-- cards de la tabla, se mandan llamar desde el componente livewire solo se llaman 3, puede ampliarse --}}
-            <livewire:dashboard.card-table />
-            <livewire:dashboard.card-table />
-            <livewire:dashboard.card-table />
+            <livewire:dashboard.card-table :estilos="$cardEstilos" />
+            <livewire:dashboard.card-table :estilos="$cardEstilos" />
+            <livewire:dashboard.card-table :estilos="$cardEstilos" />
 
         </div>    
 

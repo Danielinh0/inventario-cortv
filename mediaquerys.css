@@ -156,9 +156,7 @@
         }
     }
 
-    .solicitado span,
-    .area span,
-    .fecha span {
+    .solicitado span,.area span,.fecha span {
         font-size: 15px;
         text-align: center;
     }

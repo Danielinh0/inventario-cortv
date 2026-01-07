@@ -49,7 +49,7 @@ Route::get('/reportes', function () {
 })->name('reportes');
 
 Route::get('/nuevo-producto', function () {
-    return view('nuevo_producto');
+    return view('productos.index');
 })->name('nuevo_producto');
 
 Route::get('/entradas', function () {
