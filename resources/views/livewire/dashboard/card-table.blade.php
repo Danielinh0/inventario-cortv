@@ -74,7 +74,7 @@
         @if($mostrarBotonEditar)
             <!-- botón editar -->
             <button class="
-                bg-[#A91D1E] hover:bg-[#8A1819] text-white font-times font-normal
+                bg-cortvRojoOscuro hover:bg-cortvRojoBasico text-white font-times font-normal
                 px-6 py-2 rounded-lg
                 transition-colors duration-200
                 text-[14px]
@@ -117,7 +117,7 @@
 
                 <!-- cantidad -->
                 <div class="
-                text-[#EE4949] font-times text-[22px] font-bold leading-[120%] tracking-[-0.36px]
+                text-cortvRojoBasico font-times text-[22px] font-bold leading-[120%] tracking-[-0.36px]
                 xs:text-[24px]"
                     style="font-family: 'Times New Roman'">
                     <span>30</span>
