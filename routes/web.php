@@ -5,9 +5,13 @@ use App\Http\Controllers\{
     ProductController,
     AreaController,
     RegistroController,
-    EntradaController,
+    
     SalidaController,
     pdfController
+};
+use App\Livewire\Tabla\{
+    Entradas,
+    Salidas,
 };
 use App\Livewire\{
     Counter,
@@ -34,12 +38,26 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('/consultar-tablas')->group(function () {
-    Route::get('/', [ProductController::class, 'index'])->name('tabla.index');
-    Route::get('/areas', [AreaController::class, 'index'])->name('tabla.areas');
-    Route::get('/productos', [ProductController::class, 'index'])->name('tabla.productos');
-    Route::get('/existencias', [ProductController::class, 'index'])->name('tabla.existencias');
-    Route::get('/entradas', [EntradaController::class, 'index'])->name('tabla.entradas');
-    Route::get('/salidas', [SalidaController::class, 'index'])->name('tabla.salidas');
+    Route::get('/', function () {
+        return view('table.index');
+
+    })->name('tabla.index');
+
+    Route::get('/productos', function(){
+        return view('table.index');
+    })->name('tabla.productos');
+
+    Route::get('/areas', function(){
+        return view('table.index');
+    })->name('tabla.areas');
+
+    Route::get('/entradas', function () {
+        return view('table.index');
+    })->name('tabla.entradas');
+
+    Route::get('/salidas', function(){
+        return view('table.index');
+    })->name('tabla.salidas');
     
 });
 
