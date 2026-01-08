@@ -1,5 +1,5 @@
 {{-- cards dashboard, layout por cada una --}}
-<div class="bg-[#AE2B2F] flex flex-col shadow-lg rounded-[10px] h-[220px] items-center justify-center
+<div class="bg-cortvRojoBasico flex flex-col shadow-lg rounded-[10px] h-[220px] items-center justify-center
               w-[70%] p-[15px] self-center gap-[5px] 
               xs:w-[32%] xs:p-5
               md:gap-3">

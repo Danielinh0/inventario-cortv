@@ -7,7 +7,7 @@
     {{-- div de la tabla del dashboard --}}   
         <!-- encabezado-tabla -->
         <div class="
-        text-[#AE2B2F] text-center font-times text-2xl font-bold leading-[120%] tracking-[-0.76px] mt-5 mb-5
+        text-cortvRojoBasico text-center font-times text-2xl font-bold leading-[120%] tracking-[-0.76px] mt-5 mb-5
         xs:text-[27px]
         md:text-3xl           
         lg:text-4xl

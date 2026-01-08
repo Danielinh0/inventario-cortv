@@ -4,7 +4,7 @@
     <!-- contenido de las slides -->
 
     <!-- Nombre del producto 1  -->
-    <div class="w-full h-[55px] box-border rounded-t-lg bg-[#8B2427] shadow-lg flex 
+    <div class="w-full h-[55px] box-border rounded-t-lg bg-cortvRojoOscuro shadow-lg flex 
          flex-row items-center px-5 mb-[5px] text-white text-[24px] font-semibold leading-[120%] tracking-[-0.5px]"
         style="font-family: 'Times New Roman'">
         <span>Lapices N°2</span>
@@ -12,7 +12,7 @@
 
     <!-- descripcion del producto  -->
     <!-- contenedor informacion-c -->
-    <div class="w-full h-[155px] box-border bg-[#F3F3F3] shadow-lg flex flex-col p-5 gap-4">
+    <div class="w-full h-[155px] box-border bg-cortvHueso shadow-lg flex flex-col p-5 gap-4">
         <!-- descripcion del producto stock-c-->
         <div class="flex justify-around">
             <!-- svg del slide  -->
@@ -26,16 +26,16 @@
             </div>
 
             <!-- descripcion del producto -->
-            <div class="w-4/5 flex flex-col justify-center ml-2.5 text-[#3F403D] font-normal text-[18px] leading-[120%] tracking-[-0.36px]"
+            <div class="w-4/5 flex flex-col justify-center ml-2.5 text-cortvGrisTexto font-normal text-[18px] leading-[120%] tracking-[-0.36px]"
                 style="font-family: 'Times New Roman'">
                 <!-- div con el titulo de stock bajo -->
-                <div class="text-[#3F403D] font-times text-[20px] font-bold leading-[120%] tracking-[-0.5px] mb-2.5"
+                <div class="text-cortvGrisTexto font-times text-[20px] font-bold leading-[120%] tracking-[-0.5px] mb-2.5"
                     style="font-family: 'Times New Roman'">
                     <span>Stock bajo</span>
                 </div>
 
                 <!-- informacion en linea para poner deacuerdo al controlador -->
-                <div class="text-[#3F403D] font-times text-[20px] font-normal leading-[120%] tracking-[-0.5px] mb-2.5"
+                <div class="text-cortvGrisTexto font-times text-[20px] font-normal leading-[120%] tracking-[-0.5px] mb-2.5"
                     style="font-family: 'Times New Roman'">
                     <span>Quedan solo</span>
                     <span>5</span>
@@ -48,8 +48,8 @@
 
         <!-- BOTON REVISAR -->
         <div
-            class="self-end flex justify-center items-center rounded-lg bg-[#AE2B2F] shadow-md w-[130px] h-[40px] cursor-pointer">
-            <span class="text-[#f5f5f5] font-normal text-[16px]"
+            class="self-end flex justify-center items-center rounded-lg bg-cortvRojoBasico shadow-md w-[130px] h-[40px] cursor-pointer">
+            <span class="text-cortvHueso font-normal text-[16px]"
                 style="font-family: 'Times New Roman', Times, serif;">Revisar</span>
         </div>
 

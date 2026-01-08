@@ -17,7 +17,7 @@
                 lg:content-center lg:pt-6 p-6">
                 
                 {{-- Título del formulario --}}
-                <div class="text-[#AE2B2F] text-center font-times text-2xl font-bold leading-[120%] tracking-[-0.76px] mt-5 mb-5
+                <div class="text-cortvRojoBasico text-center font-times text-2xl font-bold leading-[120%] tracking-[-0.76px] mt-5 mb-5
                 xs:text-[27px]
                 md:text-3xl           
                 lg:text-4xl" style="font-family: 'Times New Roman'">

@@ -28,7 +28,7 @@
     lg:w-[70%] lg:gap-[5px]  lg:items-start">
         <!-- nombre del producto -->
         <div class="
-        text-[#3F403D] font-times text-[21px] font-semibold leading-[120%] tracking-[-0.36px]
+        text-cortvGrisTexto font-times text-[21px] font-semibold leading-[120%] tracking-[-0.36px]
         xs:text-[23px]
         md:text-[24px]"        
         style="font-family: 'Times New Roman'">
@@ -37,7 +37,7 @@
         <!-- descripcion del cambio -->
         <!-- solicitado por -->
         <div class="
-        text-[#3F403D] font-times text-[14px] leading-[120%] tracking-[-0.36px]
+        text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
         xs:text-[15px]
         md:text-[17px]"
             style="font-family: 'Times New Roman'">
@@ -47,7 +47,7 @@
 
         <!-- area -->
         <div class="
-        text-[#3F403D] font-times text-[14px] leading-[120%] tracking-[-0.36px]
+        text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
         xs:text-[15px]
         md:text-[17px]"
             style="font-family: 'Times New Roman'">
@@ -57,7 +57,7 @@
 
         <!-- fecha de solicitud -->
         <div class="
-        text-[#3F403D] font-times text-[14px] leading-[120%] tracking-[-0.36px]
+        text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
         xs:text-[15px]
         md:text-[17px]"
             style="font-family: 'Times New Roman'">
@@ -102,7 +102,7 @@
 
         <!-- cantidad -->
         <div class="
-        text-[#EE4949] font-times text-[22px] font-bold leading-[120%] tracking-[-0.36px]
+        text-cortvRojoBasico font-times text-[22px] font-bold leading-[120%] tracking-[-0.36px]
         xs:text-[24px]"
             style="font-family: 'Times New Roman'">
             <span>30</span>
