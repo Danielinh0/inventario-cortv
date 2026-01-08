@@ -10,7 +10,7 @@
     <div class="header2">
         <div class="informacion">
             <div class="saludo">
-                <span>¡Hola Daniel Garcia!</span>
+                <span>¡Hola {{Auth::user()->name}}!</span>
         </div>
         
         <div class="mensaje">
