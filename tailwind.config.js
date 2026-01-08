@@ -27,8 +27,10 @@ export default {
                 'cortvRojoOscuro': '#8B2427',
                 'cortvGrisTexto': '#3F403D',
                 'cortvGrisClaro': '#757575',
+                'cortvVerdeClaro': '#5EA836',
                 'cortvHueso': '#F3F3F3',
                 'cortvBorde': '#D9D9D9',
+
             },
         },
     },

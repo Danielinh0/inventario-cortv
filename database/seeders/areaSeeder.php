@@ -24,6 +24,7 @@ class areaSeeder extends Seeder
                 Area::create([
                     'id_area' => $data[0],
                     'nombre_area' => $data[1],
+                    'descripcion_area' => $data[2],
                 ]);
             }
             $firstline = false;

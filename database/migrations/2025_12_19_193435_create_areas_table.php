@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id('id_area')->primary();
             $table->string('nombre_area');
+            $table->string('descripcion_area')->nullable();
             $table->timestamps();
         });
     }

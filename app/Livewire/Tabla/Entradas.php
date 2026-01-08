@@ -54,7 +54,9 @@ class Entradas extends Component
 
     public function render()
     {
-        return view('livewire.tabla.entradas',[]);
+        return view('livewire.tabla.entradas',[
+            'sortDir' => $this->sortDir,
+        ]);
     }
 }
 

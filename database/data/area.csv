@@ -1,9 +1,9 @@
 id_area,cod_area,area
-1,PAP,PAPELERIA
-2,LIMP,LIMPIEZA
-3,ALM,ALMACEN
-4,COM,COMPUTO
-5,VEC,VEHICULAR
-6,HRR,HERRAMIENTAS
-7,HIG,HIGIENE
-8,UNI,UNIFORMES
+1,PAP,Papelería
+2,LIMP,Limpieza
+3,ALM,Almacén
+4,COM,Cómputo
+5,VEC,Vehicular
+6,HRR,Herramientas
+7,HIG,Higiene
+8,UNI,Uniformes
