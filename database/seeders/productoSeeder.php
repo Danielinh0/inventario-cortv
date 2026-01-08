@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Producto;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class productoSeeder extends Seeder
 {
@@ -14,9 +14,11 @@ class productoSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // Works for both MySQL and PostgreSQL
+        Schema::disableForeignKeyConstraints();
         Producto::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        Schema::enableForeignKeyConstraints();
+        
         $csvFile = fopen(database_path('data/producto.csv'), 'r');
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
