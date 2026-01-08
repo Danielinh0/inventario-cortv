@@ -2,18 +2,7 @@
     <section class="mt-10">
         <!--Cabecera y filtros-->
             <div class="mb-6 items-center" >
-                <!-- Botón de descarga-->
-                    
-                    @if($showPdfButton ==true)
-                        <div class="sm:px-6 lg:px-8 flex justify-end">
-                            <a href="{{ route('generate.pdf', ['fechaInicio' => $fechaInicio, 'fechaFin' => $fechaFin]) }}" class="inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
-                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                                </svg>
-                                Descargar PDF
-                            </a>
-                        </div>
-                    @endif
+               
                 <!-- Selectores de Fecha -->
                     <h2 class="text-2xl font-bold text-gray-700">Periodo:</h2>
                     <div class="flex items-center gap-24">
@@ -21,7 +10,7 @@
                                 <div>
                                     <label class="text-lg">Fecha Inicio:</label>
                                     <input
-                                        wire:model.live = "fechaInicio"
+                                        wire:model = "fechaInicio"
                                         type="date"
                                         id="start"
                                         name="trip-start"
@@ -35,7 +24,7 @@
                             <div>
                                 <label>Fecha Fin:</label>
                                 <input
-                                    wire:model.live = "fechaFin"
+                                    wire:model = "fechaFin"
                                     type="date"
                                     id="end"
                                     name="trip-end"
@@ -45,8 +34,24 @@
                                     wire:change="$refresh" />
                             </div>
                         
-                </div>
-            </div>
+                        </div>
+                        <!-- Botón de descarga y generar periodo-->
+                        @if($showPdfButton ==true)
+                            <h2>
+                                <br>
+                                <span class="text-cortvRojoBasico font-semibold">Recuerda esperar unos segundos a que se actualice el reporte antes de descargar el PDF.</span>
+                            </h2>
+                        
+                            <div class="sm:px-6 lg:px-8 flex justify-end">
+                                <a href="{{ route('generate.pdf', ['fechaInicio' => $fechaInicio, 'fechaFin' => $fechaFin]) }}" class="inline-flex items-center px-4 py-2 bg-cortvRojoOscuro border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
+                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Descargar PDF
+                                </a>
+                            </div>
+                        @endif
+                       </div>
         
         <!--Tabla de productos-->
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -71,8 +76,8 @@
                                 <td class="px-4 py-3 break-word max-w-2">{{ $producto->nombre_producto }}</td>
                                 <td class="px-4 py-3 text-center">{{$this->exInicial[$loop->index]}}</td>
                                 <td class="px-4 py-3 text-center {{ $this->Entradas[$loop->index] > 0 ? 'text-green-500':'text-gray-500'}}">{{ $this->Entradas[$loop->index]}} </td>
-                                <td class="px-4 py-3 text-center {{ $this->Salidas[$loop->index] > 0 ? 'text-red-500':'text-gray-500'}}">{{ $this->Salidas[$loop->index] }} </td>
-                                <td class="px-4 py-3 text-center {{ $this->exFinal[$loop->index] > 0 ? 'text-green-500' : ($this->exFinal[$loop->index] == 0 ? 'text-gray-500' : 'text-red-500') }}">
+                                <td class="px-4 py-3 text-center {{ $this->Salidas[$loop->index] > 0 ? 'text-cortvRojoBasico':'text-gray-500'}}">{{ $this->Salidas[$loop->index] }} </td>
+                                <td class="px-4 py-3 text-center {{ $this->exFinal[$loop->index] > 0 ? 'text-green-500' : ($this->exFinal[$loop->index] == 0 ? 'text-gray-500' : 'text-cortvRojoBasico') }}">
                                     {{ $this->exFinal[$loop->index] }}
                                 </td>
                                 

@@ -22,6 +22,12 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'cortvRojoBasico': '#AE2B2F',
+                'cortvRojoOscuro': '#8B2427',
+                'cortvGrisTexto': '#3F403D',
+                'cortvHueso': '#F3F3F3',
+            },
         },
     },
     darkMode:'false',

@@ -48,7 +48,7 @@ class Reporte extends Component
         $this->sortBy = $sortBy;
         $this->sortDir = 'ASC';
     }
-
+    
     //Genera una clave unica para cada consulta de cache basado en las fechas y el tipo de dato
     private function getCacheKey($tipo){
         return "reporte-{$this->fechaInicio}-{$this->fechaFin}-{$tipo}";
