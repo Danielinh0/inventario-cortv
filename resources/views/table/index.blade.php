@@ -15,9 +15,6 @@
                 </div>
             <!--Tablas-->
             @switch(request()->route()->getName())
-                {{-- @case('tabla.existencias')
-                @livewire('existencias-tabla')    
-                @break --}}
                 @case('tabla.index')
                 @case('tabla.productos')
                     @livewire('tabla.productos')
