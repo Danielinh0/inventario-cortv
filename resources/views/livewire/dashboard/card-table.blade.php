@@ -15,9 +15,9 @@
         h-[29px] w-[29px]
         xs:w-[33px] xs:h-[33px]
         md:w-[36px] md:h-[36px]
-        lg:w-[38px] lg:h-[38px]" xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 25"
+        lg:w-[38px] lg:h-[50px]" xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 25"
             fill="none">
-            <path d="M26 7.25V23.5H3.5V7.25M12.25 12.25H17.25M1 1H28.5V7.25H1V1Z" stroke="#3F403D" stroke-width="2"
+            <path d="{{ $this->selectIcon($registro->producto->clave->area->nombre_area) }}" stroke="#AE2B2F" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" />
         </svg>
     </div>
@@ -32,7 +32,7 @@
         xs:text-[23px]
         md:text-[24px]"        
         style="font-family: 'Times New Roman'">
-            <span>Tonner para impresoras</span>
+            <span>{{ $registro->producto->nombre_producto }}</span>
         </div>
         <!-- descripcion del cambio -->
         <!-- solicitado por -->
@@ -42,7 +42,7 @@
         md:text-[17px]"
             style="font-family: 'Times New Roman'">
             <span>Solicitador:</span>
-            <span>Daniel Garcia Salvador</span>
+            <span>{{ $registro->persona->nombre_persona }}</span>
         </div>
 
         <!-- area -->
@@ -52,7 +52,7 @@
         md:text-[17px]"
             style="font-family: 'Times New Roman'">
             <span>Area:</span>
-            <span>Recursos Humanos</span>
+            <span>{{ $registro->producto->clave->area->descripcion_area}}</span>
         </div>
 
         <!-- fecha de solicitud -->
@@ -62,7 +62,7 @@
         md:text-[17px]"
             style="font-family: 'Times New Roman'">
             <span>Fecha de solicitud:</span>
-            <span>17 de diciembre de 2025</span>
+            <span>{{date('d \d\e F \d\e Y', strtotime($registro->fecha_registro)) }}</span>
         </div>
         <!-- fin de la informacion del card -->
     </div>
@@ -95,7 +95,7 @@
                     xmlns="http://www.w3.org/2000/svg" width="30" height="32"
                         viewBox="0 0 30 32" fill="none">
                         <g filter="url(#filter0_d_113_112)">
-                            <path d="M8.75 16.25L15 22.5L21.25 16.25M8.75 7.5L15 13.75L21.25 7.5" stroke="#EE4949"
+                            <path d=" {{$registro->tipo_registro==1 ? 'M21.25 13.75L15 7.5L8.75 13.75M21.25 22.5L15 16.25L8.75 22.5':'M8.75 16.25L15 22.5L21.25 16.25M8.75 7.5L15 13.75L21.25 7.5'}}" stroke="{{$registro->tipo_registro == 1 ? '#5EA836' : '#EE4949'}}"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </g>
                         <defs>
@@ -117,10 +117,10 @@
 
                 <!-- cantidad -->
                 <div class="
-                text-cortvRojoBasico font-times text-[22px] font-bold leading-[120%] tracking-[-0.36px]
+                {{$registro->tipo_registro == 1 ? 'text-cortvVerdeClaro' : 'text-cortvRojoBasico'}} font-times text-[22px] font-bold leading-[120%] tracking-[-0.36px]
                 xs:text-[24px]"
                     style="font-family: 'Times New Roman'">
-                    <span>30</span>
+                    <span>{{ $registro->cantidad_registro }}</span>
                     <span>pz</span>
                 </div>
             </div>
