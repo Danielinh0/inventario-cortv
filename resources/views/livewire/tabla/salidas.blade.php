@@ -44,26 +44,24 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
-                                @include('livewire.includes.table-sort-th', ['name' => 'id_entrada', 'displayName' => 'ID', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'id_registro', 'displayName' => 'ID', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Nombre Producto', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'created_at', 'displayName' => 'Fecha', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'solicitante', 'displayName' => 'Solicitante', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'fecha_registro', 'displayName' => 'Fecha', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Encargado', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'cantidad_salida', 'displayName' => 'Cantidad', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'cantidad_registro', 'displayName' => 'Cantidad', 'sortDir' => $sortDir])
                                 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($salidas as $salida)
+                            @foreach ($this->registros as $salida)
                                 <tr class="border-b dark:border-gray-700" wire:key={{ $salida->id_salida }}>
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $salida->id_salida }}</th>
-                                        <td class="px-4 py-3">{{ $salida->registro->producto->nombre_producto }}</td>
-                                        <td class="px-4 py-3">{{ $salida->registro->fecha_registro}} </td>
-                                        <td class="px-4 py-3">{{ $salida->solicitante }}</td>
-                                        <td class="px-4 py-3">{{ $salida->registro->persona->nombre_persona }}</td>
-                                        <td class="px-4 py-3">{{ $salida->cantidad_salida }}</td>
+                                        {{ $salida->id_registro }}</th>
+                                        <td class="px-4 py-3">{{ $salida->producto->nombre_producto }}</td>
+                                        <td class="px-4 py-3">{{ $salida->fecha_registro}} </td>
+                                        <td class="px-4 py-3">{{ $salida->persona->nombre_persona }}</td>
+                                        <td class="px-4 py-3">{{ $salida->cantidad_registro }}</td>
                                 </tr>
                             @endforeach
     
@@ -86,7 +84,7 @@
                             </select>
                         </div>
                     </div>
-                    {{ $salidas->links('pagination::tailwind') }}
+                    {{ $this->registros }}
                 </div>
             </div>
         </div>

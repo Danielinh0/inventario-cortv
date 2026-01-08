@@ -3,8 +3,12 @@
 namespace App\Livewire\Tabla;
 
 use Livewire\Component;
-use App\Models\Salida;
+use App\Models\Registro;
 use Livewire\WithPagination;    
+use Livewire\Attributes\{
+    Url,
+    Computed
+};
 
 class Salidas extends Component
 {
@@ -17,7 +21,7 @@ class Salidas extends Component
     
     
     #[Url(history:true)]
-    public $sortBy = 'id_salida';
+    public $sortBy = 'id_registro';
     
     #[Url(history:true)]
     public $sortDir = 'ASC';
@@ -36,21 +40,21 @@ class Salidas extends Component
         $this->sortBy = $sortBy;
         $this->sortDir = 'ASC';
     }
-
-    public function render()
-    {
-        return view('livewire.tabla.salidas',
-        [
-            'salidas' =>Salida::
-            search($this->search)-> 
-            when($this->areaFilter!=='', function ($query) {
-                $query->whereHas('registro.producto.clave', function ($query) {
+    #[Computed()]
+    public function registros(){
+        return Registro::search($this->search)
+            ->where('tipo_registro', false)
+            ->when($this->areaFilter !=='', function ($query) {
+                $query->whereHas('producto.clave', function ($query) {
                     $query->where('id_area', $this->areaFilter);
                 });
-            })->
-            orderBy($this->sortBy, $this->sortDir)->
-            paginate($this->perPage),
-        ]
-        );
+            })
+            ->orderBy($this->sortBy, $this->sortDir)
+            ->paginate($this->perPage);
+    }
+    
+    public function render()
+    {
+        return view('livewire.tabla.salidas',[]);
     }
 }

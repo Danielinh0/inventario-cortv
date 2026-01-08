@@ -3,7 +3,11 @@
 namespace App\Livewire\Tabla;
 
 use Livewire\Component;
-use App\Models\Entrada;
+use Livewire\Attributes\{
+    Url,
+    Computed
+};
+use App\Models\Registro;
 use Livewire\WithPagination;    
 
 class Entradas extends Component
@@ -16,7 +20,7 @@ class Entradas extends Component
     public $areaFilter = '';
     
     #[Url(history:true)]
-    public $sortBy = 'id_entrada';
+    public $sortBy = 'id_registro';
     
     #[Url(history:true)]
     public $sortDir = 'ASC';
@@ -35,22 +39,22 @@ class Entradas extends Component
         $this->sortBy = $sortBy;
         $this->sortDir = 'ASC';
     }
+    #[Computed()]
+    public function registros(){
+        return Registro::search($this->search)
+            ->where('tipo_registro', true)
+            ->when($this->areaFilter !=='', function ($query) {
+                $query->whereHas('producto.clave', function ($query) {
+                    $query->where('id_area', $this->areaFilter);
+                });
+            })
+            ->orderBy($this->sortBy, $this->sortDir)
+            ->paginate($this->perPage);
+    }
 
     public function render()
     {
-        return view('livewire.tabla.entradas',
-        [
-            'entradas' =>Entrada::
-            search($this->search)-> 
-            when($this->areaFilter!=='', function ($query) {
-                $query->whereHas('registro.producto.clave', function ($query) {
-                    $query->where('id_area', $this->areaFilter);
-                });
-            })->
-            orderBy($this->sortBy, $this->sortDir)->
-            paginate($this->perPage),
-        ]
-        );
+        return view('livewire.tabla.entradas',[]);
     }
 }
 

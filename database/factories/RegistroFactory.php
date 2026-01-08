@@ -22,7 +22,10 @@ class registroFactory extends Factory
         return [
             'producto_id' => Producto::inRandomOrder()->first()->id_producto,
             'persona_id' => Persona::inRandomOrder()->first()->id_persona,
-            'fecha_registro' => $this->faker->dateTimeBetween('1970-01-01', 'now'),
+            'fecha_registro' => $this->faker->dateTimeBetween('1990-01-01', 'now'),
+            //Tipo de registro: 0 = Salida, 1 = Entrada
+            'tipo_registro' => $this->faker->boolean(),
+            'cantidad_registro' => $this->faker->numberBetween(0, 100),
             
         ];
     }

@@ -4,6 +4,7 @@ namespace App\Livewire\Tabla;
 
 use Livewire\Component;
 use Livewire\Attributes\Url;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Computed;
 use App\Models\{
     Producto,
@@ -48,46 +49,58 @@ class Reporte extends Component
         $this->sortDir = 'ASC';
     }
 
+    //Genera una clave unica para cada consulta de cache basado en las fechas y el tipo de dato
+    private function getCacheKey($tipo){
+        return "reporte-{$this->fechaInicio}-{$this->fechaFin}-{$tipo}";
+    }
     
     //Calcula el total inicial del producto en la fecha inicial seleccionadas
     #[Computed()]
     public function exInicial(){
         $Productos = $this->productos();
-        return $Productos ->map(function($producto){
-            $pos = ($producto->id_producto)-1;
-            return ($this->exFinal[($pos)] - ($this->Entradas[($pos)] - $this->Salidas[($pos)]));
-        });
-        return 0;
+        return Cache::remember($this->getCacheKey('exInicial'), now()->addMinutes(10), function() use ($Productos) {
+            return $Productos ->map(function($producto){
+                $pos = ($producto->id_producto)-1;
+                return ($this->exFinal[($pos)] - ($this->Entradas[($pos)] - $this->Salidas[($pos)]));
+            });
+        }); 
     } 
 
     
     //Calcula las existencias finales del producto en la fecha final seleccionada
-    #[Computed]
+    #[Computed()]
     public function exFinal(){
         $Productos = $this->productos();
-        return $Productos ->map(function($producto){
-            $pos = ($producto->id_producto)-1;
-            return ($this->totalEntradas[($pos)] - $this->totalSalidas[($pos)]);
+        return Cache::remember($this->getCacheKey('exFinal'), now()->addMinutes(10), function() use ($Productos) {
+            return $Productos ->map(function($producto){
+                $pos = ($producto->id_producto)-1;
+                return ($this->totalEntradas[($pos)] - $this->totalSalidas[($pos)]);
+            });
         });
     }
     #[Computed()]
     public function totalEntradas(){
         $Productos = $this->productos();
-        return $Productos ->map(function($producto){
-            return Entrada:: join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')
-                        ->whereBetween('registros.fecha_registro',[date('0000-01-01'),$this -> fechaFin])
-                        ->where('producto_id', $producto->id_producto)
-                       ->sum('cantidad_entrada');
+        return Cache::remember($this->getCacheKey('totalEntradas'), now()->addMinutes(10), function() use ($Productos) {
+            return $Productos->map(function($producto){
+                return Registro::where('tipo_registro',1)
+                                ->whereBetween('fecha_registro',[date('0000-01-01'),$this -> fechaFin])
+                                ->where('producto_id', $producto->id_producto)
+                                ->sum('cantidad_registro');
+            });
         });
     }
     #[Computed()]
     public function totalSalidas(){
         $Productos = $this->productos();
-        return $Productos ->map(function($producto){
-            return Salida:: join('registros', 'salidas.id_salida', '=', 'registros.id_registro')
-                        ->whereBetween('registros.fecha_registro',[date('0000-01-01'),$this -> fechaFin])
-                        ->where('producto_id', $producto->id_producto)
-                       ->sum('cantidad_salida');
+
+        return Cache::remember($this->getCacheKey('totalSalidas'), now()->addMinutes(10), function() use ($Productos) {
+            return $Productos->map(function($producto){
+                return Registro::where('tipo_registro',0)
+                                ->whereBetween('fecha_registro',[date('0000-01-01'),$this -> fechaFin])
+                                ->where('producto_id', $producto->id_producto)
+                                ->sum('cantidad_registro');
+            });
         });
     }
 
@@ -97,11 +110,14 @@ class Reporte extends Component
     #[Computed()]
     public function Entradas(){  
         $Productos = $this->productos();
-        return $Productos->map(function($producto){
-            return Entrada:: join('registros', 'entradas.id_entrada', '=', 'registros.id_registro')
-                            ->whereBetween('registros.fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
-                            ->where('producto_id', $producto->id_producto)
-                           ->sum('cantidad_entrada');
+
+        return Cache::remember($this->getCacheKey('Entradas'), now()->addMinutes(10), function() use ($Productos) {
+            return $Productos->map(function($producto){
+                return Registro::where('tipo_registro',1)
+                                ->whereBetween('fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
+                                ->where('producto_id', $producto->id_producto)
+                                ->sum('cantidad_registro');
+            });
         });
     }
 
@@ -110,12 +126,13 @@ class Reporte extends Component
     public function Salidas(){
         // $Salidas = $this ->salidas();
         $Productos = $this->productos();
-
-        return $Productos->map(function($producto){
-            return Salida:: join('registros', 'salidas.id_salida', '=', 'registros.id_registro')
-                            ->whereBetween('registros.fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
-                            ->where('producto_id', $producto->id_producto)
-                           ->sum('cantidad_salida');
+        return Cache::remember($this->getCacheKey('Salidas'), now()->addMinutes(10), function() use ($Productos) {
+            return $Productos->map(function($producto){
+                return Registro::where('tipo_registro',0)
+                                ->whereBetween('fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
+                                ->where('producto_id', $producto->id_producto)
+                                ->sum('cantidad_registro');
+            });
         });
         
         /*

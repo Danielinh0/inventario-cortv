@@ -34,4 +34,11 @@ class Registro extends Model
     {
         return $this->hasOne(Salida::class, 'id_salida', 'id_registro');
     }
+    public function scopeSearch($query, $value)
+    {
+        $query->where('id_registro', 'like', '%' . $value . '%')
+            ->orWhere('created_at', 'like', '%' . $value . '%')
+            ->orWhere('cantidad_registro', 'like', '%' . $value . '%')
+            ;
+    }
 }
