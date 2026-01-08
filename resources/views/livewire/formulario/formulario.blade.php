@@ -6,7 +6,7 @@
                 lg:content-center lg:pt-6 p-6">
 
     <div class="flex justify-center mt-3">
-        <span class="text-[#AE2B2F] text-5xl text-center font-bold tracking-[-0.96px] mb-3"
+        <span class="text-cortvRojoBasico text-5xl text-center font-bold tracking-[-0.96px] mb-3"
             style="font-family: 'Times New Roman', Times, serif;">
             {{ $titulo_f }} </span>
     </div>
@@ -21,7 +21,7 @@
                     <span> Nombre del producto </span>
                 </label>
                 <input type="text" id="nombre" name="nombre" wire:model.blur="nombre_producto"
-                    class="border-[#D9D9D9] border-1 rounded-md p-2 h-[35px] w-full mt-1">
+                    class="border-cortvBorde border-1 rounded-md p-2 h-[35px] w-full mt-1">
                 {{-- validacion del formulario --}}
                 <div>
                     @error('nombre_producto')
@@ -39,7 +39,7 @@
                     </label>
                     
                     <input type="text" id="descripcion" name="descripcion" wire:model.blur="descripcion_producto"
-                        class="border-[#D9D9D9] border-1 rounded-md p-2 h-[60px] w-full mt-1">
+                        class="border-cortvBorde border-1 rounded-md p-2 h-[60px] w-full mt-1">
                     
                         {{-- validacion del formulario --}}
 
@@ -60,7 +60,7 @@
                         </span>
                     </label>
                     <input type="text" id="unidad" name="unidad" wire:model.blur="unidad_producto"
-                        class="border-[#D9D9D9] border-1 rounded-md p-2 h-[35px] w-full mt-1">
+                        class="border-cortvBorde border-1 rounded-md p-2 h-[35px] w-full mt-1">
 
                     {{-- validacion del formulario --}}
                     <div>
@@ -76,14 +76,14 @@
             <div>
                 <label for="area" class="flex flex-col gap-1"> <span> Área </span>
 
-                    <span class="text-semibold text-base text-[#757575]">
+                    <span class="text-semibold text-base text-cortvGrisClaro">
                         ¿A qué área pertenece el producto?
                     </span>
 
                 </label>
 
                 <select id="area" name="area" wire:model.blur="area_producto"
-                    class="border-[#D9D9D9] border-1 rounded-md p-2 h-[40px] w-full mt-2 text-[16px]">
+                    class="border-cortvBorde border-1 rounded-md p-2 h-[40px] w-full mt-2 text-[16px]">
                     <option value="informatica"> Informática </option>
                     <option value="electronica"> Electrónica </option>
                     <option value="mecanica"> Mecánica </option>
@@ -102,11 +102,11 @@
 
             <div class="mt-1">
                 <button type="submit"
-                    class="w-full bg-[#8B2427] rounded-md flex justify-center p-2 cursor-pointer hover:bg-[#AE2B2F]">
+                    class="w-full bg-cortvRojoOscuro rounded-md flex justify-center p-2 cursor-pointer hover:bg-cortvRojoBasico">
                     <span class="text-base text-white ">Aceptar</span>
                 </button>
 
-                <div wire:loading wire:target="save" class="w-full text-center text-[#8B2427] mt-2">
+                <div wire:loading wire:target="save" class="w-full text-center text-cortvRojoOscuro mt-2">
                     Guardando nuevo producto...
                 </div>
 
