@@ -17,7 +17,7 @@
         md:w-[36px] md:h-[36px]
         lg:w-[38px] lg:h-[50px]" xmlns="http://www.w3.org/2000/svg" width="30" height="25" viewBox="0 0 30 25"
             fill="none">
-            <path d="{{ $this->selectIcon($registro->producto->clave->area->nombre_area) }}" stroke="#AE2B2F" stroke-width="2"
+            <path d="{{ $this->selectIcon($registro->producto->clave->area->nombre_area) }}" stroke="#000000" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" />
         </svg>
     </div>
