@@ -55,7 +55,7 @@
                                 </h2>
                             
                                 <div class="sm:px-6 lg:px-8 flex justify-end">
-                                    <a href="{{ route('generate.pdf', ['fechaInicio' => $fechaInicio, 'fechaFin' => $fechaFin]) }}" wire:navigate class="inline-flex items-center px-4 py-2 bg-cortvRojoOscuro border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
+                                    <a href="{{ route('generate.pdf', ['fechaInicio' => $fechaInicio, 'fechaFin' => $fechaFin]) }}" class="inline-flex items-center px-4 py-2 bg-cortvRojoOscuro border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
                                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                             <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
                                         </svg>
@@ -68,42 +68,30 @@
         <!--Tabla de productos-->
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                        <tr>
-                            @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Numeración', 'sortDir' => $sortDir])
-                            @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Clave', 'sortDir' => $sortDir])
-                            @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Producto', 'sortDir' => $sortDir])
-                            @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Existencias Iniciales', 'sortDir' => $sortDir])
-                            @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Entradas', 'sortDir' => $sortDir])
-                            @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Salidas', 'sortDir' => $sortDir])
-                            @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Existencias Finales', 'sortDir' => $sortDir])
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($this->productos as $producto)
-                            <tr class="border-b dark:border-gray-700">
-                                <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center w-auto">{{ $pos }}</th>
-                                <td class="px-4 py-3 text-center">{{ $producto->clave->valor_clave }}</td>
-                                <td class="px-4 py-3 break-word max-w-2">{{ $producto->nombre_producto }}</td>
-                                <td class="px-4 py-3 text-center">{{$this->exInicial[$loop->index]}}</td>
-                                <td class="px-4 py-3 text-center {{ $this->Entradas[$loop->index] > 0 ? 'text-green-500':'text-gray-500'}}">{{ $this->Entradas[$loop->index]}} </td>
-                                <td class="px-4 py-3 text-center {{ $this->Salidas[$loop->index] > 0 ? 'text-cortvRojoBasico':'text-gray-500'}}">{{ $this->Salidas[$loop->index] }} </td>
-                                <td class="px-4 py-3 text-center {{ $this->exFinal[$loop->index] > 0 ? 'text-green-500' : ($this->exFinal[$loop->index] == 0 ? 'text-gray-500' : 'text-cortvRojoBasico') }}">
-                                    {{ $this->exFinal[$loop->index] }}
-                                </td>
-                                
-                            </tr>
-                            @php
-                                $pos++;
-                            @endphp
-                        @endforeach
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    @for($i = 0; $i < 7; $i++)
+                        <th class="px-4 py-3">
+                        <div class="h-4 bg-gray-300 rounded animate-pulse"></div>
+                        </th>
+                    @endfor
 
-                    </tbody>
-                </table>
+                </tr>
+                </thead>
+                <tbody>
+                @for($i = 0; $i < 5; $i++)
+                <tr class="border-b">
+                    @for($j = 0; $j < 7; $j++)
+                        <td class="px-4 py-3">
+                        <div class="h-4 bg-gray-200 rounded animate-pulse"></div>
+                        </td>
+                    @endfor
+                </tr>
+                @endfor
+                </tbody>
+            </table>
             </div>
-
-            
         </div>
     </section>
 </div>

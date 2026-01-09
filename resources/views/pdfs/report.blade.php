@@ -15,6 +15,8 @@
                         ])
                         
         <!--Tabla de productos-->
+        
+            <livewire:tabla.reporte/>
             @livewire('tabla.reporte',['fechaInicio' => $fechaInicio, 'fechaFin' => $fechaFin, 'showPdfButton' => false])
     </div>
 </body>
