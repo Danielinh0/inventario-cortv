@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Tabla;
+namespace App\Livewire\Salidas;
 
 use Livewire\Component;
 use App\Models\Registro;
@@ -10,23 +10,15 @@ use Livewire\Attributes\{
     Computed
 };
 
-class Salidas extends Component
+class Tabla extends Component
 {
-    use WithPagination;
 
-    #[Url(history:true)]
+    use WithPagination;    
+    
+    public $showModal = false;
     public $search = '';
-    
-    #[Url(history:true)]
-    public $areaFilter = '';
-        
-    #[Url(history:true)]
-    public $sortBy = 'id_registro';
-    
-    #[Url(history:true)]
-    public $sortDir = 'ASC';
-    
-    #[Url(history:true)]
+    public $sortBy = 'id_registro'; 
+    public $sortDir = 'ASC';    
     public $perPage = 10;
 
     public function setSortBy($sortBy){
@@ -40,21 +32,27 @@ class Salidas extends Component
         $this->sortBy = $sortBy;
         $this->sortDir = 'ASC';
     }
+
+    public function abrirModal()
+    {
+        $this->showModal = true;
+    }
+
+    public function cerrarModal()
+    {
+        $this->showModal = false;
+    }
+    
     #[Computed()]
     public function registros(){
         return Registro::search($this->search)
             ->where('tipo_registro', false)
-            ->when($this->areaFilter !=='', function ($query) {
-                $query->whereHas('producto.clave', function ($query) {
-                    $query->where('id_area', $this->areaFilter);
-                });
-            })
             ->orderBy($this->sortBy, $this->sortDir)
             ->paginate($this->perPage);
     }
-    
+
     public function render()
     {
-        return view('livewire.tabla.salidas',[]);
+        return view('livewire.salidas.tabla');
     }
 }

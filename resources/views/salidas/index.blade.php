@@ -10,18 +10,20 @@
         lg:mt-1 box-border w-full flex lg:flex-row lg:justify-around lg:gap-8 lg:p-8">
             
             {{-- COLUMNA IZQUIERDA: Formulario --}}
-            <livewire:formulario.entrada-salida 
+            {{-- <livewire:formulario.entrada-salida 
             titulo_f="Registra una Nueva Salida" 
             p_entrada_salida="Producto que sale del inventario" 
             cantidad_entrada_salida="Cantidad de productos que salen del inventario"
-            />
+            /> --}}
+
+           <livewire:salidas.tabla /> 
             
             {{-- COLUMNA DERECHA: Tabla --}}
-            <livewire:dashboard.table 
+            {{-- <livewire:dashboard.table 
             titulo="Últimas salidas del inventario" 
             estilos="" 
             cardEstilos="shadow-2xl rounded-2xl bg-white h-[150px]"
-            :mostrarBotonEditar="true"/>
+            :mostrarBotonEditar="true"/> --}}
 
         </div>
     </section>

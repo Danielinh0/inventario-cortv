@@ -1,9 +1,5 @@
 <div
-    class="w-full flex flex-col shadow-2xl rounded-2xl bg-white
-                xs:w-[87%] xs:self-center
-                md:w-[81%] md:self-center
-                lg:w-[43%]
-                lg:content-center lg:pt-6 p-6">
+    class="w-full flex flex-col rounded-2xl bg-white p-6">
 
     <div class="flex justify-center mt-3">
         <span class="text-cortvRojoBasico text-5xl text-center font-bold tracking-[-0.96px] mb-3"
