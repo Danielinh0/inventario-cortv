@@ -58,7 +58,7 @@ class Reporte extends Component
     #[Computed()]
     public function exInicial(){
         $Productos = $this->productos();
-        return Cache::remember($this->getCacheKey('exInicial'), now()->addMinutes(10), function() use ($Productos) {
+        return Cache::remember($this->getCacheKey('exInicial'), now()->addMinutes(60), function() use ($Productos) {
             return $Productos ->map(function($producto){
                 $pos = ($producto->id_producto)-1;
                 return ($this->exFinal[($pos)] - ($this->Entradas[($pos)] - $this->Salidas[($pos)]));
@@ -71,7 +71,7 @@ class Reporte extends Component
     #[Computed()]
     public function exFinal(){
         $Productos = $this->productos();
-        return Cache::remember($this->getCacheKey('exFinal'), now()->addMinutes(10), function() use ($Productos) {
+        return Cache::remember($this->getCacheKey('exFinal'), now()->addMinutes(60), function() use ($Productos) {
             return $Productos ->map(function($producto){
                 $pos = ($producto->id_producto)-1;
                 return ($this->totalEntradas[($pos)] - $this->totalSalidas[($pos)]);
@@ -81,10 +81,10 @@ class Reporte extends Component
     #[Computed()]
     public function totalEntradas(){
         $Productos = $this->productos();
-        return Cache::remember($this->getCacheKey('totalEntradas'), now()->addMinutes(10), function() use ($Productos) {
+        return Cache::remember($this->getCacheKey('totalEntradas'), now()->addMinutes(60), function() use ($Productos) {
             return $Productos->map(function($producto){
                 return Registro::where('tipo_registro',1)
-                                ->whereBetween('fecha_registro',[date('0000-01-01'),$this -> fechaFin])
+                                ->where('fecha_registro','<',$this -> fechaFin)
                                 ->where('producto_id', $producto->id_producto)
                                 ->sum('cantidad_registro');
             });
@@ -94,10 +94,10 @@ class Reporte extends Component
     public function totalSalidas(){
         $Productos = $this->productos();
 
-        return Cache::remember($this->getCacheKey('totalSalidas'), now()->addMinutes(10), function() use ($Productos) {
+        return Cache::remember($this->getCacheKey('totalSalidas'), now()->addMinutes(60), function() use ($Productos) {
             return $Productos->map(function($producto){
                 return Registro::where('tipo_registro',0)
-                                ->whereBetween('fecha_registro',[date('0000-01-01'),$this -> fechaFin])
+                                ->where('fecha_registro','<',$this -> fechaFin)
                                 ->where('producto_id', $producto->id_producto)
                                 ->sum('cantidad_registro');
             });
@@ -111,7 +111,7 @@ class Reporte extends Component
     public function Entradas(){  
         $Productos = $this->productos();
 
-        return Cache::remember($this->getCacheKey('Entradas'), now()->addMinutes(10), function() use ($Productos) {
+        return Cache::remember($this->getCacheKey('Entradas'), now()->addMinutes(60), function() use ($Productos) {
             return $Productos->map(function($producto){
                 return Registro::where('tipo_registro',1)
                                 ->whereBetween('fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
@@ -126,7 +126,7 @@ class Reporte extends Component
     public function Salidas(){
         // $Salidas = $this ->salidas();
         $Productos = $this->productos();
-        return Cache::remember($this->getCacheKey('Salidas'), now()->addMinutes(10), function() use ($Productos) {
+        return Cache::remember($this->getCacheKey('Salidas'), now()->addMinutes(60), function() use ($Productos) {
             return $Productos->map(function($producto){
                 return Registro::where('tipo_registro',0)
                                 ->whereBetween('fecha_registro',[$this-> fechaInicio,$this -> fechaFin])
