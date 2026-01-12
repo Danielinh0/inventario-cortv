@@ -9,6 +9,7 @@ export default defineConfig({
                     'resources/css/header-dashboard.css',
                     'resources/css/carrusel.css',
                     'resources/css/register.css',
+                    'resources/css/reportePDF.css',
                     'resources/js/app.js',
                     'resources/js/carrusel.js'
                 ],
