@@ -1,0 +1,14 @@
+#body{
+    
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    /* Use a path relative to this CSS file so Vite resolves the asset: resources/css -> ../images */
+    background-image    : url('../images/cortv.png') !important;
+    background-repeat   : no-repeat;
+    background-position : center;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    background-color: #ae2b2f;
+}

@@ -1,5 +1,6 @@
 <div
-    class="w-full flex flex-col rounded-2xl bg-white p-6">
+    class="w-full flex flex-col rounded-2xl bg-white p-6
+    {{ $enModal ? '' : 'shadow-2xl xs:w-[87%] xs:self-center md:w-[81%] md:self-center lg:w-[43%] lg:content-center lg:pt-6' }}">
 
     <div class="flex justify-center mt-3">
         <span class="text-cortvRojoBasico text-5xl text-center font-bold tracking-[-0.96px] mb-3"
@@ -22,13 +23,16 @@
 
                 </label>
 
-                <select id="producto" name="producto" wire:model.blur="nombre_producto"
-                        class="border-cortvBorde border-1 rounded-md p-2 h-[40px] w-full mt-2 text-[16px]">
-                    <option value="producto1"> Producto 1 </option>
-                    <option value="producto2"> Producto 2 </option>
-                    <option value="producto3"> Producto 3 </option>
-                    <option value="producto4"> Producto 4 </option>
-                </select>
+                <input list="productos" id="producto" name="producto" wire:model.blur="nombre_producto"
+                        class="border-cortvBorde border-1 rounded-md p-2 h-[40px] w-full mt-2 text-[16px]"
+                        placeholder="Escribe o selecciona un producto">
+                
+                <datalist id="productos">
+                    <option value="Producto 1">
+                    <option value="Producto 2">
+                    <option value="Polla">
+                    <option value="Ceviche">
+                </datalist>
 
                 {{-- validacion del formulario --}}
                 <div>
