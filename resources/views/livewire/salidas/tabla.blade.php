@@ -48,37 +48,43 @@
                                     <td class="px-4 py-3">{{ $salida->persona->nombre_persona }}</td>
                                     <td class="px-4 py-3">{{ $salida->cantidad_registro }}</td>
                                 </tr>
-                            @endforeach
+                            @endforeach                         
 
                         </tbody>
                     </table>
                 </div>
-
-
-                {{-- Div con los botones de la tabla --}}
-                <div class="py-4 px-3 flex flex-row">
-                    {{-- boton de agreagar salida, btn con modal del formulario --}}
-                    <div>
-                        <button type="button" wire:click="abrirModal"   
-                            class="w-full bg-cortvRojoOscuro rounded-md flex justify-center p-3 cursor-pointer hover:bg-cortvRojoBasico">
-                            <span class="text-base text-white ">Agregar nueva salida</span>
-                        </button>                      
-
-                    </div>
-
-                    {{-- div con el boton de generar formato de salida  --}}
-                    <div>
-
-                    </div>
-                </div>
+               
             </div>
+        
+            {{-- Div con los botones de la tabla --}}
+                <div class="py-4 px-3 flex flex-row justify-between gap-4">
+                    {{-- boton de agreagar salida, btn con modal del formulario --}}
+                    <button type="button" wire:click="abrirModal"   
+                        class="bg-cortvRojoOscuro rounded-md flex items-center justify-center p-3 cursor-pointer hover:bg-cortvRojoBasico px-6 gap-2">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        <span class="text-base text-white whitespace-nowrap">Agregar nueva salida</span>
+                    </button>
+
+                    {{-- boton de generar formato de salida  --}}
+                    <button type="button" 
+                        class="bg-cortvRojoBasico rounded-md flex items-center justify-center p-3 cursor-pointer hover:bg-cortvRojoOscuro px-6 gap-2">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        <span class="text-base text-white whitespace-nowrap">Generar formato de salida</span>
+                    </button>
+
+                </div>
+        
         </div>
     </section>
 
     {{-- Modal para agregar salida --}}
     @if($showModal)
         <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
                 {{-- Overlay --}}
                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" wire:click="cerrarModal"></div>
 
@@ -100,6 +106,7 @@
                             :titulo_f="'Registra una Nueva Salida'" 
                             :p_entrada_salida="'Producto que sale del inventario'" 
                             :cantidad_entrada_salida="'Cantidad de productos que salen del inventario'"
+                            :enModal="true"
                         />
                     </div>
                 </div>

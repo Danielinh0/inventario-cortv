@@ -11,12 +11,12 @@
         <div class="informacion">
             <div class="saludo">
                 <span>¡Hola {{Auth::user()->name}}!</span>
-        </div>
+            </div>
         
-        <div class="mensaje">
-            <span> Bienvenido al panel de control del inventario </span>
+            <div class="mensaje">
+                <span> Bienvenido al panel de control del inventario </span>
+            </div>
         </div>
-    </div>
     
     <div class="principal">
         <a href="{{ route('generate.pdf', ['fechaInicio' => date('Y-m-01', strtotime('last month')), 'fechaFin' => date('Y-m-t', strtotime('last month'))]) }}">

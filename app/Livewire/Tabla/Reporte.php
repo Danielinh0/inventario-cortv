@@ -30,11 +30,9 @@ class Reporte extends Component
     public $totalEntrada;
 
 
-
-    public function __construct()
-    {
-        $this->fechaInicio = date('Y-m-d');
-        $this->fechaFin = date('Y-m-d');
+    public function mount($fechaInicio = null, $fechaFin = null){
+        $this->fechaInicio = $fechaInicio ?? date('Y-m-d');
+        $this->fechaFin = $fechaFin ?? date('Y-m-d');
     }
 
     public function setSortBy($sortBy){
@@ -54,7 +52,12 @@ class Reporte extends Component
         return "reporte-{$this->fechaInicio}-{$this->fechaFin}-{$tipo}";
     }
     
-    //Datos Reporte
+    public function placeholder(){
+    return view('livewire.placeholders.tabla.reporte-placeholder');
+    }
+
+
+    //Calcula el total inicial del producto en la fecha inicial seleccionadas
     #[Computed()]
     public function datosReporte(){
         $Productos = $this->productos();

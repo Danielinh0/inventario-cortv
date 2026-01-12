@@ -8,6 +8,7 @@ export default defineConfig({
                     'resources/css/login.css',
                     'resources/css/header-dashboard.css',
                     'resources/css/carrusel.css',
+                    'resources/css/register.css',
                     'resources/js/app.js',
                     'resources/js/carrusel.js'
                 ],

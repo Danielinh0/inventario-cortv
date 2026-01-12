@@ -23,6 +23,9 @@ class EntradaSalida extends Component
     public $p_entrada_salida = '¿Que producto nuevo o existente entra al inventario?';
     public $cantidad_entrada_salida = '¿Cuantos productos entran al inventario?';    
 
+    // Indica si el formulario está dentro de un modal
+    public $enModal = false;    
+
     public function save()
     {
         
