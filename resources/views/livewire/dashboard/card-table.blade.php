@@ -27,15 +27,52 @@
     xs:w-1/2 xs:gap-2 xs:justify-center
     lg:w-[70%] lg:gap-[5px]  lg:items-start">
         <!-- nombre del producto -->
-        <div class="
-        text-cortvGrisTexto font-times text-[21px] font-semibold leading-[120%] tracking-[-0.36px]
-        xs:text-[23px]
-        md:text-[24px]"        
-        style="font-family: 'Times New Roman'">
-            <span>{{ $registro->producto->nombre_producto }}</span>
-        </div>
+<div class="
+text-cortvGrisTexto font-times text-[20px] font-semibold leading-[120%] tracking-[-0.36px] 
+overflow-hidden line-clamp-2
+xs:text-[22px]
+md:text-[23px]"        
+style="font-family: 'Times New Roman'; display: -webkit-box; -webkit-box-orient: vertical;">
+    {{ $registro->producto->nombre_producto }}
+</div>
+
+
         <!-- descripcion del cambio -->
         <!-- solicitado por -->
+        {{-- condicional para saber si es una entrada o salida --}}
+        @if ($mostrar_Nuevo_Producto)
+             
+        <!-- area -->
+        <div class="
+        text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
+        xs:text-[15px]
+        md:text-[17px]"
+            style="font-family: 'Times New Roman'">
+            <span>Area:</span>
+            <span>{{ $producto->clave->area->descripcion_area}}</span>
+        </div>
+        
+        <div class="
+        text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
+        xs:text-[15px]
+        md:text-[17px]"
+            style="font-family: 'Times New Roman'">
+            <span>Tipo de unidad:</span>
+            <span>{{ $producto->unidad_producto}}</span>
+        </div>
+        
+        <!-- fecha de creacion del producto -->
+        <div class="
+        text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
+        xs:text-[15px]
+        md:text-[17px]"
+            style="font-family: 'Times New Roman'">
+            <span>Fecha de creacion:</span>
+            <span>{{date('d \d\e F \d\e Y', strtotime($producto->created_at)) }}</span>
+        </div>
+        @else
+
+        
         <div class="
         text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
         xs:text-[15px]
@@ -65,6 +102,7 @@
             <span>{{date('d \d\e F \d\e Y', strtotime($registro->fecha_registro)) }}</span>
         </div>
         <!-- fin de la informacion del card -->
+        @endif
     </div>
 
     <!-- cantidad en inventario o botón editar -->
@@ -74,6 +112,7 @@
         @if($mostrarBotonEditar)
             <!-- botón editar -->
             <button class="
+                inline-flex items-center gap-2
                 bg-cortvRojoOscuro hover:bg-cortvRojoBasico text-white font-times font-normal
                 px-6 py-2 rounded-lg
                 transition-colors duration-200
@@ -82,6 +121,10 @@
                 md:text-[16px]
                 lg:px-8 lg:py-2.5"
                 style="font-family: 'Times New Roman'">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
                 Editar
             </button>
         @else

@@ -28,6 +28,40 @@
         </div>
         <!-- descripcion del cambio -->
         <!-- solicitado por -->
+        {{-- condicional del nuevo producto  --}}
+        @if ($mostrar_Nuevo_Producto)
+        
+         <div class="
+        text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
+        xs:text-[15px]
+        md:text-[17px]"
+            style="font-family: 'Times New Roman'">
+            <span>Area:</span>
+            <span></span>
+        </div>
+
+        <!-- area -->
+        <div class="
+        text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
+        xs:text-[15px]
+        md:text-[17px]"
+            style="font-family: 'Times New Roman'">
+            <span>Tipo de unidad:</span>
+            <span></span>
+        </div>
+
+        <!-- fecha de solicitud -->
+        <div class="
+        text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
+        xs:text-[15px]
+        md:text-[17px]"
+            style="font-family: 'Times New Roman'">
+            <span>Fecha de creacion:</span>
+            <span></span>
+        </div>
+
+        @else
+
         <div class="
         text-cortvGrisTexto font-times text-[14px] leading-[120%] tracking-[-0.36px]
         xs:text-[15px]
@@ -57,6 +91,8 @@
             <span></span>
         </div>
         <!-- fin de la informacion del card -->
+
+        @endif
     </div>
 
     <!-- cantidad en inventario o botón editar -->

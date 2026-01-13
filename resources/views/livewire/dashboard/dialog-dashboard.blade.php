@@ -23,8 +23,8 @@
     </div>
     
     <div class="flex flex-col items-center gap-[5px]">
-        <h1 class="text-white text-center text-[24px] font-bold leading-[120%] tracking-[-0.76px]"
-            style="font-family: 'Times New Roman'">
+        <h1 class="text-white text-center text-[24px] font-bold leading-[120%] tracking-[-0.76px] overflow-hidden line-clamp-3"
+            style="font-family: 'Times New Roman'; display: -webkit-box; -webkit-box-orient: vertical;">
             {{ $producto['producto']->nombre_producto}}
         </h1>
         <h2 class="text-white text-center text-[20px] font-semibold leading-[120%] tracking-[-0.5px]"
