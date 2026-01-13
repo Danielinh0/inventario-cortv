@@ -14,7 +14,12 @@ class Clave extends Model
      */
     protected $table = 'claves';
     protected $primaryKey = 'id_clave';
-
+    protected $fillable = [
+        'id_area',
+        'id_producto',
+        'contador_clave',
+        'valor_clave'
+    ];
     public function area()
     {
         return $this->belongsTo(Area::class, 'id_area', 'id_area');

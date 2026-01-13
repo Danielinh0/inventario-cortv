@@ -64,7 +64,6 @@ class Reporte extends Component
 
         return Cache::remember($this->getCacheKey('datosReporte'), now()->addMinutes(60), function() use ($Productos) {
             return $Productos ->map(function($producto){
-                $pos = ($producto->id_producto)-1;
                 
                 //Totales de entradas y salidas en el rango de fechas
                 $entrada = Registro::whereBetween('fecha_registro',[$this->fechaInicio,$this->fechaFin])

@@ -12,7 +12,7 @@
         md:text-3xl           
         lg:text-4xl
         " style="font-family: 'Times New Roman'">
-                <span>{{ $titulo }}</span>
+                <span>{{$this->titulo()}}</span>
         </div>
         
         {{-- Ahora si, las filas de la tabla  --}}

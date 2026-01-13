@@ -24,15 +24,14 @@ class pdfController extends Controller
         // Calculate report data statically without using Livewire
         $productos = Producto::all();
         $reporteData = $productos->map(function($producto) use ($fechaInicio, $fechaFin) {
+            $entrada = Registro::whereBetween('fecha_registro', [$fechaInicio, $fechaFin])
+                            ->where('producto_id', $producto->id_producto)->where('tipo_registro', 1)->sum('cantidad_registro');
+            $salida = Registro::whereBetween('fecha_registro', [$fechaInicio, $fechaFin])
+                            ->where('producto_id', $producto->id_producto)->where('tipo_registro', 0)->sum('cantidad_registro');
             
-        $entrada = Registro::whereBetween('fecha_registro', [$fechaInicio, $fechaFin])
-                        ->where('producto_id', $producto->id_producto)->where('tipo_registro', 1)->sum('cantidad_registro');
-        $salida = Registro::whereBetween('fecha_registro', [$fechaInicio, $fechaFin])
-                        ->where('producto_id', $producto->id_producto)->where('tipo_registro', 0)->sum('cantidad_registro');
-        
-        $totalEntrada = Registro::where('fecha_registro', '<', $fechaFin)
-                        ->where('producto_id', $producto->id_producto)->where('tipo_registro', 1)->sum('cantidad_registro');
-        $totalSalida = Registro::where('fecha_registro', '<', $fechaFin)
+            $totalEntrada = Registro::where('fecha_registro', '<', $fechaFin)
+                            ->where('producto_id', $producto->id_producto)->where('tipo_registro', 1)->sum('cantidad_registro');
+            $totalSalida = Registro::where('fecha_registro', '<', $fechaFin)
                             ->where('producto_id', $producto->id_producto)->where('tipo_registro', 0)->sum('cantidad_registro');
             
             $exFinal = $totalEntrada - $totalSalida;

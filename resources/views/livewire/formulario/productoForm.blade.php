@@ -82,10 +82,10 @@
 
                 </label>
 
-                <select id="area" name="area" wire:model.blur="area_producto"
+                <select id="area" name="area" wire:model.blur="id_area"
                     class="border-cortvBorde border-1 rounded-md p-2 h-[40px] w-full mt-2 text-[16px]">
                     @foreach ($this->areas() as $area)
-                        <option value="{{ $area->id }}"> {{ $area->descripcion_area }} </option>
+                        <option value="{{ $area->id_area }}"> {{ $area->descripcion_area }} </option>
                     @endforeach
                 </select>
 
@@ -109,6 +109,11 @@
                     Guardando nuevo producto...
                 </div>
 
+                @if (session()->has('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
             </div>
 
         </form>

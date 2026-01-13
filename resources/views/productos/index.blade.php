@@ -18,7 +18,7 @@
             estilos="" 
             cardEstilos="shadow-2xl rounded-2xl bg-white h-[150px]"
             :mostrarBotonEditar="true"
-            :mostrar_Nuevo_Producto="true"/>
+            :tipo="1"/>
 
         </div>
     </section>

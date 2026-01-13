@@ -10,14 +10,15 @@
         lg:mt-1 box-border w-full flex lg:flex-row lg:justify-around lg:gap-8 lg:p-8">
             
             {{-- COLUMNA IZQUIERDA: Formulario --}}
-            <livewire:formulario.entrada-salida titulo_f="Registra una Entrada al Inventario" />
+            <livewire:formulario.entrada-salida titulo_f="Registra una Entrada al Inventario" :tipo_registro="true" />
             
             {{-- COLUMNA DERECHA: Tabla --}}
             <livewire:dashboard.table 
             titulo="Ultimas entradas al inventario" 
             estilos="" 
             cardEstilos="shadow-2xl rounded-2xl bg-white h-[150px]"
-            :mostrarBotonEditar="true"/>
+            :mostrarBotonEditar="true"
+            :tipo="2"/>
 
         </div>
     </section>

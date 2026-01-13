@@ -15,7 +15,8 @@
         lg:mt-1 box-border w-full flex lg:flex-row lg:justify-around lg:gap-8 lg:p-8
         ">
             {{-- tabla de los ultimos cambios en el inventario, parte izquierda --}}
-            <livewire:dashboard.table cardEstilos=""/>
+            <livewire:dashboard.table cardEstilos=""
+            :tipo="0"/>
 
             {{-- parte derecha del dashboard, carrsuel y cards --}}
             {{-- div con el laayout de la seccion derecha--}}

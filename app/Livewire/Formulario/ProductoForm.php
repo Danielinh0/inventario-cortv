@@ -5,7 +5,8 @@ namespace App\Livewire\Formulario;
 use Livewire\Component;
 use App\Models\{
     Producto,
-    Area
+    Area,
+    Clave
 };
 use Livewire\Attributes\Validate;
 
@@ -30,7 +31,7 @@ class ProductoForm extends Component
     public $unidad_producto = '';
     
     #[Validate('required', message:'Seleccione un área para el producto')]
-    public $area_producto = '';
+    public $id_area = null;
     
     public function save()
     {
@@ -43,14 +44,24 @@ class ProductoForm extends Component
             $this->only(['nombre_producto', 'descripcion_producto', 'unidad_producto'])
         );
         
-        Clave::create(
-            $this->only(['area_producto',$producto->id_producto,''])
-        );
+        
+        $id_producto = $producto->id_producto;
+        $ultima_clave = Clave::where('id_area', $this->id_area)->orderBy('id_clave', 'desc')->first();
+        $contador_clave = ($ultima_clave?->contador_clave ?? 0) + 1;
+        
+        $nombre_area = Area::find($this->id_area)->nombre_area;
+        $valor_clave = 'CTV-'.$nombre_area.'-'.str_pad($contador_clave, 3, '0', STR_PAD_LEFT);
 
+        Clave::create([
+            'id_area' => $this->id_area,
+            'id_producto' => $id_producto,
+            'contador_clave' => $contador_clave,
+            'valor_clave' => $valor_clave,
+        ]);
     
         session()->flash('status', 'Producto creado exitosamente.');
         
-        //$this->reset(['nombre_producto', 'descripcion_producto', 'unidad_producto', 'area_producto']);       
+        $this->reset(['nombre_producto', 'descripcion_producto', 'unidad_producto', 'id_area']);       
     }
 
     #[Computed(cached: true)]
