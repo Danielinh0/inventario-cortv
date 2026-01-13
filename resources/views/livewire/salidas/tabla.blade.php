@@ -8,6 +8,7 @@
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <!-- Encabezados de la tabla con ordenamiento -->
                             <tr>
                                 @include('livewire.includes.table-sort-th', [
                                     'name' => 'NoFiltro',
@@ -38,7 +39,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($this->registros as $salida)
+                            @if($this->Salidas->isEmpty())
+                                <tr>
+                                    <td colspan="5" class="px-4 py-3 text-center text-gray-500">
+                                        Aun no se han agregado salidas a este reporte.
+                                    </td>
+                                </tr>
+                            @endif
+                            @foreach ($this->Salidas as $salida)
                                 <tr class="border-b dark:border-gray-700" wire:key="{{ $salida->id_registro }}">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -59,7 +67,7 @@
             {{-- Div con los botones de la tabla --}}
                 <div class="py-4 px-3 flex flex-row justify-between gap-4">
                     {{-- boton de agreagar salida, btn con modal del formulario --}}
-                    <button type="button" wire:click="abrirModal"   
+                    <button type="button" wire:click="abrirModal"
                         class="bg-cortvRojoOscuro rounded-md flex items-center justify-center p-3 cursor-pointer hover:bg-cortvRojoBasico px-6 gap-2">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -104,6 +112,7 @@
                         {{-- Componente Livewire del formulario --}}
                         <livewire:formulario.form-salida                             
                             :enModal="true"
+                            :tipo_registro="false"
                         />
                     </div>
                 </div>

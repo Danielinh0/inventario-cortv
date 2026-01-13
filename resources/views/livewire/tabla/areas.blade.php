@@ -29,7 +29,7 @@
                             <tr>
                             @include('livewire.includes.table-sort-th', ['name' => 'id_area', 'displayName' => 'ID', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'nombre_area', 'displayName' => 'Clave', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Nombre Area', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'descripcion_area', 'displayName' => 'Nombre Area', 'sortDir' => $sortDir])
                                 <th scope="col" class="px-4 py-3">
                                     <span class="sr-only">
                                         Acciones

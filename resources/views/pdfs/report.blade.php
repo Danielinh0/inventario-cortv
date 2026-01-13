@@ -12,13 +12,13 @@
                         'text_2' => 'DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES',
                         'text_3' => "Período: $fechaInicio a $fechaFin"
                         ])
-
+        <h2 class="area-text">Área: {{ $area }}</h2>
         <!--Tabla de productos-->
      <div class="table-container">   
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Numeración</th>
                     <th>Clave</th>
                     <th>Producto</th>
                     <th>Existencia Inicial</th>
@@ -30,7 +30,7 @@
             <tbody>
                 @forelse($reporteData as $item)
                     <tr>
-                        <td>{{ $item['datos_producto']->id_producto }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $item['datos_producto']->clave->valor_clave }}</td>
                         <td style="word-wrap: break-word; max-width: 150px;">{{ $item['datos_producto']->nombre_producto }}</td>
 

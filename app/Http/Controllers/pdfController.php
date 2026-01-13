@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\LaravelPdf\Facades\Pdf;
 use Spatie\Browsershot\Browsershot;
-use App\Models\{Producto, Registro};
+use App\Models\{
+    Producto, 
+    Registro,
+    Area,
+};
 use Illuminate\Support\Facades\Cache;
 
 class pdfController extends Controller
@@ -17,12 +21,15 @@ class pdfController extends Controller
     {
         //
     }
-    public function generateReport($fechaInicio, $fechaFin)
+    public function generateReport($fechaInicio, $fechaFin,$areaFilter)
     {
         set_time_limit(240);
-        
         // Calculate report data statically without using Livewire
-        $productos = Producto::all();
+        $productos = Producto::when($areaFilter !== ' ', function ($query) use ($areaFilter) {
+                $query->whereHas('clave', function ($query) use ($areaFilter) {
+                    $query->where('id_area', $areaFilter);
+                });
+            })->get();
         $reporteData = $productos->map(function($producto) use ($fechaInicio, $fechaFin) {
             $entrada = Registro::whereBetween('fecha_registro', [$fechaInicio, $fechaFin])
                             ->where('producto_id', $producto->id_producto)->where('tipo_registro', 1)->sum('cantidad_registro');
@@ -45,13 +52,22 @@ class pdfController extends Controller
                 'exFinal' => $exFinal,
             ];
         })->toArray();
-        
+        $area = 'Todos';
+        if($areaFilter != ' '){
+            $area = Area::find($areaFilter)->descripcion_area;
+        }
+        $clave = '';
+        if($areaFilter != ' '){
+            $clave = Area::find($areaFilter)->nombre_area;
+        }
+        Area::find($areaFilter);
         return Pdf::view('pdfs.report', [
             'fechaInicio' => $fechaInicio,
             'fechaFin' => $fechaFin,
-            'reporteData' => $reporteData
+            'reporteData' => $reporteData,
+            'area' => $area,
         ])                    
-            ->name('reporte(' . $fechaInicio .' a '.$fechaFin . ').pdf')
+            ->name('REPORTE_'. $clave .'(' . $fechaInicio .' a '.$fechaFin . ').pdf')
             ->download();
     }
     /**

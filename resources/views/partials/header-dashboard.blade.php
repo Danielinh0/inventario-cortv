@@ -19,7 +19,7 @@
         </div>
     
     <div class="principal">
-        <a href="{{ route('generate.pdf', ['fechaInicio' => date('Y-m-01', strtotime('last month')), 'fechaFin' => date('Y-m-t', strtotime('last month'))]) }}">
+        <a href="{{ route('generate.pdf', ['fechaInicio' => date('Y-m-01', strtotime('last month')), 'fechaFin' => date('Y-m-t', strtotime('last month')), 'areaFilter' => ' ']) }}">
             <div class="btn">
                 <span>Genera tu reporte aqui</span>
             </div>

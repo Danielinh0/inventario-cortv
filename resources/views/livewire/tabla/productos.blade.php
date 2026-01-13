@@ -65,7 +65,7 @@
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $producto->id_producto }}</th>
                                     <td class="px-4 py-3">{{ $producto->nombre_producto }}</td>
-                                    <td class="px-4 py-3">{{ $producto->clave->area->nombre_area }}</td>
+                                    <td class="px-4 py-3">{{ $producto->clave->area->descripcion_area }}</td>
                                     <td class="px-4 py-3">{{ $producto->clave->valor_clave }}</td>
                                     <td class="px-4 py-3 {{ $producto->cantidad_producto > 0 ? 'text-green-500' : 'text-red-500' }}">
                                         {{ $producto->cantidad_producto }}</td>

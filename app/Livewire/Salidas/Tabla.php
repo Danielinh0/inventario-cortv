@@ -18,8 +18,9 @@ class Tabla extends Component
     public $showModal = false;
     public $search = '';
     public $sortBy = 'id_registro'; 
-    public $sortDir = 'ASC';    
-    public $perPage = 10;
+    public $sortDir = 'ASC'; 
+
+    public $cant_registros = 0;
 
     public function setSortBy($sortBy){
         if($sortBy === 'NoFiltro') {
@@ -42,14 +43,11 @@ class Tabla extends Component
     {
         $this->showModal = false;
     }
-    
     #[Computed()]
-    public function registros(){
-        return Registro::search($this->search)
-            ->where('tipo_registro', false)
-            ->orderBy($this->sortBy, $this->sortDir)
-            ->paginate($this->perPage);
+    public function Salidas(){
+        return Registro::where('tipo_registro', false)->orderBy('id_registro', 'DESC')->take($this->cant_registros)->get(); 
     }
+   
 
     public function render()
     {
