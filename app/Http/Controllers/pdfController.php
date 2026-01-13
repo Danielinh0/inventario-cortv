@@ -50,12 +50,9 @@ class pdfController extends Controller
             'fechaInicio' => $fechaInicio,
             'fechaFin' => $fechaFin,
             'reporteData' => $reporteData
-        ])
-                    ->withBrowsershot(function (Browsershot $browsershot) {
-                        $browsershot->setOption('protocolTimeout', 120000); // 120 segundos
-                    })
-                    ->name('reporte(' . $fechaInicio .' a '.$fechaFin . ').pdf')
-                    ->download();
+        ])                    
+            ->name('reporte(' . $fechaInicio .' a '.$fechaFin . ').pdf')
+            ->download();
     }
     /**
      * Show the form for creating a new resource.

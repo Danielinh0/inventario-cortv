@@ -10,14 +10,13 @@
                                 <div>
                                     <label class="text-lg">Fecha Inicio:</label>
                                     <input
-                                        wire:model = "fechaInicio"
+                                        wire:model.blur="fechaInicio"
                                         type="date"
                                         id="start"
                                         name="trip-start"
                                         value="{{ $fechaInicio }}"
                                         min="2000-01-01"
-                                        max="{{ date('Y-m-d') }}" 
-                                        wire:change="$refresh"
+                                        max="{{ date('Y-m-d') }}"
                                         />
                                 <span wire:loading wire:target="fechaInicio" class="ml-2 text-gray-500">
                                     <svg class="animate-spin h-4 w-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -30,14 +29,14 @@
                                 <div>
                                     <label>Fecha Fin:</label>
                                     <input
-                                        wire:model = "fechaFin"
+                                        wire:model.blur="fechaFin"
                                         type="date"
                                         id="end"
                                         name="trip-end"
                                         value="{{ $fechaFin }}"
                                         min={{ $fechaInicio }}
                                         max="{{ date('Y-m-d') }}"
-                                        wire:change="$refresh" />
+                                        />
                                     <span wire:loading wire:target="fechaFin" class="ml-2 text-gray-500">
                                         <svg class="animate-spin h-4 w-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
