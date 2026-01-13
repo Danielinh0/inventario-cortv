@@ -10,7 +10,7 @@
         lg:mt-1 box-border w-full flex lg:flex-row lg:justify-around lg:gap-8 lg:p-8">
             
             {{-- COLUMNA IZQUIERDA: Formulario --}}
-            <livewire:formulario.entrada-salida titulo_f="Registra una Entrada al Inventario" />
+            <livewire:formulario.entrada-salida titulo_f="Registra una Entrada al Inventario" :tipo_registro="true" />
             
             {{-- COLUMNA DERECHA: Tabla --}}
             <livewire:dashboard.table 

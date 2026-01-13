@@ -29,14 +29,12 @@
                 
                 <datalist id="productos">
                     @foreach($this->productos as $producto)
-                        <option value="{{ $producto->nombre_producto}}">
+                        <option value="{{ $producto->nombre_producto }}">
                     @endforeach
                 </datalist>
-
-                {{-- validacion del formulario --}}
                 <div>
-                    @error('area_producto')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @error('nombre_producto')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
             </div> 
@@ -52,14 +50,14 @@
                     </span>
 
                 </label>
-
+                
                 <input type="number" id="cantidad" name="cantidad" wire:model.blur="cantidad_registro"
                         class="border-cortvBorde border-1 rounded-md p-2 h-[35px] w-full mt-1">
 
 
                 {{-- validacion del formulario --}}
                 <div>
-                    @error('area_producto')
+                    @error('cantidad_registro')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
@@ -78,8 +76,12 @@
                 <div wire:loading wire:target="save" class="w-full text-center text-cortvRojoOscuro mt-2">
                     Guardando ...
                 </div>
-
             </div>
+            @if (session()->has('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
 
         </form>
 
