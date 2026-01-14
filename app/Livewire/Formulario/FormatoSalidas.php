@@ -17,7 +17,7 @@ class FormatoSalidas extends Component
     
     #[Validate('required', message: 'Seleccione una categoría')]
     #[Validate('max:150', message: 'La categoría no puede exceder los 150 caracteres')]
-    public $categoria = '';
+    public $categoria = 'ART. DE LIMPIEZA';
     
     #[Validate('required', message: 'Ingrese quien autoriza la salida')]
     #[Validate('max:255', message: 'El nombre del autoriza no puede exceder los 255 caracteres')]
