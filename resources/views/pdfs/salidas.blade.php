@@ -1,36 +1,180 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Salidas del inventario</title>        
-        @vite(['resources/css/app.css', 'resources/css/salidas.css', 'resources/js/app.js'])    
-    </head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Salidas del inventario</title>        
+    <style>
+        @page {
+            margin: 1cm 1cm;
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 1.5cm 1.5cm;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Logos layout using table for PDF safety */
+        .tabla-logos {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .tabla-logos td {
+            width: 50%;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .tabla-logos img {
+            max-height: 80px; 
+            width: auto;
+        }
+
+        .corporacion {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .corporacion h1 {
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 0 5px 0;
+        }
+        .corporacion h2 {
+            font-weight: normal;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .titulo-documento {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 20px;                      
+            padding: 5px;
+        }
+
+        /* Information Grid using Table */
+        .info-tabla {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .info-tabla td {
+            vertical-align: top;
+            padding: 5px;
+            width: 25%;
+        }
+        .info-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Products Table */
+        .tabla-productos {
+            width: 100%;    
+            border-collapse: collapse;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tabla-productos thead th {
+            background-color: #AE2B2F;
+            color: white;
+            padding: 8px;
+            border: 1px solid #000;
+            font-weight: bold;
+        }
+
+        .tabla-productos tbody td {
+            padding: 8px;
+            border: 1px solid #000;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        tr {
+            page-break-inside: avoid;
+        }
+
+        /* Authorization */
+        .tabla-autorizacion {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+        }
+
+        .tabla-autorizacion th {
+            background-color: #AE2B2F;
+            color: white;   
+            font-weight: bold;
+            padding: 8px;
+            border: 1px solid #000;
+            width: 50%;
+        }
+
+        .tabla-autorizacion td {
+            height: 100px;
+            vertical-align: bottom;
+            padding: 8px;
+            border: 1px solid #000;
+        }
+        
+        .firma-espacio {
+            display: block;
+            height: 60px;
+            margin-bottom: 5px;
+        }
+        
+        .nombre-firmante {
+            font-weight: bold;
+            margin: 0;
+            font-size: 11px;
+        }
+        .cargo-firmante {
+            margin: 0;
+            font-size: 10px;
+        }
+
+    </style>
+</head>
 <body>
-    <main class="main">
+    <main>
 
         <div class="header">
-            <div class="logo">
-                <div class="primero">
-                    @php $logo1 = public_path('images/logo_oaxaca.png'); @endphp
-                    @inlinedImage($logo1)
-                </div>
-                <div class="segundo">
-                    @php $logo2 = public_path('images/logo_cortv.png'); @endphp
-                    @inlinedImage($logo2)
-                </div>
-                {{-- <img src="../images/logo_oaxaca.png" alt="primero">
-                <img src="../images/logo_cortv.png" alt="segundo">                    --}}
-            </div>
+            <table class="tabla-logos">
+                <tr>
+                    <td>
+                        @php $logo1 = public_path('images/logo_oaxaca.png'); @endphp
+                        @inlinedImage($logo1)
+                    </td>
+                    <td>
+                        @php $logo2 = public_path('images/logo_cortv.png'); @endphp
+                        @inlinedImage($logo2)
+                    </td>
+                </tr>
+            </table>
 
             <div class="corporacion">
-                <span><h1>CORPORACION OAXAQUEÑA DE RADIO Y TELEVISION</h1></span>
-                <span><h2>DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES</h2></span>
+                <h1>CORPORACION OAXAQUEÑA DE RADIO Y TELEVISION</h1>
+                <h2>DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES</h2>
             </div>
         </div>
 
         <div class="solicitud">
-
-            <div class="nombre-s">
-                <span>SALIDA DE ALMACEN</span>
+            <div class="titulo-documento">
+                SALIDA DE ALMACEN
             </div>
 
             <div class="informacion-s">
@@ -57,19 +201,16 @@
             </div>
         </div>
 
-        <div class="tabla">
-
-            <table class="tabla-v">
-
+        <div class="tabla-contenido">
+            <table class="tabla-productos">
                 <thead>
                     <tr>
-                        <td >Cantidad</td>
-                        <td >Unidad</td>
-                        <td rowspan="5">Descripcion</td>
+                        <th style="width: 15%;">Cantidad</th>
+                        <th style="width: 15%;">Unidad</th>
+                        <th>Descripcion</th>
                     </tr>
                 </thead>
-
-                <tbody >
+                <tbody>
                     @forelse($registros as $registro)
                         <tr>
                             <td>{{ $registro->cantidad_registro }}</td>
@@ -82,9 +223,7 @@
                         </tr>
                     @endforelse
                 </tbody>
-            
             </table>
-            {{-- <p>Total Registros:: ({{ count($registros) }})</p> --}}
         </div>
 
         <div class="autorizacion">
@@ -98,17 +237,22 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="firma-espacio"></div>
-                            <p>0</p>
+                            <div class="firma-espacio"> </div>
+                            <p class="nombre-firmante"> 
+                                ___________________________________________________ <br> <br>
+                                O</p>
                         </td>
                         <td>
                             <div class="firma-espacio"></div>
-                            <p>ARQ. MARIANA ZARATE MORLAN</p>
-                            <p>DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES</p>
+                            <p class="nombre-firmante">ARQ. MARIANA ZARATE MORLAN</p>
+                            <p class="cargo-firmante">DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES</p>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            
+            <div style="height: 10px;"></div>
+
             <table class="tabla-autorizacion">
                 <thead>
                     <tr>
@@ -120,12 +264,14 @@
                     <tr>
                         <td>
                             <div class="firma-espacio"></div>
-                            <p>ING. ALINA VENTURA HERNANDEZ</p>
-                            <p>AUXILIAR DEL DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES</p>
+                            <p class="nombre-firmante">ING. ALINA VENTURA HERNANDEZ</p>
+                            <p class="cargo-firmante">AUXILIAR DEL DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES</p>
                         </td>
                         <td>
                             <div class="firma-espacio"></div>
-                            <p>0</p>
+                            <p class="nombre-firmante "> 
+                                ___________________________________________________ <br> <br> O 
+                            </p>
                         </td>
                     </tr>
                 </tbody>
