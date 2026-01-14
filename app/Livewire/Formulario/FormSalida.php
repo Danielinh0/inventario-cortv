@@ -47,9 +47,9 @@ class FormSalida extends Component
         // Flash message de exito
         session()->flash('status', 'Registro de salida agregado.');
         $this->reset(['nombre_producto', 'cantidad_registro']);    
-         if($this->enModal) {
-              $this->dispatch('salidaGuardada');
-          }    
+        if($this->enModal) {
+            $this->dispatch('salidaGuardada');
+        }    
     }
 
     #[Computed()]

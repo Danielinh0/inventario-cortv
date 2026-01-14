@@ -65,6 +65,7 @@ class Tabla extends Component
 
         // Flash message de exito
         session()->flash('status', 'Salidas guardadas exitosamente.');
+        
   }
 
     public function resetearFormulario()
