@@ -10,7 +10,7 @@
         lg:mt-1 box-border w-full flex lg:flex-row lg:justify-around lg:gap-8 lg:p-8">
             
             {{-- COLUMNA IZQUIERDA: Formulario --}}
-            <livewire:formulario.form-salida /> 
+            <livewire:formulario.formato-salidas /> 
 
             {{-- columna derecha --}}
            <livewire:salidas.tabla /> 

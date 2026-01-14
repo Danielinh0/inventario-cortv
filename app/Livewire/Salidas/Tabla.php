@@ -86,9 +86,18 @@ class Tabla extends Component
     public function resetearFormulario()
     {
         $this->formKey++; // Incrementar para forzar recreación del componente
+
+        // Limpiar el array de salidas después de guardar
+        $this->salidas = [];
+
+        // Cerrar el modal
+        $this->cerrarModal();
+
+        // Flash message de exito
+        session()->flash('status', 'Salidas guardadas exitosamente.');
     }
 
-    protected $listeners = ['salidaGuardada' => 'resetearFormulario'];
+    protected $listeners = ['salidaGuardada' => 'cerrarModal'];
 
     //Cuando ocurra el evento "salida-agregada", se ejecuta este metodo
     #[On('salida-agregada')]

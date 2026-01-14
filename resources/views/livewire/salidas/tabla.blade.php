@@ -55,7 +55,8 @@
             </div>
         
             {{-- Div con los botones de la tabla --}}
-                <div class="py-4 px-3 flex flex-row justify-between gap-4">
+                <div class="box-border flex flex-row justify-between 
+                sm: py-4 sm:px-3  sm:gap-4 ">
                     {{-- boton de agreagar salida, btn con modal del formulario --}}
                     <button type="button" wire:click="abrirModal"
                         class="bg-cortvRojoOscuro rounded-md flex items-center justify-center p-3 cursor-pointer hover:bg-cortvRojoBasico px-6 gap-2">
