@@ -177,26 +177,28 @@
                 SALIDA DE ALMACEN
             </div>
 
-            <table class="info-tabla">
-                <tr>
-                    <td>
-                        <span class="info-label">Area que solicita:</span>
-                        <span>Produccion</span>
-                    </td>
-                    <td>
-                        <span class="info-label">Nombre:</span>
-                        <span>Daniel Eduardo Garcia Salvador</span>
-                    </td>
-                    <td>
-                        <span class="info-label">Fecha:</span>
-                        <span>03 de junio de 2025</span>
-                    </td>
-                    <td>
-                        <span class="info-label">Categoria:</span>
-                        <span>Productos de impresion</span>
-                    </td>
-                </tr>
-            </table>
+            <div class="informacion-s">
+                <div>
+                    <span> <b>Area que solicita:</b> </span>
+                    <span>{{ session('datos_registro.area') }}</span>
+                </div>
+                
+                <div>
+                    <span><b>Nombre:</b></span>
+                    <span>{{ session('datos_registro.nombre') }}</span>
+                </div>
+
+                <div>
+                    <span><b>Fecha:</b></span>
+                    <span>{{ date('d/m/Y') }}</span>
+                </div>
+
+                <div>
+                    <span><b>Categoria:</b></span>
+                    <span>{{ session('datos_registro.categoria') }}</span>
+                </div>
+
+            </div>
         </div>
 
         <div class="tabla-contenido">

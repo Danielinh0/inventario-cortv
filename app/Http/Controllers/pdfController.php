@@ -68,17 +68,16 @@ class pdfController extends Controller
     public function generateFormatoSalida($cantidad_registro)
     {
         set_time_limit(240);
-
-        logger()->info('Generando formato de salida para ' . $cantidad_registro . ' registros.');
+        $datos_registro = session('datos_registro');
         $registros = Registro::with('producto')
             ->where('tipo_registro', 0)
             ->orderByDesc('id_registro')
             ->limit($cantidad_registro)
             ->get();
-        logger()->info('Total registros encontrados: ' . $registros->count());
-
+    
         return Pdf::view('pdfs.salidas', [
             'registros' => $registros,
+            'datos'=>$datos_registro,
         ])
             ->name('FORMATO_DE_SALIDA.pdf')
             ->download();

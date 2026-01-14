@@ -24,6 +24,7 @@ class Tabla extends Component
     public $formKey = 0; 
 
     public $salidas = [];
+    public $datos_registro = [];
 
     public function setSortBy($sortBy){
         if($sortBy === 'NoFiltro') {
@@ -54,7 +55,7 @@ class Tabla extends Component
 
 
         //Comprobar que haya salidas para guardar
-        if($cantidad_registro > 0){ 
+        if($cantidad_registro > 0 and (session()->has('datos_registro') && !empty(session('datos_registro')))){
             foreach ($this->salidas as $salida) {
                 Registro::create([
                     'persona_id' => $salida['persona_id'],
@@ -69,17 +70,21 @@ class Tabla extends Component
             
             // Cerrar el modal
             $this->cerrarModal();
-            
+                        
             // Flash message de exito
             session()->flash('status', 'Salidas guardadas exitosamente.');
-            // Redirigir a la ruta que genera el PDF
+            
             return redirect()->route('generate.formato.salida',[
                 'cantidad_registro' => $cantidad_registro,
             ]);
         }
         else{
+            if($cantidad_registro == 0){
+                session()->flash('status', 'No hay salidas para guardar.');
             // Flash message de error si no hay salidas para guardar
-            session()->flash('status', 'No hay salidas para guardar.');
+            }else{
+                session()->flash('status', 'Faltan datos del formato de salida.');
+            }
         }
   }
 
@@ -112,7 +117,20 @@ class Tabla extends Component
             'producto_nombre' => $producto_nombre,
         ];
     }
-
+    #[On('formato-salida-guardado')]
+    public function manejarFormatoSalidaGuardado($area, $nombre, $categoria, $autoriza, $entrega)
+    {
+        // Aquí puedes manejar los datos recibidos del evento formato-salida-guardado
+        // Por ejemplo, podrías almacenarlos en la base de datos o realizar alguna otra acción
+        $this->datos_registro = [
+            'area' => $area,
+            'nombre' => $nombre,
+            'categoria' => $categoria,
+            'autoriza' => $autoriza,
+            'entrega' => $entrega,
+            'fecha' => date('d \d\e F \d\e Y'),
+        ];
+    }
 
     
     public function render()
