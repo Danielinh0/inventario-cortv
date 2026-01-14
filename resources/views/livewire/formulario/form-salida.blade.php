@@ -23,7 +23,7 @@
 
                 </label>
 
-                <input list="productos" id="producto" name="producto" wire:model.blur="nombre_producto"
+                <input list="productos" id="producto" name="producto" wire:model="nombre_producto"
                         class="border-cortvBorde border-1 rounded-md p-2 h-[40px] w-full mt-2 text-[16px]"
                         placeholder="Escribe o selecciona un producto">
                 
@@ -51,7 +51,7 @@
 
                 </label>
                 
-                <input type="number" id="cantidad" name="cantidad" wire:model.blur="cantidad_registro"
+                <input type="number" id="cantidad" name="cantidad" wire:model="cantidad_registro"
                         class="border-cortvBorde border-1 rounded-md p-2 h-[35px] w-full mt-1">
 
 

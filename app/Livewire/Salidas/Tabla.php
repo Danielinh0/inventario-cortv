@@ -19,7 +19,8 @@ class Tabla extends Component
     public $showModal = false;
     public $search = '';
     public $sortBy = 'id_registro'; 
-    public $sortDir = 'ASC'; 
+    public $sortDir = 'ASC';
+    public $formKey = 0; 
 
     public $salidas = [];
 
@@ -64,9 +65,14 @@ class Tabla extends Component
 
         // Flash message de exito
         session()->flash('status', 'Salidas guardadas exitosamente.');
-        
+  }
+
+    public function resetearFormulario()
+    {
+        $this->formKey++; // Incrementar para forzar recreación del componente
     }
 
+    protected $listeners = ['salidaGuardada' => 'resetearFormulario'];
 
     //Cuando ocurra el evento "salida-agregada", se ejecuta este metodo
     #[On('salida-agregada')]

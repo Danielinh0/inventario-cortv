@@ -111,6 +111,7 @@
                         <livewire:formulario.form-salida                             
                             :enModal="true"
                             :tipo_registro="false"
+                            :key="'form-salida-' . $formKey"
                         />
                     </div>
                 </div>
