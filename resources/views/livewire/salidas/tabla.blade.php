@@ -25,7 +25,11 @@
                                     'displayName' => 'Nombre del Producto',
                                     'sortDir' => $sortDir,
                                 ])
-                               
+                                @include('livewire.includes.table-sort-th',[
+                                    'name' => 'NoFiltro',
+                                    'displayName' => 'Acciones',
+                                    'sortDir' => $sortDir,
+                                ])
 
                             </tr>
                         </thead>
@@ -45,6 +49,14 @@
                                     <td class="px-4 py-3">{{ $salida['cantidad_registro']}}</td>
                                     <td class="px-4 py-3">{{ $salida['tipo_unidad'] }}</td>
                                     <td class="px-4 py-3">{{ $salida['producto_nombre'] }}</td>
+                                     <td class="px-4 py-3 flex items-center justify-end"> 
+
+
+                                        <button onclick="confirm('¿Estas seguro de que quieres eliminar {{$salida['producto_nombre']}}?') || event.stopImmediatePropagation()" wire:click="eliminar({{ $loop->index }})" 
+                                            class="px-3 py-1 bg-cortvRojoBasico text-white rounded m-2">
+                                            Eliminar
+                                        </button>
+                                    </td>
                                 </tr>
                             @endforeach                         
                             

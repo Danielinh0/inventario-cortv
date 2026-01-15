@@ -86,7 +86,12 @@ class Tabla extends Component
                 session()->flash('status', 'Faltan datos del formato de salida.');
             }
         }
-  }
+    }
+    public function eliminar($index){
+        unset($this->salidas[$index]);
+
+        $this->salidas = array_values($this->salidas); // Reindexar el array
+    }
 
     public function resetearFormulario()
     {

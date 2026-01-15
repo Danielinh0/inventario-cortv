@@ -88,7 +88,7 @@ md:text-[23px]"
         xs:text-[15px]
         md:text-[17px]"
                 style="font-family: 'Times New Roman'">
-                <span>Solicitador:</span>
+                <span>Autorizó:</span>
                 <span>{{ $registro->persona->nombre_persona }}</span>
             </div>
 
