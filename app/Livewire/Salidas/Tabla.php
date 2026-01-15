@@ -53,7 +53,6 @@ class Tabla extends Component
         //Contar la cantidad de registros a pasar al PDF
         $cantidad_registro = count($this->salidas);
 
-
         //Comprobar que haya salidas para guardar
         if($cantidad_registro > 0 and (session()->has('datos_registro') && !empty(session('datos_registro')))){
             foreach ($this->salidas as $salida) {
@@ -87,7 +86,11 @@ class Tabla extends Component
             }
         }
   }
-
+    public function eliminar($index)
+    {
+        unset($this->salidas[$index]);
+        $this->salidas = array_values($this->salidas); // Reindexar el array
+    }
     public function resetearFormulario()
     {
         $this->formKey++; // Incrementar para forzar recreación del componente

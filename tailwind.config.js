@@ -28,6 +28,7 @@ export default {
                 'cortvGrisTexto': '#3F403D',
                 'cortvGrisClaro': '#757575',
                 'cortvVerdeClaro': '#5EA836',
+                'cortvAzulClaro': '#6C81BB',
                 'cortvHueso': '#F3F3F3',
                 'cortvBorde': '#D9D9D9',
 

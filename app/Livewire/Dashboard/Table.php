@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Dashboard;
 use Livewire\Attributes\Computed;
-use App\Models\{Registro, Producto};
+use App\Models\{Registro, Producto,User};
 use Livewire\Component;
 
 class Table extends Component

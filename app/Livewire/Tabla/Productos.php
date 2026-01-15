@@ -11,6 +11,7 @@ class Productos extends Component
 {
     use WithPagination;
 
+    public $showModal = false;
     #historial de URL
         #[Url(history: true)]
         public $search = '';

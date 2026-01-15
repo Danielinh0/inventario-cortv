@@ -20,11 +20,11 @@
                 <label for="nombre">
                     <span> Nombre del producto </span>
                 </label>
-                <input type="text" id="nombre" name="nombre" wire:model.blur="nombre_producto"
+                <input type="text" id="nombre" name="nombre" wire:model.blur="postProducto.nombre_producto"
                     class="border-cortvBorde border-1 rounded-md p-2 h-[35px] w-full mt-1">
                 {{-- validacion del formulario --}}
                 <div>
-                    @error('nombre_producto')
+                    @error('postProducto.nombre_producto')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
@@ -38,13 +38,13 @@
                             Descripción del producto </span>
                     </label>
                     
-                    <textarea id="descripcion" name="descripcion" wire:model.blur="descripcion_producto" rows="3"
+                    <textarea id="descripcion" name="descripcion" wire:model.blur="postProducto.descripcion_producto" rows="3"
                         class="border-cortvBorde border-1 rounded-md p-2 w-full mt-1"></textarea>
                     
                         {{-- validacion del formulario --}}
 
                         <div>
-                            @error('descripcion_producto')
+                            @error('postProducto.descripcion_producto')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
@@ -59,12 +59,12 @@
                             Tipo de unidad del producto
                         </span>
                     </label>
-                    <input type="text" id="unidad" name="unidad" wire:model.blur="unidad_producto"
+                    <input type="text" id="unidad" name="unidad" wire:model.blur="postProducto.unidad_producto"
                         class="border-cortvBorde border-1 rounded-md p-2 h-[35px] w-full mt-1">
 
                     {{-- validacion del formulario --}}
                     <div>
-                        @error('unidad_producto')
+                        @error('postProducto.unidad_producto')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
@@ -82,7 +82,7 @@
 
                 </label>
 
-                <select id="area" name="area" wire:model.blur="id_area"
+                <select id="area" name="area" wire:model.blur="postProducto.id_area"
                     class="border-cortvBorde border-1 rounded-md p-2 h-[40px] w-full mt-2 text-[16px]">
                     @foreach ($this->areas() as $area)
                         <option value="{{ $area->id_area }}"> {{ $area->descripcion_area }} </option>
@@ -91,7 +91,7 @@
 
                 {{-- validacion del formulario --}}
                 <div>
-                    @error('area_producto')
+                    @error('postProducto.area_producto')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>

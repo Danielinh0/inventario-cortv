@@ -35,6 +35,18 @@ class FormSalida extends Component
         $user = Auth::user();
         $producto = Producto::where('nombre_producto', $this->nombre_producto)->first();
         
+<<<<<<< Updated upstream
+=======
+        $entradas = Registro::where('producto_id', $producto->id_producto)->where('tipo_registro', 1)->sum('cantidad_registro');
+        $salidas = Registro::where('producto_id', $producto->id_producto)->where('tipo_registro', 0)->sum('cantidad_registro');
+        $existencias = $entradas - $salidas;
+
+        if ($this->cantidad_registro > $existencias) {
+            $this->addError('cantidad_registro', 'La cantidad de salida excede las existencias disponibles (' . $existencias . ').');
+            return;
+        }
+
+>>>>>>> Stashed changes
         // Emitir evento con los datos validados para que Tabla los procese
         $this->dispatch('salida-agregada', 
             persona_id: $user->id,
