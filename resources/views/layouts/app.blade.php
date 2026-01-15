@@ -36,5 +36,8 @@
                 {{ $slot }}
             </main>
         </div>
+        @livewireScripts
+        <script src="https://cdn.jsdelivr.net/gh/livewire/wire-elements-modal@1.0.6/resources/js/modal.js"></script>
+        @livewire('wire-elements-modal')
     </body>
 </html>
