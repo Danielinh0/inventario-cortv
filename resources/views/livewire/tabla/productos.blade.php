@@ -71,8 +71,7 @@
                                         {{ $producto->cantidad_producto }}</td>
                                     <td class="px-4 py-3">{{ $producto->unidad_producto }} </td>
                                     <td class="px-4 py-3 flex items-center justify-end">
-                                        <button wire:click="$dispatch('openModal', { component: 'producto-form-edit', arguments: { productoId: {{ $producto->id_producto }} } })" 
-                                            class="ml-2 px-3 py-1 bg-cortvAzulClaro text-white rounded m-2">
+                                        <button class="ml-2 px-3 py-1 bg-cortvAzulClaro text-white rounded m-2">
                                             Editar
                                         </button>  
                                         <button onclick="confirm('¿Estas seguro de que quieres eliminar {{$producto->nombre_producto}}?') || event.stopImmediatePropagation()" wire:click="eliminar({{ $producto->id_producto }})" 
@@ -107,5 +106,33 @@
             </div>
         </div>
     </section>
-    
+    @if($showModal)
+        <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+                {{-- Overlay --}}
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" wire:click="cerrarModal"></div>
+
+                {{-- Modal panel --}}
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all 
+                w-full sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4">
+                        <div class="flex justify-end">
+                            <button wire:click="cerrarModal" class="text-gray-400 hover:text-gray-500">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    
+                        
+                        {{-- Componente Livewire del formulario --}}
+                        <livewire:formulario.form-producto                             
+                            :enModal="true"
+                            :key="'form-producto-' . $formKey"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
