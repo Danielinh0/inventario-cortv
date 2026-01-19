@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\LaravelPdf\Facades\Pdf;
-use Spatie\Browsershot\Browsershot;
+// use Spatie\Browsershot\Browsershot;
 use App\Models\{
     Producto, 
     Registro,
     Area,
 };
 use Illuminate\Support\Facades\Cache;
+
 
 class pdfController extends Controller
 {
@@ -63,6 +64,8 @@ class pdfController extends Controller
         ])                    
             ->name('REPORTE_'. $clave .'(' . $fechaInicio .' a '.$fechaFin . ').pdf')
             ->download();
+
+        
     }
 
     public function generateFormatoSalida($cantidad_registro)
