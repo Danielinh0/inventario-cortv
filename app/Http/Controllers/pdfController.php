@@ -17,7 +17,7 @@ class pdfController extends Controller
 
     //
     public function generateReport($fechaInicio, $fechaFin,$areaFilter){
-        set_time_limit(240);
+        set_time_limit(500);
         // Calculate report data statically without using Livewire
         $productos = Producto::when($areaFilter !== ' ', function ($query) use ($areaFilter) {
                 $query->whereHas('clave', function ($query) use ($areaFilter) {
@@ -67,7 +67,7 @@ class pdfController extends Controller
 
     public function generateFormatoSalida($cantidad_registro)
     {
-        set_time_limit(240);
+        set_time_limit(500);
         $datos_registro = session('datos_registro');
         $registros = Registro::with('producto')
             ->where('tipo_registro', 0)
