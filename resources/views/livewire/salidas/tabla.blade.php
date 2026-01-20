@@ -52,10 +52,12 @@
                                      <td class="px-4 py-3 flex items-center justify-end"> 
 
 
-                                        <button onclick="confirm('¿Estas seguro de que quieres eliminar {{$salida['producto_nombre']}}?') || event.stopImmediatePropagation()" wire:click="eliminar({{ $loop->index }})" 
-                                            class="px-3 py-1 bg-cortvRojoBasico text-white rounded m-2">
-                                            Eliminar
-                                        </button>
+                                        @auth
+                                            <button onclick="confirm('¿Estas seguro de que quieres eliminar {{$salida['producto_nombre']}}?') || event.stopImmediatePropagation()" wire:click="eliminar({{ $loop->index }})" 
+                                                class="px-3 py-1 bg-cortvRojoBasico text-white rounded m-2">
+                                                Eliminar
+                                            </button>
+                                        @endauth
                                     </td>
                                 </tr>
                             @endforeach                         

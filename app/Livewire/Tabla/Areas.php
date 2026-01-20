@@ -31,11 +31,6 @@ use WithPagination;
         $this->resetPage();
     }
 
-    public function eliminar(Producto $producto)
-    {
-        $producto->delete();
-
-    }
     public function setSortBy($sortBy){
         if($sortBy === 'NoFiltro') {
             return;
@@ -46,6 +41,10 @@ use WithPagination;
         }
         $this->sortBy = $sortBy;
         $this->sortDir = 'ASC';
+    }
+
+    public function placeholder(){
+        return view('livewire.placeholders.tabla.common');
     }
 
     public function render()

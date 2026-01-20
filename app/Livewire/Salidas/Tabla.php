@@ -87,7 +87,7 @@ class Tabla extends Component
             }
         }
     }
-    public function eliminar($index){
+    public function eliminar($index){        
         unset($this->salidas[$index]);
 
         $this->salidas = array_values($this->salidas); // Reindexar el array

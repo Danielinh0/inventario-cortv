@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id('id_producto');
             $table->text('nombre_producto');
             $table->text('descripcion_producto')->nullable();
-            $table->string('unidad_producto');         
+            $table->string('unidad_producto');
+            $table ->boolean('activo')->default(true);         
             $table->timestamps();
         });
     }

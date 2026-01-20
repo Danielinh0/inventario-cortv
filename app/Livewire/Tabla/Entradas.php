@@ -51,6 +51,9 @@ class Entradas extends Component
             ->orderBy($this->sortBy, $this->sortDir)
             ->paginate($this->perPage);
     }
+    public function placeholder(){
+        return view('livewire.placeholders.tabla.common');
+    }
 
     public function render()
     {

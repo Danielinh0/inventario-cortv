@@ -29,9 +29,9 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
-                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'ID', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Usuario', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Fecha', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'id', 'displayName' => 'ID', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'created_at', 'displayName' => 'Fecha', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'user_id', 'displayName' => 'Usuario', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Accion', 'sortDir' => $sortDir])
                                 
                             </tr>
@@ -42,9 +42,9 @@
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $log->id}}</th>
-                                    <td class="px-4 py-3">{{ $log->user->name}}</td>
-                                    <td class="px-4 py-3">{{ $log->action }}</td>
-                                    <td class="px-4 py-3">{{ $log->created_at}} </td>
+                                        <td class="px-4 py-3">{{ $log->created_at}} </td>
+                                        <td class="px-4 py-3">{{ $log->user->name}}</td>
+                                        <td class="px-4 py-3">{{ $log->action }}</td>
                                 </tr>
                             @endforeach
     
