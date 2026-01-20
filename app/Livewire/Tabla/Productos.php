@@ -3,6 +3,10 @@
 namespace App\Livewire\Tabla;
 
 use Livewire\Component;
+use Livewire\Attributes\{
+    Compute,
+    Lazy
+};
 use App\Models\{
     Producto,
     Registro
@@ -51,6 +55,11 @@ class Productos extends Component
         $this->sortBy = $sortBy;
         $this->sortDir = 'ASC';
     }
+
+    public function placeholder(){
+        return view('livewire.placeholders.tabla.common');
+    }
+
     #[Compute()]
     public function cant_productos(){
         $Productos = Producto::all();

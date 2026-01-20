@@ -57,7 +57,7 @@ class Reporte extends Component
     }
     
     public function placeholder(){
-    return view('livewire.placeholders.tabla.reporte-placeholder');
+        return view('livewire.placeholders.tabla.reporte-placeholder');
     }
     
     #[Computed(cache:true)]

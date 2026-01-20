@@ -45,9 +45,6 @@
                                     <td class="px-4 py-3">{{ $log->user->name}}</td>
                                     <td class="px-4 py-3">{{ $log->action }}</td>
                                     <td class="px-4 py-3">{{ $log->created_at}} </td>
-
-                                    {{-- <td class="px-4 py-3">{{ $registro->persona->nombre_persona }}</td>
-                                    <td class="px-4 py-3">{{ $registro->cantidad_registro }}</td> --}}
                                 </tr>
                             @endforeach
     
