@@ -26,10 +26,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Rutas para PDF
-Route::get('/pdfs', function () {
-    return view('pdfs.report');
-})->name('pdfs.report');
+// Rutas para PDF generation
 
 Route::get('/generate-report/{fechaInicio}/{fechaFin}/{areaFilter}', [pdfController::class, 'generateReport'])->name('generate.pdf');
 Route::get('/generate-formato-salida/{cantidad_registro}', [pdfController::class, 'generateFormatoSalida'])->name('generate.formato.salida');
@@ -62,6 +59,9 @@ Route::prefix('/consultar-tablas')->group(function () {
     Route::get('/salidas', function () {
         return view('table.index');
     })->name('tabla.salidas');
+    Route::get('/registros', function () {
+        return view('table.index');
+    })->name('tabla.log');
 });
 
 // Rutas de reportes

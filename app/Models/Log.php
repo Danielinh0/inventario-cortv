@@ -9,6 +9,12 @@ class Log extends Model
     use HasFactory;
     
     public function user(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
+    }
+    public function scopeSearch($query, $value)
+    {
+        $query->where('id', 'like', '%' . $value . '%')
+            ->orWhere('action', 'like', '%' . $value . '%')
+            ->orWhere('created_at', 'like', '%' . $value . '%');
     }
 }
