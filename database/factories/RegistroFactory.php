@@ -27,6 +27,7 @@ class registroFactory extends Factory
         Log::create([
             'user_id' => $user->id,
             'action' => 'Creación de registro de '.($tipo ? 'entrada' : 'salida').' de producto ID '.$producto->id_producto,
+            'tipo' => $tipo ? 3 : 4,
         ]);
 
 

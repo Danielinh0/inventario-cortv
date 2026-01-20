@@ -67,19 +67,19 @@ class Productos extends Component
         return view('livewire.placeholders.tabla.common');
     }
 
-    #[Computed()]
-    public function cant_productos(){
-        $Productos = Producto::all();
+    // #[Computed()]
+    // public function cant_productos(){
+    //     $Productos = Producto::all();
 
-        return $Productos ->map(function($producto){
-            //Totales de entradas y salidas
-            $totalEntrada   =   Registro::where('producto_id', $producto->id_producto)->where('tipo_registro',1)->sum('cantidad_registro');
-            $totalSalida    =   Registro::where('producto_id', $producto->id_producto)->where('tipo_registro',0)->sum('cantidad_registro');
+    //     return $Productos ->map(function($producto){
+    //         //Totales de entradas y salidas
+    //         $totalEntrada   =   Registro::where('producto_id', $producto->id_producto)->where('tipo_registro',1)->sum('cantidad_registro');
+    //         $totalSalida    =   Registro::where('producto_id', $producto->id_producto)->where('tipo_registro',0)->sum('cantidad_registro');
             
-            //Existencias finales e iniciales en el periodo
-            return $totalEntrada - $totalSalida;
-        });
-    }
+    //         //Existencias finales e iniciales en el periodo
+    //         return $totalEntrada - $totalSalida;
+    //     });
+    // }
     // #[Computed()]
     // public function all_productos()
     // {
