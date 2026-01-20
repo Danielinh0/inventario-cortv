@@ -53,7 +53,7 @@ class FormSalida extends Component
 
         // Emitir evento con los datos validados para que Tabla los procese
         $this->dispatch('salida-agregada', 
-            persona_id: $user->id,
+            user_id: $user->id,
             producto_id: $producto->id_producto,
             cantidad_registro: $this->cantidad_registro,
             tipo_unidad: $producto->unidad_producto,

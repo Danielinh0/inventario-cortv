@@ -58,7 +58,7 @@ class Tabla extends Component
         if($cantidad_registro > 0 and (session()->has('datos_registro') && !empty(session('datos_registro')))){
             foreach ($this->salidas as $salida) {
                 Registro::create([
-                    'persona_id' => $salida['persona_id'],
+                    'user_id' => $salida['user_id'],
                     'producto_id' => $salida['producto_id'],
                     'cantidad_registro' => $salida['cantidad_registro'],
                     'tipo_registro' => false,
@@ -111,11 +111,11 @@ class Tabla extends Component
 
     //Cuando ocurra el evento "salida-agregada", se ejecuta este metodo
     #[On('salida-agregada')]
-    public function agregarSalida($persona_id, $producto_id, $cantidad_registro, $tipo_unidad, $producto_nombre)
+    public function agregarSalida($user_id, $producto_id, $cantidad_registro, $tipo_unidad, $producto_nombre)
     {
         // Agregar los datos al array de salidas para procesarlos después
         $this->salidas[] = [
-            'persona_id' => $persona_id,
+            'user_id' => $user_id,
             'producto_id' => $producto_id,
             'cantidad_registro' => $cantidad_registro,
             'tipo_unidad' => $tipo_unidad,

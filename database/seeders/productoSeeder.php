@@ -35,7 +35,7 @@ class productoSeeder extends Seeder
                     'id_producto' => $id,
                     'nombre_producto' => $nombre,
                     'descripcion_producto' => $descripcion,
-                    'cantidad_producto' => $cantidad,
+                    // 'cantidad_producto' => $cantidad,
                     'unidad_producto' => $unidad,
                 ]);
             }

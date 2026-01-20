@@ -38,6 +38,14 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    public function registro(){
+        return $this->belongsToMany(Registro::class);
+    }
+    
+    public function log(){
+        return $this->hasMany(log::class);
+    }
+
     protected function casts(): array
     {
         return [

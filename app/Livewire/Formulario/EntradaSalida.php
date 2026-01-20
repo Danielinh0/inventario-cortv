@@ -44,11 +44,13 @@ class EntradaSalida extends Component
         $producto = Producto::where('nombre_producto', $this->nombre_producto)->first();
         
         Registro::create([
-            'persona_id' => $user->id,
+            'user_id' => $user->id,
             'producto_id' => $producto->id_producto,
             'cantidad_registro' => $this->cantidad_registro,
             'tipo_registro' => $this->tipo_registro,
         ]);
+
+        
         // Flash message de exito
         
         $this->reset(['nombre_producto', 'cantidad_registro']);
