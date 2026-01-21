@@ -47,7 +47,7 @@
                                 @include('livewire.includes.table-sort-th', ['name' => 'id', 'displayName' => 'ID', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'created_at', 'displayName' => 'Fecha', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'user_id', 'displayName' => 'Usuario', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Accion', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Descripcion', 'sortDir' => $sortDir])
                                 <th scope="col" class="px-4 py-3">
                                     <span class="sr-only">
                                         Acciones
