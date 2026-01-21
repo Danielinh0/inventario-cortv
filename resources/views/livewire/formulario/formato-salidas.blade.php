@@ -17,7 +17,7 @@
             style="font-family: 'Times New Roman', Times, serif;">
             <!-- area -->
             <div>
-                <label for="area" class="flex flex-col gap-1">
+                <label for="area" class="flex flex-col ">
                     <span>Área</span>
                     <span class="text-semibold text-base text-[#757575]">
                         ¿Qué área lo solicita?
@@ -98,6 +98,22 @@
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
+
+            <div>
+                <label for="solicito" class="flex flex-col gap-1">
+                    <span>Solicitud y Recepción</span>
+                    <span class="text-semibold text-base text-[#757575]">
+                        ¿Quién solicita y recibe la salida?
+                    </span>
+                </label>
+                <input type="text" id="solicito" name="solicito" wire:model.blur="solicito"
+                    class="border-[#D9D9D9] border-1 rounded-md p-2 h-[30px] w-full mt-1">
+                
+                @error('solicito')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+
             <!-- boton -->
             <div class="mt-4">
                 <button type="submit" class="w-full bg-[#8B2427] rounded-md flex justify-center p-2 cursor-pointer hover:bg-[#AE2B2F]">

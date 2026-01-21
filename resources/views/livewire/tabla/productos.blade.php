@@ -74,8 +74,7 @@
                                         {{-- <button class="ml-2 px-3 py-1 bg-blue-500 text-white rounded m-2">
                                             Editar
                                         </button>   --}}
-                                        <button wire:click="eliminar({{ $producto->id_producto }})" 
-                                            
+                                        <button onclick="confirm('¿Estas seguro de que quieres eliminar {{$producto->nombre_producto}}?') || event.stopImmediatePropagation()" wire:click="eliminar({{ $producto->id_producto }})" 
                                             class="px-3 py-1 bg-red-500 text-white rounded m-2">
                                             Eliminar
                                         </button>

@@ -285,7 +285,7 @@
                             <div class="firma-espacio"> </div>
                             <p class="nombre-firmante">
                                 ___________________________________________________ <br> <br>
-                                O</p>
+                                {{ session('datos_registro.solicito') }}</p>
                         </td>
                         <td>
                             <div class="firma-espacio"></div>
@@ -316,7 +316,8 @@
                         <td>
                             <div class="firma-espacio"></div>
                             <p class="nombre-firmante ">
-                                ___________________________________________________ <br> <br> O
+                                ___________________________________________________ <br> <br> 
+                                {{ session('datos_registro.solicito') }}
                             </p>
                         </td>
                     </tr>

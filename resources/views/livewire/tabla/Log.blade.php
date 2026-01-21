@@ -68,7 +68,7 @@
                                         <td class="px-4 py-3 flex items-center justify-end">
                                         @if ($log->tipo == 2 && !$log->producto->activo)
                                             <button onclick="confirm('¿Estas seguro de que quieres restaurar {{$log->producto->nombre_producto}}?') || event.stopImmediatePropagation()" wire:click="restaurar({{ $log->producto->id_producto }})" 
-                                                class="px-3 py-1 bg-cortvVerdeClaro text-white rounded m-2">
+                                                class="px-3 py-1 text-white rounded m-2" style="background-color: #5EA836;">
                                                 Restaurar
                                             </button>
                                         @endif

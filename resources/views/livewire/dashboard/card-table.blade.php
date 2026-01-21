@@ -8,10 +8,8 @@
     <!-- icono -->
     <div
         class="
-        flex justify-center w-[20%] items-center
-        xs:w-[25%]
-        md:    
-        lg:w-[22%] ">
+        flex justify-center w-[20%] items-center          
+        lg:w-[18%] ">
         <svg class="
         h-[29px] w-[29px]
         xs:w-[33px] xs:h-[33px]
@@ -37,10 +35,10 @@
         {{-- condicional para saber si es una entrada o salida --}}
         @if ($mostrar_Nuevo_Producto)
             <div class="
-text-cortvGrisTexto font-times text-[20px] font-semibold leading-[120%] tracking-[-0.36px] 
-overflow-hidden line-clamp-2
-xs:text-[22px]
-md:text-[23px]"
+    text-cortvGrisTexto font-times text-[20px] font-semibold leading-[120%] tracking-[-0.36px] 
+    overflow-hidden line-clamp-2
+    xs:text-[22px]
+    md:text-[23px]"
                 style="font-family: 'Times New Roman'; display: -webkit-box; -webkit-box-orient: vertical;">
                 {{ $producto->nombre_producto }}
             </div>
@@ -120,28 +118,30 @@ md:text-[23px]"
     w-[30%] flex justify-center items-center
     md:w-1/4">
         @if ($mostrarBotonEditar)
-            <!-- botón editar -->
+            <!-- botón ver -->
+            <a href="{{ route('tabla.productos', $registro->id_registro) }}">
             <button
                 class="
                 inline-flex items-center gap-2
                 bg-cortvRojoOscuro hover:bg-cortvRojoBasico text-white font-times font-normal
-                px-6 py-2 rounded-lg
+                px-3 py-2 rounded-lg
                 transition-colors duration-200
                 text-[14px]
                 xs:text-[15px]
                 md:text-[16px]
-                lg:px-8 lg:py-2.5"
+                lg:px-2 lg:py-2"
                 style="font-family: 'Times New Roman'">
                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
+                    <circle cx="12" cy="12" r="3" />
                 </svg>
-                Editar
+                Ver
             </button>
+            </a>
         @else
             <!-- cantidad con flecha -->
-            <div class="flex flex-col-reverse justify-start items-center gap-[5px] xs:flex-row xs:justify-center">
+            <div class="flex flex-col-reverse justify-start items-center gap-[5px] xs:flex-col xs:justify-center">
                 <!-- flecha -->
                 <div class="flex justify-center items-center">
                     <svg class="
@@ -175,11 +175,11 @@ md:text-[23px]"
 
                 <!-- cantidad -->
                 <div class="
-                {{ $registro->tipo_registro == 1 ? 'text-cortvVerdeClaro' : 'text-cortvRojoBasico' }} font-times text-[22px] font-bold leading-[120%] tracking-[-0.36px]
-                xs:text-[24px]"
+                {{ $registro->tipo_registro == 1 ? 'text-cortvVerdeClaro' : 'text-cortvRojoBasico' }} font-times text-[20px] font-bold leading-[120%] tracking-[-0.36px]
+                xs:text-[22px]"
                     style="font-family: 'Times New Roman'">
                     <span>{{ $registro->cantidad_registro }}</span>
-                    <span>pz</span>
+                    <span>{{ $producto->unidad_producto }}</span>
                 </div>
             </div>
         @endif

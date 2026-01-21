@@ -59,6 +59,8 @@ class Log extends Component
             'action' => "Restauró el producto: {$producto->nombre_producto} (ID: {$producto->id_producto})",
             'producto_id' => $producto->id_producto,
         ]);
+
+        
     }
 
     #[Computed()]

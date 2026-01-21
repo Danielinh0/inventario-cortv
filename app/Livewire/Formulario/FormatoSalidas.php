@@ -27,6 +27,10 @@ class FormatoSalidas extends Component
     #[Validate('max:255', message: 'El nombre de quien entrega no puede exceder los 255 caracteres')]
     public $entrega = '';
 
+    #[Validate('required', message: 'Ingrese quien solicita y recibe la salida')]
+    #[Validate('max:200', message: 'El nombre de quien solicita y recibe no puede exceder los 200 caracteres')]
+    public $solicito = '';
+
     public function save()
     {
         $this->validate([
@@ -35,6 +39,7 @@ class FormatoSalidas extends Component
             'categoria' => 'required|string|max:150',
             'autoriza' => 'required|string|max:255',
             'entrega' => 'required|string|max:255',
+            'solicito' => 'required|string|max:200',
         ]);
 
         session()->put('datos_registro', [
@@ -43,19 +48,21 @@ class FormatoSalidas extends Component
             'categoria' => $this->categoria,
             'autoriza' => $this->autoriza,
             'entrega' => $this->entrega,
+            'solicito' => $this->solicito,
         ]);
         $this->dispatch('formato-salida-guardado', 
             area: $this->area,
             nombre: $this->nombre,
             categoria: $this->categoria,
             autoriza: $this->autoriza,
-            entrega: $this->entrega
+            entrega: $this->entrega,
+            solicito: $this->solicito
         );
         
         session()->flash('status', 'Formato de salida guardado correctamente.');
 
         // Reiniciar los campos del formulario
-        $this->reset(['area', 'nombre', 'categoria', 'autoriza', 'entrega']);
+        $this->reset(['area', 'nombre', 'categoria', 'autoriza', 'entrega', 'solicito']);
     }
 
     public function render()
