@@ -9,6 +9,7 @@ use App\Models\{
 };
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
+use Native\Desktop\Facades\Alert;
 
 class Productos extends Component
 {
@@ -36,9 +37,19 @@ class Productos extends Component
     }
 
     public function eliminar(Producto $producto)
-    {
-        $producto->delete();
-    }
+    {   
+       $respuesta =  Alert::new()
+        ->type('warning')
+        ->title('Eliminar')
+        ->buttons(['Confirmar', 'Cancelar'])
+        ->show('¿Seguro que deseas eliminar el producto: '.$producto->nombre_producto.'?');  
+        
+        if($respuesta = 0){
+            $producto->delete();           
+        }
+    }        
+        
+    
 
     public function setSortBy($sortBy){
         if($sortBy === 'NoFiltro') {
