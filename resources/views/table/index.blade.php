@@ -12,7 +12,11 @@
                     <a href="{{ route('tabla.areas') }}" class="px-4 py-2 {{ request()->routeIs('tabla.areas') ? 'bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg' }}">Areas</a>
                     <a href="{{ route('tabla.entradas') }}" class="px-4 py-2 {{ request()->routeIs('tabla.entradas') ? 'bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg' }}">Entradas</a>
                     <a href="{{ route('tabla.salidas') }}" class="px-4 py-2 {{ request()->routeIs('tabla.salidas') ? 'bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg' }}">Salidas</a>
+                    @role('Admin')
                     <a href="{{ route('tabla.log') }}" class="px-4 py-2 {{ request()->routeIs('tabla.log') ? 'bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg' }}">Log</a>
+                    <a href="{{ route('tabla.usuarios') }}" class="px-4 py-2 {{ request()->routeIs('tabla.usuarios') ? 'bg-red-700 text-white rounded-lg font-semibold hover:bg-red-800' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg' }}">Usuarios</a>
+                    @endrole
+                    
                     @can('viewLog')
                     @endcan
                 </div>
@@ -32,11 +36,14 @@
                     @livewire('tabla.salidas',['lazy' => true])
                     @break
                 @case('tabla.log')
-                @livewire('tabla.log',['lazy' => true])
+                    @livewire('tabla.log',['lazy' => true])
+                    
                     @can('viewLog')
                     @endcan
-                    <p class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"> Seleccione una tabla para visualizar los datos</p>
                     @break
+                @case('tabla.usuarios')
+                    @livewire('tabla.usuarios',['lazy'=>true])
+                @break
                 @default
                     <p class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg"> Seleccione una tabla para visualizar los datos</p>
             @endswitch

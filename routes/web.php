@@ -59,9 +59,15 @@ Route::prefix('/consultar-tablas')->group(function () {
     Route::get('/salidas', function () {
         return view('table.index');
     })->name('tabla.salidas');
-    Route::get('/registros', function () {
-        return view('table.index');
-    })->name('tabla.log');
+    
+    Route::group(['middleware'=>['role:Admin']],function () {
+        Route::get('/registros', function () {
+            return view('table.index');
+        })->name('tabla.log');
+        Route::get('/usuarios', function () {
+            return view('table.index');
+        })->name('tabla.usuarios');
+    });
 });
 
 // Rutas de reportes
