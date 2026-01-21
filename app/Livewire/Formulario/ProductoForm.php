@@ -6,7 +6,8 @@ use Livewire\Component;
 use App\Models\{
     Producto,
     Area,
-    Clave
+    Clave,
+    Log as LogModel
 };
 use Livewire\Attributes\Validate;
 use Livewire\Attributes\Computed;
@@ -60,7 +61,12 @@ class ProductoForm extends Component
             'contador_clave' => $contador_clave,
             'valor_clave' => $valor_clave,
         ]);
-    
+        
+        LogModel::create([
+            'user_id' => auth()->user()->id,
+            'action' => 'Creación de producto ID '.$id_producto,
+            'tipo' => 1,
+        ]);
         session()->flash('status', 'Producto creado exitosamente.');
         
         $this->reset(['nombre_producto', 'descripcion_producto', 'unidad_producto', 'id_area']); 

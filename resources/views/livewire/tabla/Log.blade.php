@@ -2,6 +2,7 @@
 
     <section class="mt-10">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
+            <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div class="flex items-center justify-between d p-4">
                     <div class="flex">
@@ -18,25 +19,23 @@
                                 wire:model.live.debounce.650ms="search"
                                 type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 "
-                                placeholder="Buscar por ID o Nombre" required="">
+                                placeholder="Buscar por ID" required="">
 
                         </div>
                     </div>
                     <div class="flex space-x-3">
                         <div class="flex space-x-3 items-center">
-                            <label class="w-80 text-sm font-medium text-gray-900">Tipo de producto:</label>
+                            <label class="w-80 text-sm font-medium text-gray-900">Tipo de Log:</label>
                             <select 
                                 wire:model.live="areaFilter"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                                 <option value="">Todos</option>
-                                <option value="1">Papeleria</option>
-                                <option value="2">Limpieza</option>
-                                <option value="3">Almacen</option>
-                                <option value="4">Computo</option>
-                                <option value="5">Vehicular</option>
-                                <option value="6">Herramientas</option>
-                                <option value="7">Higiene</option>
-                                <option value="8">Uniformes</option>
+                                <option value="1">Creacion</option>
+                                <option value="2">Eliminar</option>
+                                <option value="3">Entrada</option>
+                                <option value="4">Salida</option>
+                                <option value="5">Restauracion</option>
+                                <option value="6">Generacion de reporte</option>
                             </select>
                         </div>
                     </div>
@@ -45,45 +44,40 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
-                            @include('livewire.includes.table-sort-th', ['name' => 'id_producto', 'displayName' => 'ID', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'nombre_producto', 'displayName' => 'Producto', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th',['name' => 'NoFiltro', 'displayName' => 'Área', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Clave', 'sortDir' => $sortDir])
-                                {{-- @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Cantidad', 'sortDir' => $sortDir]) --}}
-                                @include('livewire.includes.table-sort-th', ['name' => 'unidad_producto', 'displayName' => 'Tipo Unidad', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'id', 'displayName' => 'ID', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'created_at', 'displayName' => 'Fecha', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'user_id', 'displayName' => 'Usuario', 'sortDir' => $sortDir])
+                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Descripcion', 'sortDir' => $sortDir])
                                 <th scope="col" class="px-4 py-3">
                                     <span class="sr-only">
                                         Acciones
                                     </span>
                                 </th>
+                                
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($productos as $producto)
-                                <tr wire:key={{ $producto->id_producto }} class="border-b dark:border-gray-700">
+                            @foreach ($this->logs as $log)
+                                <tr class="border-b dark:border-gray-700" wire:key={{ $log->id }}>
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{ $producto->id_producto }}</th>
-                                    <td class="px-4 py-3">{{ $producto->nombre_producto }}</td>
-                                    <td class="px-4 py-3">{{ $producto->clave->area->descripcion_area }}</td>
-                                    <td class="px-4 py-3">{{ $producto->clave->valor_clave }}</td>
-                                    {{-- <td class="px-4 py-3 {{ $this->cant_productos()[$loop->index] > 0 ? 'text-green-500' : 'text-red-500' }}">
-                                        {{ $this->cant_productos()[$loop->index] }}</td> --}}
-                                    <td class="px-4 py-3">{{ $producto->unidad_producto }} </td>
-                                    <td class="px-4 py-3 flex items-center justify-end">
-                                        {{-- <button class="ml-2 px-3 py-1 bg-blue-500 text-white rounded m-2">
-                                            Editar
-                                        </button>   --}}
-                                        <button wire:click="eliminar({{ $producto->id_producto }})" 
-                                            
-                                            class="px-3 py-1 bg-red-500 text-white rounded m-2">
-                                            Eliminar
-                                        </button>
+                                        {{ $log->id}}</th>
+                                        <td class="px-4 py-3">{{ $log->created_at}} </td>
+                                        <td class="px-4 py-3">{{ $log->user->name}}</td>
+                                        <td class="px-4 py-3">{{ $log->action }}</td>
+                                        <td class="px-4 py-3 flex items-center justify-end">
+                                        @if ($log->tipo == 2 && !$log->producto->activo)
+                                            <button onclick="confirm('¿Estas seguro de que quieres restaurar {{$log->producto->nombre_producto}}?') || event.stopImmediatePropagation()" wire:click="restaurar({{ $log->producto->id_producto }})" 
+                                                class="px-3 py-1 bg-cortvVerdeClaro text-white rounded m-2">
+                                                Restaurar
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
     
                         </tbody>
+                        
                     </table>
                 </div>
     
@@ -102,7 +96,7 @@
                             </select>
                         </div>
                     </div>
-                    {{ $productos->links() }}
+                    {{ $this->logs }}
                 </div>
             </div>
         </div>

@@ -30,7 +30,10 @@ class Producto extends Model
     {
         return $this->belongsToMany(Registro::class);
     }
-
+    public function logs()
+    {
+        return $this->hasMany(Log::class, 'producto_id', 'id_producto');
+    }
     
 
 

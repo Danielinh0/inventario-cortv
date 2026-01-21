@@ -89,7 +89,7 @@ md:text-[23px]"
         md:text-[17px]"
                 style="font-family: 'Times New Roman'">
                 <span>Autorizó:</span>
-                <span>{{ $registro->persona->nombre_persona }}</span>
+                <span>{{ $registro->user->name }}</span>
             </div>
 
             <!-- area -->
