@@ -6,7 +6,7 @@ return [
      * It is used to determine if the app needs to be updated.
      * Increment this value every time you release a new version of your app.
      */
-    'version' => env('NATIVEPHP_APP_VERSION', '1.0.0'),
+    'version' => env('NATIVEPHP_APP_VERSION', '1.0.1'),
 
     /**
      * The ID of your application. This should be a unique identifier
@@ -29,7 +29,7 @@ return [
     /**
      * The author of your application.
      */
-    'author' => env('NATIVEPHP_APP_AUTHOR'),
+    'author' => env('NATIVEPHP_APP_AUTHOR', 'Daniel Garcia y Zaid Cristobal'),
 
     /**
      * The copyright notice for your application.
@@ -39,12 +39,13 @@ return [
     /**
      * The description of your application.
      */
-    'description' => env('NATIVEPHP_APP_DESCRIPTION', 'An awesome app built with NativePHP'),
+    'description' => env('NATIVEPHP_APP_DESCRIPTION', '
+    Aplicacion de escritorio para el control de inventarios del departamento de recursos materiales.'),
 
     /**
      * The Website of your application.
      */
-    'website' => env('NATIVEPHP_APP_WEBSITE', 'https://nativephp.com'),
+    'website' => env('NATIVEPHP_APP_WEBSITE', 'https://github.com/Danielinh0/inventario-cortv'),
 
     /**
      * The default service provider for your application. This provider
@@ -59,6 +60,7 @@ return [
      * You may use wildcards to match multiple keys.
      */
     'cleanup_env_keys' => [
+        'APP_KEY',    
         'AWS_*',
         'AZURE_*',
         'GITHUB_*',
@@ -85,7 +87,7 @@ return [
         'temp',
         'content',
         'node_modules',
-        '*/tests',
+        '*/tests',        
     ],
 
     /**
@@ -163,7 +165,8 @@ return [
      * Define your own scripts to run before and after the build process.
      */
     'prebuild' => [
-        // 'npm run build',
+         'npm run build',
+         'php artisan native:migrate --seed',
     ],
 
     'postbuild' => [
