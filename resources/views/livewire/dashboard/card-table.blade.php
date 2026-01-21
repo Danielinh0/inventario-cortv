@@ -4,7 +4,7 @@
     w-full mb-9 items-center box-border flex flex-row {{ $estilos }}
     xs:mb-10
     ">
-
+    
     <!-- icono -->
     <div
         class="
