@@ -8,6 +8,7 @@ use Livewire\Attributes\{
     Computed
 };
 use App\Models\{
+    Producto,
     Log as LogModel
 };
 use Livewire\WithPagination;
@@ -46,11 +47,27 @@ class Log extends Component
         $this->sortBy = $sortBy;
         $this->sortDir = 'ASC';
     }
+    
+    public function restaurar(Producto $producto)
+    {
+        $producto->activo = true;
+        $producto->save();
+        
+        LogModel::create([
+            'user_id' => auth()->id(),
+            'tipo' => 5,
+            'action' => "Restauró el producto: {$producto->nombre_producto} (ID: {$producto->id_producto})",
+            'producto_id' => $producto->id_producto,
+        ]);
+    }
 
     #[Computed()]
     public function logs()
     {
-        return LogModel::search($this->search)
+        return LogModel::search($this->search)->
+            when($this->areaFilter !== '', function ($query) {
+                $query->where('tipo', $this->areaFilter);
+            })
             ->orderBy($this->sortBy, $this->sortDir)
             ->paginate($this->perPage);
         // return LogModel::query()->when($this->search !== '', function ($query) {

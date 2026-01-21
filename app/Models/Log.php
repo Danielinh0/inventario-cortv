@@ -12,10 +12,15 @@ class Log extends Model
     protected $fillable = [
         'user_id',
         'action',
+        'tipo',
+        'producto_id',
     ];
     
     public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function producto(){
+        return $this->belongsTo(Producto::class, 'producto_id', 'id_producto');
     }
     public function scopeSearch($query, $value)
     {

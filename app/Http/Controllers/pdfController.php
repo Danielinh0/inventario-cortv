@@ -9,6 +9,7 @@ use App\Models\{
     Producto, 
     Registro,
     Area,
+    Log as LogModel
 };
 use Illuminate\Support\Facades\Cache;
 
@@ -19,6 +20,7 @@ class pdfController extends Controller
     //
     public function generateReport($fechaInicio, $fechaFin,$areaFilter){
         set_time_limit(500);
+        
         // Calculate report data statically without using Livewire
         $productos = Producto::when($areaFilter !== ' ', function ($query) use ($areaFilter) {
                 $query->whereHas('clave', function ($query) use ($areaFilter) {
@@ -55,6 +57,15 @@ class pdfController extends Controller
         if($areaFilter != ' '){
             $clave = Area::find($areaFilter)->nombre_area;
         }
+        
+        LogModel::create([
+            'user_id' => auth()->id(),
+            'tipo' => 6,
+            'action' => "Generó un reporte desde {$fechaInicio} hasta {$fechaFin}, para el área: {$area}",
+            'producto_id' => null,
+        ]);
+
+
         Area::find($areaFilter);
         return Pdf::view('pdfs.report', [
             'fechaInicio' => $fechaInicio,

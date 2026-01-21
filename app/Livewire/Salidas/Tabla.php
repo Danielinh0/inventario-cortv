@@ -3,7 +3,10 @@
 namespace App\Livewire\Salidas;
 
 use Livewire\Component;
-use App\Models\Registro;
+use App\Models\{
+    Registro,
+    Log as LogModel
+};
 use Livewire\WithPagination;   
 use App\Http\Controllers\pdfController; 
 use Livewire\Attributes\{
@@ -62,6 +65,11 @@ class Tabla extends Component
                     'producto_id' => $salida['producto_id'],
                     'cantidad_registro' => $salida['cantidad_registro'],
                     'tipo_registro' => false,
+                ]);
+                LogModel::create([
+                    'user_id' => $salida['user_id'],
+                    'action' => 'Salida de producto ID '.$salida['producto_id'],
+                    'tipo' => 4,
                 ]);
             }
 

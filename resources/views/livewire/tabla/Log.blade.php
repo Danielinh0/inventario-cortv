@@ -23,7 +23,22 @@
 
                         </div>
                     </div>
-                    
+                    <div class="flex space-x-3">
+                        <div class="flex space-x-3 items-center">
+                            <label class="w-80 text-sm font-medium text-gray-900">Tipo de Log:</label>
+                            <select 
+                                wire:model.live="areaFilter"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                                <option value="">Todos</option>
+                                <option value="1">Creacion</option>
+                                <option value="2">Eliminar</option>
+                                <option value="3">Entrada</option>
+                                <option value="4">Salida</option>
+                                <option value="5">Restauracion</option>
+                                <option value="6">Generacion de reporte</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -33,6 +48,11 @@
                                 @include('livewire.includes.table-sort-th', ['name' => 'created_at', 'displayName' => 'Fecha', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'user_id', 'displayName' => 'Usuario', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Accion', 'sortDir' => $sortDir])
+                                <th scope="col" class="px-4 py-3">
+                                    <span class="sr-only">
+                                        Acciones
+                                    </span>
+                                </th>
                                 
                             </tr>
                         </thead>
@@ -45,6 +65,14 @@
                                         <td class="px-4 py-3">{{ $log->created_at}} </td>
                                         <td class="px-4 py-3">{{ $log->user->name}}</td>
                                         <td class="px-4 py-3">{{ $log->action }}</td>
+                                        <td class="px-4 py-3 flex items-center justify-end">
+                                        @if ($log->tipo == 2 && !$log->producto->activo)
+                                            <button onclick="confirm('¿Estas seguro de que quieres restaurar {{$log->producto->nombre_producto}}?') || event.stopImmediatePropagation()" wire:click="restaurar({{ $log->producto->id_producto }})" 
+                                                class="px-3 py-1 bg-cortvVerdeClaro text-white rounded m-2">
+                                                Restaurar
+                                            </button>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
     

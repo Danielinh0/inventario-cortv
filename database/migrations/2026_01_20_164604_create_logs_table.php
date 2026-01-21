@@ -16,8 +16,12 @@ return new class extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
             $table->text('action');
-            // 1 es creación,2 es eliminación, 3 es entrada, 4 es salida
+            // 1 es creación,2 es eliminación, 3 es entrada, 4 es salida, 5 es restauración, 6 es generacion de reporte
             $table->unsignedBigInteger('tipo')->default(1);
+            //LLave foranea de producto, puede ser nulo
+            $table->unsignedBigInteger('producto_id')->nullable();
+
+            $table->foreign('producto_id')->references('id_producto')->on('productos')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

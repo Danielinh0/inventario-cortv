@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\{
     Registro,
     Producto,
+    Log as LogModel
     };
 
 
@@ -43,13 +44,20 @@ class EntradaSalida extends Component
         $user = Auth::user();
         $producto = Producto::where('nombre_producto', $this->nombre_producto)->first();
         
+        LogModel::create([
+            'user_id' => $user->id,
+            'tipo' => $this->tipo_registro ? 3 : 4,
+            'action' => ($this->tipo_registro ? 'Entrada' : 'Salida').' de producto ID '.$producto->id_producto,
+        ]);
+        
         Registro::create([
             'user_id' => $user->id,
             'producto_id' => $producto->id_producto,
             'cantidad_registro' => $this->cantidad_registro,
             'tipo_registro' => $this->tipo_registro,
         ]);
-
+        
+        
         
         // Flash message de exito
         
@@ -62,7 +70,7 @@ class EntradaSalida extends Component
     #[Computed()]
     public function productos()
     {
-        return Producto::all();
+        return Producto::where('activo', true)->orderBy('nombre_producto')->get();
     }
 
 

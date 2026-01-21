@@ -71,7 +71,7 @@ class FormSalida extends Component
     #[Computed()]
     public function productos()
     {
-        return Producto::all();
+        return Producto::where('activo', true)->orderBy('nombre_producto', 'ASC')->get();
     }
 
 

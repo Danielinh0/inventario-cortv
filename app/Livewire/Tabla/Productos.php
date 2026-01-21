@@ -44,11 +44,12 @@ class Productos extends Component
     {
         LogModel::create([
             'user_id' => auth()->id(),
-            'action' => "Eliminó el producto: {$producto->nombre_producto} (ID: {$producto->id_producto})"
+            'tipo' => 2,
+            'action' => "Eliminó el producto: {$producto->nombre_producto} (ID: {$producto->id_producto})",
+            'producto_id' => $producto->id_producto,
         ]);
         $producto->activo = false;
         $producto->save();
-        // $producto->delete();
     }
 
     public function setSortBy($sortBy){
