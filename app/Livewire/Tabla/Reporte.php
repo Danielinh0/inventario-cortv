@@ -70,7 +70,7 @@ class Reporte extends Component
     public function datosReporte(){
         $Productos = $this->productos();
 
-        return Cache::remember($this->getCacheKey('datosReporte'), now()->addMinutes(60), function() use ($Productos) {
+        return Cache::remember($this->getCacheKey('datosReporte'), now()->addMinutes(3), function() use ($Productos) {
             return $Productos ->map(function($producto){
                 
                 //Totales de entradas y salidas en el rango de fechas
