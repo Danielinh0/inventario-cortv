@@ -6,7 +6,7 @@ return [
      * It is used to determine if the app needs to be updated.
      * Increment this value every time you release a new version of your app.
      */
-    'version' => env('NATIVEPHP_APP_VERSION', '1.0.1'),
+    'version' => env('NATIVEPHP_APP_VERSION', '1.0.0'),
 
     /**
      * The ID of your application. This should be a unique identifier
@@ -59,8 +59,7 @@ return [
      * .env file when the application is bundled for production.
      * You may use wildcards to match multiple keys.
      */
-    'cleanup_env_keys' => [
-        'APP_KEY',    
+    'cleanup_env_keys' => [            
         'AWS_*',
         'AZURE_*',
         'GITHUB_*',
@@ -165,12 +164,14 @@ return [
      * Define your own scripts to run before and after the build process.
      */
     'prebuild' => [
-         'php artisan config:clear',
-            'php artisan route:clear',
-            'php artisan view:clear',
-            'npm run build',
-            'php artisan optimize',
-            'php artisan native:migrate --seed',
+        'php artisan config:clear',
+        'php artisan route:clear',
+        'php artisan view:clear',
+        'npm run build',
+        'php artisan native:migrate:fresh --seed --force',
+        'php artisan config:cache',
+        'php artisan route:cache',
+        'php artisan view:cache',
     ],
 
     'postbuild' => [
