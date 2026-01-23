@@ -124,6 +124,11 @@
                     Guardando...
                 </div>
             </div>
+            @if (session()->has('status'))
+                    <div class="alert alert-success mt-4 text-cortvRojoOscuro font-semibold self-center text-center">
+                        {{ session('status') }}
+                    </div>
+                @endif
         </form>
     </div>
 

@@ -8,10 +8,27 @@
                 <div class="logo-container">
                     @php 
                         $logoPath = public_path('assets/logo.png');
-                        $logoData = base64_encode(file_get_contents($logoPath));
-                        $logoMime = mime_content_type($logoPath);
+                        //Esto era de Dani
+                        // $logoMime = mime_content_type($logoPath);
+                        
+                        //Esto es de Zaid
+                        if (file_exists($logoPath) && is_readable($logoPath)) {
+                            try {
+                                $logoData = base64_encode(file_get_contents($logoPath));
+                                $logoMime = 'image/png';
+                                $showLogo = true;
+                            } catch (\Exception $e) {
+                                $showLogo = false;
+                            }
+                        } else {
+                            $showLogo = false;
+                        }
                     @endphp
-                    <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="Logo" style="max-width: 200px; height: auto;">
+                    @if(isset($showLogo) && $showLogo)
+                        <img src="data:{{ $logoMime }};base64,{{ $logoData }}" alt="Logo" style="max-width: 200px; height: auto;">
+                    @else
+                        <div style="height: 80px; margin-bottom: 10px;"></div>
+                    @endif
                 </div>
                 <div class="text-container">
                     <h1 class="title-main">{{ $text_1 }}</h1>

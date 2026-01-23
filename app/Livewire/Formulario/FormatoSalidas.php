@@ -31,6 +31,17 @@ class FormatoSalidas extends Component
     #[Validate('max:200', message: 'El nombre de quien solicita y recibe no puede exceder los 200 caracteres')]
     public $solicito = '';
 
+    public function mount()
+    {
+        $datos_registro = session()->get('datos_registro', []);
+
+        $this->area = $datos_registro['area'] ?? '';
+        $this->nombre = $datos_registro['nombre'] ?? '';
+        $this->categoria = $datos_registro['categoria'] ?? 'ART. DE LIMPIEZA';
+        $this->autoriza = $datos_registro['autoriza'] ?? '';
+        $this->entrega = $datos_registro['entrega'] ?? '';
+        $this->solicito = $datos_registro['solicito'] ?? '';
+    }
     public function save()
     {
         $this->validate([
@@ -59,7 +70,7 @@ class FormatoSalidas extends Component
             solicito: $this->solicito
         );
         
-        session()->flash('status', 'Formato de salida guardado correctamente.');
+        session()->flash('status', 'Información del formato registrada correctamente.');
 
         // Reiniciar los campos del formulario
         $this->reset(['area', 'nombre', 'categoria', 'autoriza', 'entrega', 'solicito']);
