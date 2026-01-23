@@ -1,8 +1,131 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Reporte</title>        
-        @vite(['resources/css/app.css', 'resources/css/reportePDF.css', 'resources/js/app.js'])    
+        <style>
+            /* Reset y configuración de página - basado en reportePDF.css */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            @page {
+                margin: 20mm 15mm;
+            }
+
+            body {
+                font-family: 'Times New Roman', Times, serif;
+                text-align: center;
+                padding: 40px;
+            }
+
+            .container {
+                width: 100%;
+            }
+
+            /* Estilos del header */
+            .header-container {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .header-content {
+                width: 100%;
+            }
+
+            .logo-container {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .text-container {
+                text-align: center;
+            }
+
+            .title-main {
+                font-size: 16px;
+                font-weight: bold;
+                color: #111827;
+                margin-bottom: 8px;
+            }
+
+            .title-sub {
+                font-size: 14px;
+                font-weight: 600;
+                color: #374151;
+                margin-bottom: 5px;
+            }
+
+            .title-period {
+                font-size: 12px;
+                font-weight: 300;
+                color: #000;
+            }
+
+            .area-text {
+                font-size: 14px;
+                font-weight: 600;
+                margin-bottom: 10px;
+                margin-top: 15px;
+                text-align: left;
+            }
+
+            /* Estilos de la tabla - basado en reportePDF.css */
+            .table-container {
+                width: 100%;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            th, td {
+                padding: 8px;
+                text-align: center;
+                border: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #f5f5f5;
+                font-weight: bold;
+                font-size: 10px;
+            }
+
+            tbody {
+                font-size: 8px;
+            }
+
+            tbody tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            /* Colores para valores - basado en reportePDF.css */
+            .text-green {
+                color: green;
+            }
+
+            .text-red {
+                color: red;
+            }
+
+            .text-gray {
+                color: #6b7280;
+            }
+        </style>
     </head>
 <body>
     <div class="container">

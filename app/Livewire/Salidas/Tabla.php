@@ -84,7 +84,8 @@ class Tabla extends Component
             
             return redirect()->route('generate.formato.salida',[
                 'cantidad_registro' => $cantidad_registro,
-            ]);
+            ]);                
+
         }
         else{
             if($cantidad_registro == 0){

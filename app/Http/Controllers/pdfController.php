@@ -91,6 +91,7 @@ class pdfController extends Controller
             'datos'=>$datos_registro,
         ]);
         
+        
         return $pdf->download('FORMATO_DE_SALIDA.pdf');
     }
 }
