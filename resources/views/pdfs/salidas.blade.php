@@ -199,14 +199,21 @@
         <div class="header">
             <div class="tabla-logos">
                 <div>
-                    @php $logo1 = public_path('images/logo_oaxaca.png'); @endphp
-                    @inlinedImage($logo1)
-
+                    @php 
+                        $logo1Path = public_path('images/logo_oaxaca.png');
+                        $logo1Data = base64_encode(file_get_contents($logo1Path));
+                        $logo1Mime = mime_content_type($logo1Path);
+                    @endphp
+                    <img src="data:{{ $logo1Mime }};base64,{{ $logo1Data }}" alt="Logo Oaxaca" style="width: 320px; height: auto;">
                 </div>
 
                 <div>
-                    @php $logo2 = public_path('images/logo_cortv.png'); @endphp
-                    @inlinedImage($logo2)
+                    @php 
+                        $logo2Path = public_path('images/logo_cortv.png');
+                        $logo2Data = base64_encode(file_get_contents($logo2Path));
+                        $logo2Mime = mime_content_type($logo2Path);
+                    @endphp
+                    <img src="data:{{ $logo2Mime }};base64,{{ $logo2Data }}" alt="Logo CORTV" style="width: 320px; height: auto;">
                 </div>
 
             </div>

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\LaravelPdf\Facades\Pdf;
-// use Spatie\Browsershot\Browsershot;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\{
     Producto, 
     Registro,
@@ -65,18 +64,15 @@ class pdfController extends Controller
             'producto_id' => null,
         ]);
 
-
-        Area::find($areaFilter);
-        return Pdf::view('pdfs.report', [
+        // Usar DomPDF en lugar de Spatie PDF (compatible con NativePHP)
+        $pdf = Pdf::loadView('pdfs.report', [
             'fechaInicio' => $fechaInicio,
             'fechaFin' => $fechaFin,
             'reporteData' => $reporteData,
             'area' => $area,
-        ])                    
-            ->name('REPORTE_'. $clave .'(' . $fechaInicio .' a '.$fechaFin . ').pdf')
-            ->download();
-
+        ]);
         
+        return $pdf->download('REPORTE_'. $clave .'(' . $fechaInicio .' a '.$fechaFin . ').pdf');
     }
 
     public function generateFormatoSalida($cantidad_registro)
@@ -89,13 +85,12 @@ class pdfController extends Controller
             ->limit($cantidad_registro)
             ->get();
     
-        return Pdf::view('pdfs.salidas', [
+        // Usar DomPDF (compatible con NativePHP)
+        $pdf = Pdf::loadView('pdfs.salidas', [
             'registros' => $registros,
             'datos'=>$datos_registro,
-        ])
-            ->name('FORMATO_DE_SALIDA.pdf')
-            ->download();
+        ]);
+        
+        return $pdf->download('FORMATO_DE_SALIDA.pdf');
     }
-
-    
 }

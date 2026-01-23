@@ -3,21 +3,18 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // Limpiar tablas de roles y usuarios para evitar duplicados
         Schema::disableForeignKeyConstraints();
         
         // Crear roles solo si no existen
@@ -28,16 +25,16 @@ class DatabaseSeeder extends Seeder
             Role::create(['name' => 'Basic']);
         }
         
-        // Crear usuario solo si no existe
+        // Crear usuario de prueba solo si no existe
         $user = User::firstOrCreate(
             ['email' => 'test@example.com'],
             [
                 'name' => 'Test User',
-                'password' => bcrypt('password')
+                'password' => Hash::make('password')
             ]
         );
         
-        // Asignar rol si no lo tiene
+        // Asignar rol Admin si no lo tiene
         if (!$user->hasRole('Admin')) {
             $user->assignRole('Admin');
         }

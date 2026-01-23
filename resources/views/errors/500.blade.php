@@ -1,11 +1,14 @@
 <x-app-layout>
     <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden text-center p-6">
-            <h1 class="text-3xl font-bold text-center text-yellow-600 dark:text-yellow-400">403 - Acceso Prohibido</h1>
+            <h1 class="text-3xl font-bold text-center text-red-600 dark:text-red-400">500 - Error Interno del Servidor</h1>
             <p class="text-lg font-semibold mt-4 text-gray-700 dark:text-gray-300">
-                No hay nada que ver aquí. ¡Sigue navegando!
+                ¡Ups! Algo salió mal en nuestro servidor. No te preocupes, no es tu culpa.
             </p>
-            <img src="https://media.tenor.com/aSkdq3IU0g0AAAAM/laughing-cat.gif" alt="Laughing Cat" class="mx-auto mt-6 rounded-lg max-w-xs">
+            <p class="text-md text-gray-500 dark:text-gray-400 mt-2">
+                Nuestro equipo técnico ya fue notificado. Por favor, intenta de nuevo más tarde.
+            </p>
+            <img src="https://media.tenor.com/lx2WSGRk8bcAAAAM/pulp-fiction-john-travolta.gif" alt="Error 500" class="mx-auto mt-6 rounded-lg max-w-xs">
             
             <div class="mt-6">
                 <a href="{{ route('dashboard') }}" 

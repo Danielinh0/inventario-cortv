@@ -165,13 +165,10 @@ return [
      */
     'prebuild' => [
         'php artisan config:clear',
-        'php artisan route:clear',
+        'php artisan route:clear', 
         'php artisan view:clear',
         'npm run build',
-        'php artisan native:migrate:fresh --seed --force',
-        'php artisan config:cache',
-        'php artisan route:cache',
-        'php artisan view:cache',
+        'php artisan optimize',
     ],
 
     'postbuild' => [
