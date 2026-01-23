@@ -30,11 +30,11 @@
                             @include('livewire.includes.table-sort-th', ['name' => 'id_area', 'displayName' => 'ID', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'nombre_area', 'displayName' => 'Clave', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'descripcion_area', 'displayName' => 'Nombre Area', 'sortDir' => $sortDir])
-                                <th scope="col" class="px-4 py-3">
+                                {{-- <th scope="col" class="px-4 py-3">
                                     <span class="sr-only">
                                         Acciones
                                     </span>
-                                </th>
+                                </th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -75,15 +75,13 @@
                                                 @break
                                         @endswitch
                                     </td>
-                                    <td class="px-4 py-3 flex items-center justify-end">
-                                        {{-- <button class="ml-2 px-3 py-1 bg-blue-500 text-white rounded m-2">
-                                            Editar
-                                        </button>   --}}
+                                    {{-- <td class="px-4 py-3 flex items-center justify-end">
+                                        
                                         <button onclick="confirm('¿Estas seguro de que quieres eliminar {{$area->nombre_area}}?') || event.stopImmediatePropagation()" wire:click="eliminar({{ $area->id_area }})" 
                                             class="px-3 py-1 bg-red-500 text-white rounded m-2">
                                             Eliminar
                                         </button>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
     

@@ -70,7 +70,7 @@ class Reporte extends Component
     public function datosReporte(){
         $Productos = $this->productos();
 
-        return Cache::remember($this->getCacheKey('datosReporte'), now()->addMinutes(3), function() use ($Productos) {
+        return Cache::remember($this->getCacheKey('datosReporte'), now()->addMinutes(1), function() use ($Productos) {
             return $Productos ->map(function($producto){
                 
                 //Totales de entradas y salidas en el rango de fechas
@@ -106,7 +106,7 @@ class Reporte extends Component
     //Productos
     #[Computed()]
     public function productos(){
-        return Cache::remember($this->getCacheKey('productos'), now()->addMinutes(60), function() {
+        return Cache::remember($this->getCacheKey('productos'), now()->addMinutes(1), function() {
             return Producto::when($this->areaFilter !== ' ', function ($query) {
                 $query->whereHas('clave', function ($query) {
                     $query->where('id_area', $this->areaFilter);
