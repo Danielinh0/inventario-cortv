@@ -119,18 +119,34 @@
             </div>
 
             <div>
-                <label for="solicito" class="flex flex-col gap-1">
-                    <span>Solicitud y Recepción</span>
+                <div class="mt-1">
+                    <label for="solicito" class="flex flex-col gap-1">
+                        <span>Solicitud y Recepción</span>
+                        <span class="text-semibold text-base text-[#757575]">
+                            ¿Quién solicita y recibe la salida?
+                        </span>
+                    </label>
+                    <input type="text" id="solicito" name="solicito" wire:model.blur="solicito"
+                        class="border-[#D9D9D9] border-1 rounded-md p-2 h-[30px] w-full mt-1">
+                    
+                    @error('solicito')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="mt-2">
                     <span class="text-semibold text-base text-[#757575]">
-                        ¿Quién solicita y recibe la salida?
-                    </span>
-                </label>
-                <input type="text" id="solicito" name="solicito" wire:model.blur="solicito"
-                    class="border-[#D9D9D9] border-1 rounded-md p-2 h-[30px] w-full mt-1">
+                            ¿Qué cargo tiene?
+                        </span>
+                    </label>
+                    <input type="text" id="cargo" name="cargo" wire:model.blur="cargo"
+                        class="border-[#D9D9D9] border-1 rounded-md p-2 h-[30px] w-full mt-1">
+
+                    @error('cargo')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
                 
-                @error('solicito')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                @enderror
+
             </div>
 
             <!-- boton -->

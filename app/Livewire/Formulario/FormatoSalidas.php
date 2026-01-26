@@ -33,6 +33,10 @@ class FormatoSalidas extends Component
     #[Validate('max:200', message: 'El nombre de quien solicita y recibe no puede exceder los 200 caracteres')]
     public $solicito = '';
     
+    #[Validate('required', message: 'Ingrese el cargo de quien solicita y recibe la salida')]
+    #[Validate('max:200', message: 'El cargo no puede exceder los 200 caracteres')]
+    public $cargo = '';
+
     public function mount()
     {
         $datos_registro = session()->get('datos_registro', []);
@@ -43,6 +47,7 @@ class FormatoSalidas extends Component
         $this->autoriza = $datos_registro['autoriza'] ?? '';
         $this->entrega = $datos_registro['entrega'] ?? '';
         $this->solicito = $datos_registro['solicito'] ?? '';
+        $this->cargo = $datos_registro['cargo'] ?? '';
     }
     public function save()
     {
@@ -54,6 +59,7 @@ class FormatoSalidas extends Component
             'autoriza' => 'required|string|max:255',
             'entrega' => 'required|string|max:255',
             'solicito' => 'required|string|max:200',
+            'cargo' => 'required|string|max:200',
         ], [
             'formato.required' => 'Seleccione un formato',
             'area.required' => 'Ingrese el área correspondiente',
@@ -68,6 +74,8 @@ class FormatoSalidas extends Component
             'entrega.max' => 'El nombre de quien entrega no puede exceder los 255 caracteres',
             'solicito.required' => 'Ingrese quien solicita y recibe la salida',
             'solicito.max' => 'El nombre de quien solicita y recibe no puede exceder los 200 caracteres',
+            'cargo.required' => 'Ingrese el cargo de quien solicita y recibe la salida',
+            'cargo.max' => 'El cargo no puede exceder los 200 caracteres',
         ]);
 
         session()->put('datos_registro', [
@@ -78,6 +86,7 @@ class FormatoSalidas extends Component
             'autoriza' => $this->autoriza,
             'entrega' => $this->entrega,
             'solicito' => $this->solicito,
+            'cargo' => $this->cargo,
         ]);
         $this->dispatch('formato-salida-guardado', 
             formato: $this->formato,
@@ -86,13 +95,14 @@ class FormatoSalidas extends Component
             categoria: $this->categoria,
             autoriza: $this->autoriza,
             entrega: $this->entrega,
-            solicito: $this->solicito
+            solicito: $this->solicito,
+            cargo: $this->cargo
         );
         
         session()->flash('status', 'Información del formato registrada correctamente.');
 
         // Reiniciar los campos del formulario
-        $this->reset(['formato', 'area', 'nombre', 'categoria', 'autoriza', 'entrega', 'solicito']);
+        $this->reset(['formato', 'area', 'nombre', 'categoria', 'autoriza', 'entrega', 'solicito', 'cargo']);
     }
 
     public function render()
