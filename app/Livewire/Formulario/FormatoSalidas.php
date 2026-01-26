@@ -47,6 +47,7 @@ class FormatoSalidas extends Component
     public function save()
     {
         $this->validate([
+            'formato' => 'required|string',
             'area' => 'required|string|max:100',
             'nombre' => 'required|string|max:255',
             'categoria' => 'required|string|max:150',
@@ -54,6 +55,7 @@ class FormatoSalidas extends Component
             'entrega' => 'required|string|max:255',
             'solicito' => 'required|string|max:200',
         ], [
+            'formato.required' => 'Seleccione un formato',
             'area.required' => 'Ingrese el área correspondiente',
             'area.max' => 'El área no puede exceder los 100 caracteres',
             'nombre.required' => 'Ingrese un nombre',
