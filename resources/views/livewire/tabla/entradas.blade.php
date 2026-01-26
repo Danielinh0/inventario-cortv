@@ -56,13 +56,13 @@
                         </thead>
                         <tbody>
                             @foreach ($this->registros as $registro)
-                                <tr class="border-b dark:border-gray-700" wire:key={{ $registro->id_registro }}>
+                                <tr class="border-b dark:border-gray-700" wire:key="{{ $registro->id_registro }}">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $registro->id_registro }}</th>
-                                        <td class="px-4 py-3">{{ $registro->producto->nombre_producto }}</td>
+                                        <td class="px-4 py-3">{{ $registro->producto?->nombre_producto ?? 'Producto eliminado' }}</td>
                                         <td class="px-4 py-3">{{ $registro->fecha_registro}} </td>
-                                        <td class="px-4 py-3">{{ $registro->user->name }}</td>
+                                        <td class="px-4 py-3">{{ $registro->user?->name ?? 'Usuario eliminado' }}</td>
                                         <td class="px-4 py-3">{{ $registro->cantidad_registro }}</td>
 
                                 </tr>

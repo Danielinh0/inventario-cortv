@@ -53,7 +53,7 @@
                         </thead>
                         <tbody>
                             @foreach ($this->usuarios as $usuario)
-                                <tr class="border-b dark:border-gray-700" wire:key={{ $usuario->id }}>
+                                <tr class="border-b dark:border-gray-700" wire:key="{{ $usuario->id }}">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $usuario->id}}</th>

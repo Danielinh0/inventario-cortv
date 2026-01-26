@@ -58,15 +58,15 @@
                         </thead>
                         <tbody>
                             @foreach ($this->logs as $log)
-                                <tr class="border-b dark:border-gray-700" wire:key={{ $log->id }}>
+                                <tr class="border-b dark:border-gray-700" wire:key="{{ $log->id }}">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $log->id}}</th>
                                         <td class="px-4 py-3">{{ $log->created_at}} </td>
-                                        <td class="px-4 py-3">{{ $log->user->name}}</td>
+                                        <td class="px-4 py-3">{{ $log->user?->name ?? 'Usuario eliminado'}}</td>
                                         <td class="px-4 py-3">{{ $log->action }}</td>
                                         <td class="px-4 py-3 flex items-center justify-end">
-                                        @if ($log->tipo == 2 && !$log->producto->activo)
+                                        @if ($log->tipo == 2 && $log->producto && !$log->producto->activo)
                                             <button onclick="confirm('¿Estas seguro de que quieres restaurar {{$log->producto->nombre_producto}}?') || event.stopImmediatePropagation()" wire:click="restaurar({{ $log->producto->id_producto }})" 
                                                 class="px-3 py-1 text-white rounded m-2" style="background-color: #5EA836;">
                                                 Restaurar

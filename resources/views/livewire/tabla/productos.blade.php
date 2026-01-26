@@ -60,13 +60,13 @@
                         </thead>
                         <tbody>
                             @foreach ($productos as $producto)
-                                <tr wire:key={{ $producto->id_producto }} class="border-b dark:border-gray-700">
+                                <tr wire:key="{{ $producto->id_producto }}" class="border-b dark:border-gray-700">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $producto->id_producto }}</th>
                                     <td class="px-4 py-3">{{ $producto->nombre_producto }}</td>
-                                    <td class="px-4 py-3">{{ $producto->clave->area->descripcion_area }}</td>
-                                    <td class="px-4 py-3">{{ $producto->clave->valor_clave }}</td>
+                                    <td class="px-4 py-3">{{ $producto->clave?->area?->descripcion_area ?? 'Sin área' }}</td>
+                                    <td class="px-4 py-3">{{ $producto->clave?->valor_clave ?? 'Sin clave' }}</td>
                                     {{-- <td class="px-4 py-3 {{ $this->cant_productos()[$loop->index] > 0 ? 'text-green-500' : 'text-red-500' }}">
                                         {{ $this->cant_productos()[$loop->index] }}</td> --}}
                                     <td class="px-4 py-3">{{ $producto->unidad_producto }} </td>

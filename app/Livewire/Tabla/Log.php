@@ -48,8 +48,15 @@ class Log extends Component
         $this->sortDir = 'ASC';
     }
     
-    public function restaurar(Producto $producto)
+    public function restaurar($productoId)
     {
+        $producto = Producto::find($productoId);
+        
+        if (!$producto) {
+            session()->flash('error', 'El producto no existe o ya fue eliminado permanentemente.');
+            return;
+        }
+        
         $producto->activo = true;
         $producto->save();
         

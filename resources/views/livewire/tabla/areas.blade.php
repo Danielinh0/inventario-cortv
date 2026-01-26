@@ -39,7 +39,7 @@
                         </thead>
                         <tbody>
                             @foreach ($areas as $area)
-                                <tr wire:key={{ $area->id_area }} class="border-b dark:border-gray-700">
+                                <tr wire:key="{{ $area->id_area }}" class="border-b dark:border-gray-700">
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $area->id_area }}</th>
