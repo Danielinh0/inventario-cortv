@@ -71,6 +71,7 @@ class FormatoSalidas extends Component
         ]);
 
         session()->put('datos_registro', [
+            'formato' => $this->formato,
             'area' => $this->area,
             'nombre' => $this->nombre,
             'categoria' => $this->categoria,
@@ -79,6 +80,7 @@ class FormatoSalidas extends Component
             'solicito' => $this->solicito,
         ]);
         $this->dispatch('formato-salida-guardado', 
+            formato: $this->formato,
             area: $this->area,
             nombre: $this->nombre,
             categoria: $this->categoria,
@@ -90,7 +92,7 @@ class FormatoSalidas extends Component
         session()->flash('status', 'Información del formato registrada correctamente.');
 
         // Reiniciar los campos del formulario
-        $this->reset(['area', 'nombre', 'categoria', 'autoriza', 'entrega', 'solicito']);
+        $this->reset(['formato', 'area', 'nombre', 'categoria', 'autoriza', 'entrega', 'solicito']);
     }
 
     public function render()
