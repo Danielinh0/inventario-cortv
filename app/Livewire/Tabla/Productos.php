@@ -41,6 +41,21 @@ class Productos extends Component
         $this->resetPage();
     }
 
+    public function confirmarEliminar(Producto $producto)
+    {
+        $result = Alert::new()
+            ->title('Confirmar eliminación')
+            ->buttons(['Cancelar', 'Eliminar'])
+            ->defaultId(0)
+            ->cancelId(0)
+            ->show("¿Estás seguro de que quieres eliminar {$producto->nombre_producto}?");
+        
+        // Si el usuario presiona "Eliminar" (índice 1)
+        if ($result === 1) {
+            $this->eliminar($producto);
+        }
+    }
+
     public function eliminar(Producto $producto)
     {
         LogModel::create([

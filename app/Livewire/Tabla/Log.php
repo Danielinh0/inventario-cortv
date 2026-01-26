@@ -12,6 +12,7 @@ use App\Models\{
     Log as LogModel
 };
 use Livewire\WithPagination;
+use Native\Desktop\Facades\Alert;
 
 class Log extends Component
 {
@@ -26,7 +27,7 @@ class Log extends Component
     public $sortBy = 'id';
     
     #[Url(history:true)]
-    public $sortDir = 'ASC';
+    public $sortDir = 'DESC';
     
     #[Url(history:true)]
     public $perPage = 10;
@@ -48,6 +49,28 @@ class Log extends Component
         $this->sortDir = 'ASC';
     }
     
+    public function confirmarRestaurar($productoId)
+    {
+        $producto = Producto::find($productoId);
+        
+        if (!$producto) {
+            session()->flash('error', 'El producto no existe o ya fue eliminado permanentemente.');
+            return;
+        }
+        
+        $result = Alert::new()
+            ->title('Confirmar restauración')
+            ->buttons(['Cancelar', 'Restaurar'])
+            ->defaultId(0)
+            ->cancelId(0)
+            ->show("¿Estás seguro de que quieres restaurar {$producto->nombre_producto}?");
+        
+        // Si el usuario presiona "Restaurar" (índice 1)
+        if ($result === 1) {
+            $this->restaurar($productoId);
+        }
+    }
+
     public function restaurar($productoId)
     {
         $producto = Producto::find($productoId);

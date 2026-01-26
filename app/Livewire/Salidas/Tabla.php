@@ -14,6 +14,7 @@ use Livewire\Attributes\{
     Computed,
     On
 };
+use Native\Desktop\Facades\Alert;
 
 class Tabla extends Component
 {
@@ -96,6 +97,21 @@ class Tabla extends Component
             }
         }
     }
+    
+    public function confirmarEliminar($index, $nombreProducto)
+    {
+        $result = Alert::new()
+            ->title('Confirmar eliminación')
+            ->buttons(['Cancelar', 'Eliminar'])
+            ->defaultId(0)
+            ->cancelId(0)
+            ->show("¿Estás seguro de que quieres eliminar {$nombreProducto}?");
+        
+        if ($result === 1) {
+            $this->eliminar($index);
+        }
+    }
+
     public function eliminar($index){        
         unset($this->salidas[$index]);
 

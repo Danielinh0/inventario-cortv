@@ -53,7 +53,7 @@
 
 
                                         @auth
-                                            <button onclick="confirm('¿Estas seguro de que quieres eliminar {{$salida['producto_nombre']}}?') || event.stopImmediatePropagation()" wire:click="eliminar({{ $loop->index }})" 
+                                            <button wire:click="confirmarEliminar({{ $loop->index }}, '{{ $salida['producto_nombre'] }}')"
                                                 class="px-3 py-1 bg-cortvRojoBasico text-white rounded m-2">
                                                 Eliminar
                                             </button>

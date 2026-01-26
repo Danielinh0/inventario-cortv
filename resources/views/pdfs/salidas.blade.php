@@ -360,6 +360,10 @@
                         <td>
                             <div class="firma-espacio"></div>
                             <p class="nombre-firmante">{{ session('datos_registro.solicito') }}</p>
+                            <p class="cargo-firmante"> 
+                                DATOS PARA EL FORMULARIO ZAID
+                             </p>
+
                         </td>
                         <td>
                             <div class="firma-espacio"></div>
@@ -387,6 +391,9 @@
                         <td>
                             <div class="firma-espacio"></div>
                             <p class="nombre-firmante">{{ session('datos_registro.solicito') }}</p>
+                            <p class="cargo-firmante">
+                                DATOS PARA ZAID    
+                            </p>
                         </td>
                     </tr>
                 </tbody>

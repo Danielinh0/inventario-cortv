@@ -179,7 +179,7 @@ md:text-[23px]"
                 xs:text-[22px]"
                     style="font-family: 'Times New Roman'">
                     <span>{{ $registro->cantidad_registro }}</span>
-                    <span>{{ $producto->unidad_producto }}</span>
+                    <span>{{ $registro->producto?->unidad_producto ?? 'Unidad no disponible' }}</span>
                 </div>
             </div>
         @endif
