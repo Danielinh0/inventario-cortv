@@ -293,7 +293,7 @@
         <!-- DATOS DEL DOCUMENTO -->
         <div class="solicitud">
             <div class="titulo-documento">
-                SALIDA DE ALMACÉN
+                {{ session('datos_registro.formato') }}
             </div>
 
             <div class="informacion-s">

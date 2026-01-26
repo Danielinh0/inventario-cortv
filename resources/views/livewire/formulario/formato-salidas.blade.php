@@ -15,8 +15,27 @@
     <div>
         <form wire:submit="save" class="flex flex-col px-4 gap-5 w-full text-black text-xl"
             style="font-family: 'Times New Roman', Times, serif;">
+            <!-- Seleccion de leyenda-->
+            <div class="mb-1">
+                <!-- Seleccion de leyenda para el  formato-->
+                <label for="formato" class="flex flex-col gap-1">
+                    <span>Formato</span>
+                    <span class="text-semibold text-base text-[#757575]">
+                        ¿Que leyenda tendra el formato?
+                    </span>
+                </label>
+                <select id="formato" name="formato" wire:model="formato"
+                    class="border-[#D9D9D9] border-1 rounded-md p-2 h-[40px] w-full text-[16px] mt-1">
+                    <option value="Solicitud y Salida de Almacen">Solicitud y Salida de Almacen</option>
+                    <option value="Salida">Salida de Almacen</option>
+                </select>
+                
+                @error('formato')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
             <!-- area -->
-            <div>
+            <div>   
                 <label for="area" class="flex flex-col ">
                     <span>Área</span>
                     <span class="text-semibold text-base text-[#757575]">

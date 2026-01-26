@@ -44,9 +44,10 @@ class Table extends Component
     public function Registros(){
         switch ($this->tipo){
             case 0:
-            case 1:
                 return Registro::orderBy('created_at','DESC')->take(3)->get();
-                // return Producto::orderBy('created_at','DESC')->take(3)->get();
+            case 1:
+                // return null;
+                return Producto::orderBy('created_at','DESC')->take(3)->get();
             case 2:
                 return Registro::where('tipo_registro', 1)->orderBy('created_at','DESC')->take(3)->get();
         }
