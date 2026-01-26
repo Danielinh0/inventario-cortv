@@ -227,65 +227,56 @@
             <div class="tabla-logos">
                 <table>
                     <tr>
-                        <td>
-                            @php 
-                                $logo1Path = public_path('images/logo_oaxaca.png');
-                                
-                                /*
-                                Esto era de dani
-                                if(file_exists($logo1Path)) {
-                                    $logo1Data = base64_encode(file_get_contents($logo1Path));
-                                    $logo1Mime = mime_content_type($logo1Path);
+                        @php 
+                            // Intentar múltiples rutas para compatibilidad con NativePHP
+                            $possiblePaths = [
+                                public_path('images/logo_oaxaca.png'),
+                                base_path('public/images/logo_oaxaca.png'),
+                                resource_path('images/logo_oaxaca.png'),
+                            ];
+                            
+                            $logo1Data = null;
+                            $logo1Mime = 'image/png';
+                            
+                            foreach ($possiblePaths as $path) {
+                                if (file_exists($path) && is_readable($path)) {
+                                    try {
+                                        $logo1Data = base64_encode(file_get_contents($path));
+                                        break;
+                                    } catch (\Exception $e) {
+                                        continue;
+                                    }
                                 }
-                            @endphp
-                            @if(isset($logo1Data))
+                            }
+                            
+                            // Logo CORTV
+                            $possiblePaths2 = [
+                                public_path('images/logo_cortv.png'),
+                                base_path('public/images/logo_cortv.png'),
+                                resource_path('images/logo_cortv.png'),
+                            ];
+                            
+                            $logo2Data = null;
+                            $logo2Mime = 'image/png';
+                            
+                            foreach ($possiblePaths2 as $path) {
+                                if (file_exists($path) && is_readable($path)) {
+                                    try {
+                                        $logo2Data = base64_encode(file_get_contents($path));
+                                        break;
+                                    } catch (\Exception $e) {
+                                        continue;
+                                    }
+                                }
+                            }
+                        @endphp
+                        <td>
+                            @if($logo1Data)
                                 <img src="data:{{ $logo1Mime }};base64,{{ $logo1Data }}" alt="Logo Oaxaca">
                             @endif
                         </td>
                         <td>
-                            @php 
-                                $logo2Path = public_path('images/logo_cortv.png');
-                                if(file_exists($logo2Path)) {
-                                    $logo2Data = base64_encode(file_get_contents($logo2Path));
-                                    $logo2Mime = mime_content_type($logo2Path);
-                                }
-                            @endphp
-                            @if(isset($logo2Data))
-                                <img src="data:{{ $logo2Mime }};base64,{{ $logo2Data }}" alt="Logo CORTV">
-                            @endif
-                                */
-                                
-                                //Disclaimer, Esta parte es de Zaid
-                                if(file_exists($logo1Path) && is_readable($logo1Path)) {
-                                    try {
-                                        $logo1Data = base64_encode(file_get_contents($logo1Path));
-                                        $logo1Mime = 'image/png';
-                                    } catch (\Exception $e) {
-                                        $logo1Data = null;
-                                    }
-                                } else {
-                                    $logo1Data = null;
-                                }
-                            @endphp
-                            @if(isset($logo1Data) && $logo1Data)
-                                <img src="data:{{ $logo1Mime }};base64,{{ $logo1Data }}" alt="Logo Oaxaca">
-                            @endif
-                        </td>
-                        <td>
-                            @php 
-                                $logo2Path = public_path('images/logo_cortv.png');
-                                if(file_exists($logo2Path) && is_readable($logo2Path)) {
-                                    try {
-                                        $logo2Data = base64_encode(file_get_contents($logo2Path));
-                                        $logo2Mime = 'image/png';
-                                    } catch (\Exception $e) {
-                                        $logo2Data = null;
-                                    }
-                                } else {
-                                    $logo2Data = null;
-                                }
-                            @endphp
-                            @if(isset($logo2Data) && $logo2Data)
+                            @if($logo2Data)
                                 <img src="data:{{ $logo2Mime }};base64,{{ $logo2Data }}" alt="Logo CORTV">
                             @endif
                         </td>

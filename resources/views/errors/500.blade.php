@@ -6,7 +6,7 @@
                 ¡Ups! Algo salió mal en nuestro servidor. No te preocupes, no es tu culpa.
             </p>
             <p class="text-md text-gray-500 dark:text-gray-400 mt-2">
-                Nuestro equipo técnico ya fue notificado. Por favor, intenta de nuevo más tarde.
+                Elabora el reporte de error correspondiente, como se menciona en el manual de usuario. Por favor, intenta de nuevo más tarde.
             </p>
             <img src="https://media.tenor.com/lx2WSGRk8bcAAAAM/pulp-fiction-john-travolta.gif" alt="Error 500" class="mx-auto mt-6 rounded-lg max-w-xs">
             

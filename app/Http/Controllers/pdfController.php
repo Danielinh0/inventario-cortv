@@ -78,20 +78,30 @@ class pdfController extends Controller
     public function generateFormatoSalida($cantidad_registro)
     {
         set_time_limit(500);
-        $datos_registro = session('datos_registro');
-        $registros = Registro::with('producto')
-            ->where('tipo_registro', 0)
-            ->orderByDesc('id_registro')
-            ->limit($cantidad_registro)
-            ->get();
-    
-        // Usar DomPDF (compatible con NativePHP)
-        $pdf = Pdf::loadView('pdfs.salidas', [
-            'registros' => $registros,
-            'datos'=>$datos_registro,
-        ]);
         
+        try {
+            $datos_registro = session('datos_registro');
+            $registros = Registro::with('producto')
+                ->where('tipo_registro', 0)
+                ->orderByDesc('id_registro')
+                ->limit($cantidad_registro)
+                ->get();
         
-        return $pdf->download('FORMATO_DE_SALIDA.pdf');
+            // Usar DomPDF (compatible con NativePHP)
+            $pdf = Pdf::loadView('pdfs.salidas', [
+                'registros' => $registros,
+                'datos'=>$datos_registro,
+            ]);
+            
+            return $pdf->download('FORMATO_DE_SALIDA.pdf');
+        } catch (\Exception $e) {
+            \Log::error('Error generando PDF de salida: ' . $e->getMessage());
+            \Log::error('Stack trace: ' . $e->getTraceAsString());
+            
+            return response()->json([
+                'error' => 'Error al generar el PDF',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }
