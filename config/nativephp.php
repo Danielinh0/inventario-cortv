@@ -29,7 +29,7 @@ return [
     /**
      * The author of your application.
      */
-    'author' => env('NATIVEPHP_APP_AUTHOR'),
+    'author' => env('NATIVEPHP_APP_AUTHOR', 'Daniel Garcia y Zaid Cristobal'),
 
     /**
      * The copyright notice for your application.
@@ -39,12 +39,13 @@ return [
     /**
      * The description of your application.
      */
-    'description' => env('NATIVEPHP_APP_DESCRIPTION', 'An awesome app built with NativePHP'),
+    'description' => env('NATIVEPHP_APP_DESCRIPTION', '
+    Aplicacion de escritorio para el control de inventarios del departamento de recursos materiales.'),
 
     /**
      * The Website of your application.
      */
-    'website' => env('NATIVEPHP_APP_WEBSITE', 'https://nativephp.com'),
+    'website' => env('NATIVEPHP_APP_WEBSITE', 'https://github.com/Danielinh0/inventario-cortv'),
 
     /**
      * The default service provider for your application. This provider
@@ -58,7 +59,7 @@ return [
      * .env file when the application is bundled for production.
      * You may use wildcards to match multiple keys.
      */
-    'cleanup_env_keys' => [
+    'cleanup_env_keys' => [            
         'AWS_*',
         'AZURE_*',
         'GITHUB_*',
@@ -85,7 +86,7 @@ return [
         'temp',
         'content',
         'node_modules',
-        '*/tests',
+        '*/tests',        
     ],
 
     /**
@@ -163,7 +164,11 @@ return [
      * Define your own scripts to run before and after the build process.
      */
     'prebuild' => [
-        // 'npm run build',
+        'php artisan config:clear',
+        'php artisan route:clear', 
+        'php artisan view:clear',
+        'npm run build',
+        'php artisan optimize',
     ],
 
     'postbuild' => [

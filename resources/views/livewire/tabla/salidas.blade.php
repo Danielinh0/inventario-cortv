@@ -68,7 +68,7 @@
                                         {{ $salida->id_registro }}</th>
                                         <td class="px-4 py-3">{{ $salida->producto->nombre_producto }}</td>
                                         <td class="px-4 py-3">{{ $salida->fecha_registro}} </td>
-                                        <td class="px-4 py-3">{{ $salida->persona->nombre_persona }}</td>
+                                        <td class="px-4 py-3">{{ $salida->user->name }}</td>
                                         <td class="px-4 py-3">{{ $salida->cantidad_registro }}</td>
                                 </tr>
                             @endforeach

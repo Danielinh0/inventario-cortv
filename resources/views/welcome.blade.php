@@ -47,14 +47,8 @@
                             <span class="login-error">{{ $errors->first('password') }}</span>
                         @endif
                     </div>
-                    <button type="submit" class="login-btn">Iniciar Sesión</button>
-                    
-                   
-                     @if(Route::has('password.request'))
-                    <div class="login-link">
-                        <a href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a>
-                    </div>
-                    @endif
+                    <button type="submit" class="login-btn">Iniciar Sesión</button>                  
+                                    
 
                     <div class="login-link">
                         <a href="{{ route('register') }}" class="login-link"> ¿No tienes una cuenta? Regístrate </a>                       

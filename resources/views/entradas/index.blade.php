@@ -16,8 +16,7 @@
             <livewire:dashboard.table 
             titulo="Ultimas entradas al inventario" 
             estilos="" 
-            cardEstilos="shadow-2xl rounded-2xl bg-white h-[150px]"
-            :mostrarBotonEditar="true"
+            cardEstilos="shadow-2xl rounded-2xl bg-white h-[150px]"            
             :tipo="2"/>
 
         </div>

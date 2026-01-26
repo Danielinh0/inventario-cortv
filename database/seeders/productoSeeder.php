@@ -14,30 +14,41 @@ class productoSeeder extends Seeder
      */
     public function run(): void
     {
-        // Works for both MySQL and PostgreSQL
+        $csvPath = database_path('data/producto.csv');
+        
+        if (!file_exists($csvPath)) {
+            $this->command->warn("Archivo CSV no encontrado: {$csvPath}");
+            return;
+        }
+        
         Schema::disableForeignKeyConstraints();
         Producto::truncate();
         Schema::enableForeignKeyConstraints();
         
-        $csvFile = fopen(database_path('data/producto.csv'), 'r');
+        $csvFile = fopen($csvPath, 'r');
+        if ($csvFile === false) {
+            $this->command->error("No se pudo abrir el archivo: {$csvPath}");
+            return;
+        }
+        
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
-            if (! $firstline) {
+            if (! $firstline && count($data) >= 4) {
                 $id = isset($data[0]) ? trim($data[0]) : null;
                 $nombre = isset($data[1]) ? trim($data[1]) : null;
                 $descripcion = isset($data[2]) ? trim($data[2]) : null;
                 $cantidadRaw = isset($data[3]) ? trim($data[3]) : '0';
-                // Remove thousand separators and cast to integer
                 $cantidad = (int) str_replace([',', ' '], '', $cantidadRaw);
                 $unidad = isset($data[4]) ? trim($data[4]) : null;
 
-                Producto::create([
-                    'id_producto' => $id,
-                    'nombre_producto' => $nombre,
-                    'descripcion_producto' => $descripcion,
-                    'cantidad_producto' => $cantidad,
-                    'unidad_producto' => $unidad,
-                ]);
+                Producto::updateOrCreate(
+                    ['id_producto' => $id],
+                    [
+                        'nombre_producto' => $nombre,
+                        'descripcion_producto' => $descripcion,
+                        'unidad_producto' => $unidad,
+                    ]
+                );
             }
             $firstline = false;
         }

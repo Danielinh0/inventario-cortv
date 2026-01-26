@@ -6,11 +6,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -38,11 +39,25 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    public function registro(){
+        return $this->belongsToMany(Registro::class);
+    }
+    
+    public function log(){
+        return $this->hasMany(log::class);
+    }
+
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function scopeSearch($query, $value)
+    {
+        $query->where('id', 'like', '%' . $value . '%')
+            ->orWhere('name', 'like', '%' . $value . '%')
+            ->orWhere('email', 'like', '%' . $value . '%');
     }
 }

@@ -17,7 +17,7 @@ class Registro extends Model
     protected $table = 'registros';
     protected $primaryKey = 'id_registro';
     protected $fillable = [
-        'persona_id',
+        'user_id',
         'producto_id',
         'cantidad_registro',
         'tipo_registro' // true para entrada, false para salida
@@ -25,7 +25,11 @@ class Registro extends Model
 
     public function persona()
     {
-        return $this->belongsTo(Persona::class, 'persona_id', 'id_persona');
+        return $this->belongsTo(Persona::class, 'user_id', 'id_persona');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function producto()

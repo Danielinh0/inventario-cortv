@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\LaravelPdf\Facades\Pdf;
-// use Spatie\Browsershot\Browsershot;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\{
     Producto, 
     Registro,
     Area,
+    Log as LogModel
 };
 use Illuminate\Support\Facades\Cache;
 
@@ -19,6 +19,7 @@ class pdfController extends Controller
     //
     public function generateReport($fechaInicio, $fechaFin,$areaFilter){
         set_time_limit(500);
+        
         // Calculate report data statically without using Livewire
         $productos = Producto::when($areaFilter !== ' ', function ($query) use ($areaFilter) {
                 $query->whereHas('clave', function ($query) use ($areaFilter) {
@@ -55,17 +56,23 @@ class pdfController extends Controller
         if($areaFilter != ' '){
             $clave = Area::find($areaFilter)->nombre_area;
         }
-        Area::find($areaFilter);
-        return Pdf::view('pdfs.report', [
+        
+        LogModel::create([
+            'user_id' => auth()->id(),
+            'tipo' => 6,
+            'action' => "Generó un reporte desde {$fechaInicio} hasta {$fechaFin}, para el área: {$area}",
+            'producto_id' => null,
+        ]);
+
+        // Usar DomPDF en lugar de Spatie PDF (compatible con NativePHP)
+        $pdf = Pdf::loadView('pdfs.report', [
             'fechaInicio' => $fechaInicio,
             'fechaFin' => $fechaFin,
             'reporteData' => $reporteData,
             'area' => $area,
-        ])                    
-            ->name('REPORTE_'. $clave .'(' . $fechaInicio .' a '.$fechaFin . ').pdf')
-            ->download();
-
+        ]);
         
+        return $pdf->download('REPORTE_'. $clave .'(' . $fechaInicio .' a '.$fechaFin . ').pdf');
     }
 
     public function generateFormatoSalida($cantidad_registro)
@@ -78,13 +85,13 @@ class pdfController extends Controller
             ->limit($cantidad_registro)
             ->get();
     
-        return Pdf::view('pdfs.salidas', [
+        // Usar DomPDF (compatible con NativePHP)
+        $pdf = Pdf::loadView('pdfs.salidas', [
             'registros' => $registros,
             'datos'=>$datos_registro,
-        ])
-            ->name('FORMATO_DE_SALIDA.pdf')
-            ->download();
+        ]);
+        
+        
+        return $pdf->download('FORMATO_DE_SALIDA.pdf');
     }
-
-    
 }

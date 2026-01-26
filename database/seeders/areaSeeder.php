@@ -14,18 +14,33 @@ class areaSeeder extends Seeder
      */
     public function run(): void
     {
+        $csvPath = database_path('data/area.csv');
+        
+        if (!file_exists($csvPath)) {
+            $this->command->warn("Archivo CSV no encontrado: {$csvPath}");
+            return;
+        }
+        
         Schema::disableForeignKeyConstraints();
         Area::truncate();
         Schema::enableForeignKeyConstraints();
-        $csvFile = fopen(database_path('data/area.csv'), 'r');
+        
+        $csvFile = fopen($csvPath, 'r');
+        if ($csvFile === false) {
+            $this->command->error("No se pudo abrir el archivo: {$csvPath}");
+            return;
+        }
+        
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ',')) !== false) {
-            if (! $firstline) {
-                Area::create([
-                    'id_area' => $data[0],
-                    'nombre_area' => $data[1],
-                    'descripcion_area' => $data[2],
-                ]);
+            if (! $firstline && count($data) >= 3) {
+                Area::updateOrCreate(
+                    ['id_area' => $data[0]],
+                    [
+                        'nombre_area' => $data[1],
+                        'descripcion_area' => $data[2],
+                    ]
+                );
             }
             $firstline = false;
         }

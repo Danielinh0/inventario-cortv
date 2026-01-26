@@ -62,7 +62,7 @@
                                         {{ $registro->id_registro }}</th>
                                         <td class="px-4 py-3">{{ $registro->producto->nombre_producto }}</td>
                                         <td class="px-4 py-3">{{ $registro->fecha_registro}} </td>
-                                        <td class="px-4 py-3">{{ $registro->persona->nombre_persona }}</td>
+                                        <td class="px-4 py-3">{{ $registro->user->name }}</td>
                                         <td class="px-4 py-3">{{ $registro->cantidad_registro }}</td>
 
                                 </tr>

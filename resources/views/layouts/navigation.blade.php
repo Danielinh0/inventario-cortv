@@ -16,11 +16,13 @@
                 @auth
                     <!-- Navigation Links -->
                     <!--Dashboard-->
+                    
                         <div class="hidden space-x-8 sm:-my-px lg:ms-10 lg:flex">
                             <x-nav-link class="text-gray-600" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
                             </x-nav-link>
                         </div>
+                    
                     <!--Reportes-->
                         <div class="hidden space-x-8 sm:-my-px lg:ms-10 lg:flex">
                             <x-nav-link class="text-gray-600" :href="route('reportes')" :active="request()->routeIs('reportes')">

@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Native\Desktop\Facades\Window;
+use Native\Desktop\Facades\Menu;
 use Native\Desktop\Contracts\ProvidesPhpIni;
+
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
@@ -13,7 +15,13 @@ class NativeAppServiceProvider implements ProvidesPhpIni
      */
     public function boot(): void
     {
-        Window::open();
+
+        Menu::create(); 
+        Window::open()
+        
+        ->title('Inventario de CORTV');
+
+    
     }
 
     /**

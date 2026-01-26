@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+class Log extends Model
+{
+    use HasFactory;
+    protected $table = 'logs';
+    protected $primaryKey = 'id';
+    protected $fillable = [
+        'user_id',
+        'action',
+        'tipo',
+        'producto_id',
+    ];
+    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function producto(){
+        return $this->belongsTo(Producto::class, 'producto_id', 'id_producto');
+    }
+    public function scopeSearch($query, $value)
+    {
+        $query->where('id', 'like', '%' . $value . '%')
+            ->orWhere('action', 'like', '%' . $value . '%')
+            ->orWhere('created_at', 'like', '%' . $value . '%');
+    }
+}

@@ -49,7 +49,7 @@
                                 @include('livewire.includes.table-sort-th', ['name' => 'nombre_producto', 'displayName' => 'Producto', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th',['name' => 'NoFiltro', 'displayName' => 'Área', 'sortDir' => $sortDir])
                                 @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Clave', 'sortDir' => $sortDir])
-                                @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Cantidad', 'sortDir' => $sortDir])
+                                {{-- @include('livewire.includes.table-sort-th', ['name' => 'NoFiltro', 'displayName' => 'Cantidad', 'sortDir' => $sortDir]) --}}
                                 @include('livewire.includes.table-sort-th', ['name' => 'unidad_producto', 'displayName' => 'Tipo Unidad', 'sortDir' => $sortDir])
                                 <th scope="col" class="px-4 py-3">
                                     <span class="sr-only">
@@ -67,8 +67,8 @@
                                     <td class="px-4 py-3">{{ $producto->nombre_producto }}</td>
                                     <td class="px-4 py-3">{{ $producto->clave->area->descripcion_area }}</td>
                                     <td class="px-4 py-3">{{ $producto->clave->valor_clave }}</td>
-                                    <td class="px-4 py-3 {{ $this->cant_productos()[$loop->index] > 0 ? 'text-green-500' : 'text-red-500' }}">
-                                        {{ $this->cant_productos()[$loop->index] }}</td>
+                                    {{-- <td class="px-4 py-3 {{ $this->cant_productos()[$loop->index] > 0 ? 'text-green-500' : 'text-red-500' }}">
+                                        {{ $this->cant_productos()[$loop->index] }}</td> --}}
                                     <td class="px-4 py-3">{{ $producto->unidad_producto }} </td>
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         {{-- <button class="ml-2 px-3 py-1 bg-blue-500 text-white rounded m-2">

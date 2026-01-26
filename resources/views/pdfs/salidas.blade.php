@@ -3,51 +3,66 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Salidas del inventario</title>
     <style>
+        /* Reset - basado en salidas.css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         @page {
-            margin: 0.7cm 0.7cm;
+            margin: 10mm 12mm 15mm 12mm;
         }
 
         body {
             font-family: 'Times New Roman', Times, serif;
             font-size: 12px;
             margin: 0;
-            padding: 1cm 1.5cm;
+            padding: 0;
         }
 
-        * {
-            box-sizing: border-box;
+        main {
+            width: 100%;
         }
 
+        /* Header - basado en salidas.css */
         .header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
         }
 
-        /* Logos layout using table for PDF safety */
         .tabla-logos {
-
-             height: 100px;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 10px;
-
-            img {
-                width: 320px;
-                height: auto;
-            }
-
+            text-align: center;
+            margin-bottom: 3px;
         }
 
+        .tabla-logos table {
+            width: 80%;
+            margin: 0 auto;
+            border: none;
+        }
+
+        .tabla-logos td {
+            text-align: center;
+            border: none;
+            padding: 5px 20px;
+            width: 50%;
+        }
+
+        .tabla-logos img {
+            max-width: 220px;
+            height: auto;
+        }
+
+        /* Corporación - basado en salidas.css */
         .corporacion {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            margin-top: -40px;
         }
 
         .corporacion h1 {
@@ -62,197 +77,266 @@
             margin: 0;
         }
 
+        /* Solicitud */
+        .solicitud {
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+        }
+
         .titulo-documento {
             text-align: center;
             font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 20px;
-            padding: 5px;
+            font-size: 18px;
+            margin-bottom: 10px;
+            padding: 3px;
         }
 
-        /* Information Grid using Table */
-        .info-tabla {
+        /* Información - basado en salidas.css */
+        .informacion-s {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-top: 8px;
+            margin-bottom: 15px;
         }
 
-        .info-tabla td {
+        .informacion-s table {
+            width: 90%;
+            margin: 0 auto;
+            border: none;
+        }
+
+        .informacion-s td {
+            text-align: center;
             vertical-align: top;
-            padding: 5px;
-            width: 25%;
+            padding: 3px 10px;
+            font-size: 12px;
+            border: none;
         }
 
-        .info-label {
+        .informacion-s .label {
             font-weight: bold;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
-        /* Products Table */
-        .tabla-productos {
+        /* Tabla de productos - basado en salidas.css */
+        .tabla-contenido {
             width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .tabla-productos {
+            width: 85%;
+            margin: 0 auto;
             border-collapse: collapse;
             text-align: center;
-            margin-bottom: 30px;
+        }
+
+        .tabla-productos thead {
+            display: table-header-group;
         }
 
         .tabla-productos thead th {
             background-color: #AE2B2F;
             color: white;
-            padding: 8px;
-            border: 1px solid #000;
+            padding: 6px;
+            border: 1px solid #888;
             font-weight: bold;
+            font-size: 11px;
         }
 
         .tabla-productos tbody td {
-            padding: 8px;
-            border: 1px solid #000;
+            padding: 5px;
+            border: 1px solid #888;
             text-align: center;
             vertical-align: middle;
+            font-size: 10px;
         }
 
-        tr {
+        .tabla-productos tr {
             page-break-inside: avoid;
         }
 
-        /* Authorization */
-        .tabla-autorizacion {
+        /* Autorización - basado en salidas.css */
+        .autorizacion {
             width: 100%;
+            margin-top: 25px;
+            page-break-inside: avoid;
+        }
+
+        .tabla-autorizacion {
+            width: 85%;
+            margin: 0 auto 8px auto;
             border-collapse: collapse;
             text-align: center;
-            margin-bottom: 20px;
-            page-break-inside: avoid;
+            table-layout: fixed;
         }
 
         .tabla-autorizacion th {
             background-color: #AE2B2F;
             color: white;
             font-weight: bold;
-            padding: 8px;
-            border: 1px solid #000;
+            padding: 6px;
+            border: 1px solid #888;
             width: 50%;
+            font-size: 11px;
         }
 
         .tabla-autorizacion td {
             height: 100px;
             vertical-align: bottom;
             padding: 8px;
-            border: 1px solid #000;
+            border: 1px solid #888;
+            width: 50%;
         }
 
         .firma-espacio {
-            display: block;
-            height: 60px;
-            margin-bottom: 5px;
+            height: 50px;
+            border-bottom: 1px solid black;
+            margin: 0 auto 8px auto;
+            width: 75%;
         }
 
         .nombre-firmante {
             font-weight: bold;
             margin: 0;
-            font-size: 11px;
+            font-size: 10px;
         }
 
         .cargo-firmante {
             margin: 0;
-            font-size: 10px;
+            margin-top: 3px;
+            font-size: 9px;
         }
 
-    .solicitud{
-    width: 100%;
-    margin-top: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    
-}
+        /* Saltos de página */
+        .page-break {
+            page-break-after: always;
+        }
 
-.nombre-s{
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.informacion-s{    
-    padding: 0 15px;
-    display: flex;
-    flex-direction:row;
-    width: 100%;
-    justify-content: center;
-    margin-top: 15px;    
-    margin-bottom: 25px; 
-    gap: 30px;
-    div{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        font-size: 18px;
-    }
-}
-
+        .avoid-break {
+            page-break-inside: avoid;
+        }
     </style>
 </head>
 
 <body>
     <main>
-
+        <!-- HEADER -->
         <div class="header">
             <div class="tabla-logos">
-                <div>
-                    @php $logo1 = public_path('images/logo_oaxaca.png'); @endphp
-                    @inlinedImage($logo1)
-
-                </div>
-
-                <div>
-                    @php $logo2 = public_path('images/logo_cortv.png'); @endphp
-                    @inlinedImage($logo2)
-                </div>
-
+                <table>
+                    <tr>
+                        <td>
+                            @php 
+                                $logo1Path = public_path('images/logo_oaxaca.png');
+                                
+                                /*
+                                Esto era de dani
+                                if(file_exists($logo1Path)) {
+                                    $logo1Data = base64_encode(file_get_contents($logo1Path));
+                                    $logo1Mime = mime_content_type($logo1Path);
+                                }
+                            @endphp
+                            @if(isset($logo1Data))
+                                <img src="data:{{ $logo1Mime }};base64,{{ $logo1Data }}" alt="Logo Oaxaca">
+                            @endif
+                        </td>
+                        <td>
+                            @php 
+                                $logo2Path = public_path('images/logo_cortv.png');
+                                if(file_exists($logo2Path)) {
+                                    $logo2Data = base64_encode(file_get_contents($logo2Path));
+                                    $logo2Mime = mime_content_type($logo2Path);
+                                }
+                            @endphp
+                            @if(isset($logo2Data))
+                                <img src="data:{{ $logo2Mime }};base64,{{ $logo2Data }}" alt="Logo CORTV">
+                            @endif
+                                */
+                                
+                                //Disclaimer, Esta parte es de Zaid
+                                if(file_exists($logo1Path) && is_readable($logo1Path)) {
+                                    try {
+                                        $logo1Data = base64_encode(file_get_contents($logo1Path));
+                                        $logo1Mime = 'image/png';
+                                    } catch (\Exception $e) {
+                                        $logo1Data = null;
+                                    }
+                                } else {
+                                    $logo1Data = null;
+                                }
+                            @endphp
+                            @if(isset($logo1Data) && $logo1Data)
+                                <img src="data:{{ $logo1Mime }};base64,{{ $logo1Data }}" alt="Logo Oaxaca">
+                            @endif
+                        </td>
+                        <td>
+                            @php 
+                                $logo2Path = public_path('images/logo_cortv.png');
+                                if(file_exists($logo2Path) && is_readable($logo2Path)) {
+                                    try {
+                                        $logo2Data = base64_encode(file_get_contents($logo2Path));
+                                        $logo2Mime = 'image/png';
+                                    } catch (\Exception $e) {
+                                        $logo2Data = null;
+                                    }
+                                } else {
+                                    $logo2Data = null;
+                                }
+                            @endphp
+                            @if(isset($logo2Data) && $logo2Data)
+                                <img src="data:{{ $logo2Mime }};base64,{{ $logo2Data }}" alt="Logo CORTV">
+                            @endif
+                        </td>
+                    </tr>
+                </table>
             </div>
 
             <div class="corporacion">
-                <h1>CORPORACION OAXAQUEÑA DE RADIO Y TELEVISION</h1>
+                <h1>CORPORACIÓN OAXAQUEÑA DE RADIO Y TELEVISIÓN</h1>
                 <h2>DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES</h2>
             </div>
         </div>
 
+        <!-- DATOS DEL DOCUMENTO -->
         <div class="solicitud">
             <div class="titulo-documento">
-                SALIDA DE ALMACEN
+                {{ session('datos_registro.formato') }}
             </div>
 
             <div class="informacion-s">
-                <div>
-                    <span> <b>Area que solicita:</b> </span>
-                    <span>{{ session('datos_registro.area') }}</span>
-                </div>
-
-                <div>
-                    <span><b>Nombre:</b></span>
-                    <span style="overflow-wrap: break-word;">{{ session('datos_registro.nombre') }}</span>
-                </div>
-
-                <div>
-                    <span><b>Fecha:</b></span>
-                    <span>{{ date('d/m/Y') }}</span>
-                </div>
-
-                <div>
-                    <span><b>Categoria:</b></span>
-                    <span>{{ session('datos_registro.categoria') }}</span>
-                </div>
-
+                <table>
+                    <tr>
+                        <td>
+                            <span class="label">Área que solicita:</span>
+                            <span>{{ session('datos_registro.area') }}</span>
+                        </td>
+                        <td>
+                            <span class="label">Nombre:</span>
+                            <span>{{ session('datos_registro.nombre') }}</span>
+                        </td>
+                        <td>
+                            <span class="label">Fecha:</span>
+                            <span>{{ date('d/m/Y') }}</span>
+                        </td>
+                        <td>
+                            <span class="label">Categoría:</span>
+                            <span>{{ session('datos_registro.categoria') }}</span>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
+        <!-- TABLA DE PRODUCTOS -->
         <div class="tabla-contenido">
             <table class="tabla-productos">
                 <thead>
                     <tr>
-                        <th style="width: 15%;">Cantidad</th>
+                        <th style="width: 12%;">Cantidad</th>
                         <th style="width: 15%;">Unidad</th>
-                        <th>Descripcion</th>
+                        <th style="width: 73%;">Descripción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -260,7 +344,7 @@
                         <tr>
                             <td>{{ $registro->cantidad_registro }}</td>
                             <td>{{ $registro->producto->unidad_producto ?? 'N/A' }}</td>
-                            <td>{{ $registro->producto->nombre_producto ?? 'N/A' }}</td>
+                            <td style="text-align: left; padding-left: 10px;">{{ $registro->producto->nombre_producto ?? 'N/A' }}</td>
                         </tr>
                     @empty
                         <tr>
@@ -271,32 +355,29 @@
             </table>
         </div>
 
-        <div class="autorizacion">
+        <!-- SECCIÓN DE FIRMAS -->
+        <div class="autorizacion avoid-break">
             <table class="tabla-autorizacion">
                 <thead>
                     <tr>
-                        <th>SOLICITO</th>
-                        <th>AUTORIZO</th>
+                        <th>SOLICITÓ</th>
+                        <th>AUTORIZÓ</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <div class="firma-espacio"> </div>
-                            <p class="nombre-firmante">
-                                ___________________________________________________ <br> <br>
-                                O</p>
+                            <div class="firma-espacio"></div>
+                            <p class="nombre-firmante">{{ session('datos_registro.solicito') }}</p>
                         </td>
                         <td>
                             <div class="firma-espacio"></div>
                             <p class="nombre-firmante">{{ session('datos_registro.autoriza') }}</p>
-                            <p class="cargo-firmante">DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS GENERALES</p>
+                            <p class="cargo-firmante">DEPTO. DE RECURSOS MATERIALES Y SERVICIOS GENERALES</p>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-            <div style="height: 10px;"></div>
 
             <table class="tabla-autorizacion">
                 <thead>
@@ -310,14 +391,11 @@
                         <td>
                             <div class="firma-espacio"></div>
                             <p class="nombre-firmante">{{ session('datos_registro.entrega') }}</p>
-                            <p class="cargo-firmante">AUXILIAR DEL DEPARTAMENTO DE RECURSOS MATERIALES Y SERVICIOS
-                                GENERALES</p>
+                            <p class="cargo-firmante">AUXILIAR DEL DEPTO. DE RECURSOS MATERIALES Y SERVICIOS GENERALES</p>
                         </td>
                         <td>
                             <div class="firma-espacio"></div>
-                            <p class="nombre-firmante ">
-                                ___________________________________________________ <br> <br> O
-                            </p>
+                            <p class="nombre-firmante">{{ session('datos_registro.solicito') }}</p>
                         </td>
                     </tr>
                 </tbody>

@@ -4,7 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Registro;
+use App\Models\{
+    Registro,
+    log,
+};
 
 class registroSeeder extends Seeder
 {

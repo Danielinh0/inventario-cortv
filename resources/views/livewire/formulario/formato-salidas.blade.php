@@ -15,9 +15,28 @@
     <div>
         <form wire:submit="save" class="flex flex-col px-4 gap-5 w-full text-black text-xl"
             style="font-family: 'Times New Roman', Times, serif;">
+            <!-- Seleccion de leyenda-->
+            <div class="mb-1">
+                <!-- Seleccion de leyenda para el  formato-->
+                <label for="formato" class="flex flex-col gap-1">
+                    <span>Formato</span>
+                    <span class="text-semibold text-base text-[#757575]">
+                        ¿Que leyenda tendra el formato?
+                    </span>
+                </label>
+                <select id="formato" name="formato" wire:model="formato"
+                    class="border-[#D9D9D9] border-1 rounded-md p-2 h-[40px] w-full text-[16px] mt-1">
+                    <option value="Solicitud y Salida de Almacen">Solicitud y Salida de Almacen</option>
+                    <option value="Salida">Salida de Almacen</option>
+                </select>
+                
+                @error('formato')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
             <!-- area -->
-            <div>
-                <label for="area" class="flex flex-col gap-1">
+            <div>   
+                <label for="area" class="flex flex-col ">
                     <span>Área</span>
                     <span class="text-semibold text-base text-[#757575]">
                         ¿Qué área lo solicita?
@@ -98,6 +117,22 @@
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
+
+            <div>
+                <label for="solicito" class="flex flex-col gap-1">
+                    <span>Solicitud y Recepción</span>
+                    <span class="text-semibold text-base text-[#757575]">
+                        ¿Quién solicita y recibe la salida?
+                    </span>
+                </label>
+                <input type="text" id="solicito" name="solicito" wire:model.blur="solicito"
+                    class="border-[#D9D9D9] border-1 rounded-md p-2 h-[30px] w-full mt-1">
+                
+                @error('solicito')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+            </div>
+
             <!-- boton -->
             <div class="mt-4">
                 <button type="submit" class="w-full bg-[#8B2427] rounded-md flex justify-center p-2 cursor-pointer hover:bg-[#AE2B2F]">
@@ -108,6 +143,11 @@
                     Guardando...
                 </div>
             </div>
+            @if (session()->has('status'))
+                    <div class="alert alert-success mt-4 text-cortvRojoOscuro font-semibold self-center text-center">
+                        {{ session('status') }}
+                    </div>
+                @endif
         </form>
     </div>
 
