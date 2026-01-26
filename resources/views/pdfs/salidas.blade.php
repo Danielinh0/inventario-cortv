@@ -361,7 +361,7 @@
                             <div class="firma-espacio"></div>
                             <p class="nombre-firmante">{{ session('datos_registro.solicito') }}</p>
                             <p class="cargo-firmante"> 
-                                DATOS PARA EL FORMULARIO ZAID
+                                {{ session('datos_registro.cargo') }}
                              </p>
 
                         </td>
@@ -392,7 +392,7 @@
                             <div class="firma-espacio"></div>
                             <p class="nombre-firmante">{{ session('datos_registro.solicito') }}</p>
                             <p class="cargo-firmante">
-                                DATOS PARA ZAID    
+                                        {{ session('datos_registro.cargo') }}   
                             </p>
                         </td>
                     </tr>

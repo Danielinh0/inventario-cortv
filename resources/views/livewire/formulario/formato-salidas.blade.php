@@ -27,7 +27,7 @@
                 <select id="formato" name="formato" wire:model="formato"
                     class="border-[#D9D9D9] border-1 rounded-md p-2 h-[40px] w-full text-[16px] mt-1">
                     <option value="Solicitud y Salida de Almacen">Solicitud y Salida de Almacen</option>
-                    <option value="Salida">Salida de Almacen</option>
+                    <option value="Salida de Almacen">Salida de Almacen</option>
                 </select>
                 
                 @error('formato')
